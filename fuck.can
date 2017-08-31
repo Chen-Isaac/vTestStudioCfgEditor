@@ -132,7 +132,3 @@ export testcase chkAccImpOnColorWhenIgnOffAlcmOn (char msWaitForTurnOn[],char do
   stateMachine("chkAccImpOnColorWhenIgnOffAlcmOn",routeNum,paraPick);
 }
 
-export testcase sdf (void) {
-  stateMachine("sdf",routeNum,noParaPick);
-}
-
