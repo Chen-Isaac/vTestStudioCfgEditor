@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book 1_ Dinosaurs Before Dark</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<p>[V-ERG 及物/不及物动词] (常因害怕或保护眼睛而)紧闭(双眼)；If you squeeze your eyes shut or if your eyes squeeze shut, you close them tightly, usually because you are frightened or to protect your eyes from something such as strong sunlight. [V n adj] [V adj] [V-ed]</p>
+<p><img src="http://www.todayifoundout.com/wp-content/uploads/2010/09/phosphenes.jpg" /></p>
+<p>When birds or aeroplanes glide, they float on air currents. [V prep/adv] [Also V]
+<img src="http://www.kelpscape.com/kelpscape/images/2008/09/13/hawkglide_9559.jpg" /></p>
+<p>A bird's crest is a group of upright feathers on the top of its head.
+<img src="https://fthmb.tqn.com/lYFb7EP7m1n4mEaMjK08Wa-TuKM=/960x0/filters:no_upscale()/about/crest-57bf26c43df78cc16e225130.jpg" /></p>
+<p>[VERB 动词] 乱放;乱塞;随便放;胡乱丢；If you shove something somewhere, you push it there quickly and carelessly. [V n prep/adv]</p>
+<p>He shoved the dinosaur book into his pack.
+<img src="https://images-na.ssl-images-amazon.com/images/I/51gY65dv1lL._SY355_.jpg" /></p>
+<p>[VERB 动词] (通常指用肘)轻推，轻碰(以引起注意)；If you nudge someone, you push them gently, usually with your elbow, in order to draw their attention to something. [V n] [usu sing]</p>
+<p>Annie nudged him hard. Jack looked at her.</p>
+<p><img src="http://lh3.googleusercontent.com/-8K8kofshIrs/U2OnxoaZOCI/AAAAAAAAMY4/dp7dGuCwq_Q/s512/nudge-512x203.png" /></p>
+<p>[N-VAR 可变名词] 大号；A tuba is a large musical instrument of the brass family which produces very low notes. It consists of a long metal tube folded round several times with a wide opening at the end. [oft the N]</p>
+<p><img src="http://media.wwbw.com/is/image/MMGS7/188-5U-Series-5-Valve-4-4-CC-Tuba/463929000000000-00-500x500.jpg" /></p>
+<p>公牛、大象等大型动物咆哮，吼叫；When a large animal such as a bull or an elephant bellows, it makes a loud and deep noise. [V]</p>
+<p>A terrible tuba sound! Another! Another! All the Anatosauruses were bellowing at him.</p>
+<p><img src="https://i.ytimg.com/vi/nzs-k5tz2Cc/maxresdefault.jpg" /></p>
+<p>[VERB 动词] 挥动，舞动(手臂)；If you flap your arms, you move them quickly up and down as if they were the wings of a bird. [V n]</p>
+<p><img src="https://s-media-cache-ak0.pinimg.com/236x/53/a2/ef/53a2ef2964e931df9f4b1d0343cf9221--esl-lesson-plans-esl-lessons.jpg" /></p>
+<p>[N-COUNT 可数名词] 爬行动物；Reptiles are a group of cold-blooded animals which have skins covered with small hard plates called scales and lay eggs. Snakes, lizards, and crocodiles are reptiles.</p>
+<p>Jack couldn’t believe it. He was riding on the back of an ancient flying reptile!</p>
+<p>Peek out/over/through,etc. To be just visible 微漏出；探出</p>
+<p>He peeked out the tree house window.
+<img src="https://s-media-cache-ak0.pinimg.com/originals/81/e3/95/81e3953fd92f55ae4bfee1025d935fb1.jpg" /></p>
+<p>[N-COUNT 可数名词] (尤指用链子挂于颈部的)圆形金属饰物；A medallion is a round metal disc which some people wear as an ornament, especially on a chain round their neck.
+<img src="https://goglobal.fiu.edu/wp-content/uploads/sites/16/2014/06/GLI_Medal_only.png" /></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
