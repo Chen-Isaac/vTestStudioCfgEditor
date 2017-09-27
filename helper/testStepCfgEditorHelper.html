@@ -346,16 +346,6 @@ img {
 <p>section一栏为空的行，归属于该列以上第一个section一栏不空的行所处的section，如下图所示：</p>
 <p><img src="https://i.loli.net/2017/09/22/59c484444ad75.png" /></p>
 </li>
-<li>
-<p>section一栏的字符串中，如果首字符为*，则说明该section所包含的测试序列可以作为一个变量被后续的首字符不含*的正常section单独调用。</p>
-<p>举例说明，以下是一个首字符为*的section：*switchOffByLockSignal，这个case的功能是通过Lock signal来熄灭氛围灯。</p>
-<p><img src="https://i.loli.net/2017/09/22/59c4a7371adf5.png" /></p>
-<p>鉴于灭灯是一个测试中经常需要用到的动作，如果每一次灭灯都需要重复*switchOffByLockSignal中的这5个动作，显然非常不经济。但是如果将这5个动作放到一个首字符带*的section中，那么将来灭灯只需要引用*switchOffByLockSignal这个section的名称，即可实现对这5个动作的调用。</p>
-<p>调用格式： 在section中需要调用的行的function arguments一栏，填入：首字符为*的section名称，后面加上=号即可完成调用。如下图所示：</p>
-<p><img src="https://i.loli.net/2017/09/22/59c4aecba370f.png" /></p>
-<p>如果调用格式不对，check一栏会报相应的错误，并指示正确的填入方法。如下图所示，调用section的末尾漏掉了=号。</p>
-<p><img src="https://i.loli.net/2017/09/22/59c4afa5b06b4.png" /></p>
-</li>
 </ul>
 </li>
 <li>
@@ -387,6 +377,18 @@ img {
 </ol>
 <h3>_testStepCfgEditor的特殊格式说明</h3>
 <ol>
+<li>
+<p>首字符带*的section</p>
+<p>section一栏的字符串中，如果首字符为*，则说明该section所包含的测试序列可以作为一个变量被后续的首字符不含*的正常section单独调用。</p>
+<p>举例说明，以下是一个首字符为*的section：*switchOffByLockSignal，这个case的功能是通过Lock signal来熄灭氛围灯。</p>
+<p><img src="https://i.loli.net/2017/09/22/59c4a7371adf5.png" /></p>
+<p>鉴于灭灯是一个测试中经常需要用到的动作，如果每一次灭灯都需要重复*switchOffByLockSignal中的这5个动作，显然非常不经济。但是如果将这5个动作放到一个首字符带*的section中，那么将来灭灯只需要引用*switchOffByLockSignal这个section的名称，即可实现对这5个动作的调用。</p>
+<p>调用格式： 在section中需要调用的行的function arguments一栏，填入：首字符为*的section名称，后面加上=号即可完成调用。如下图所示：</p>
+<p><img src="https://i.loli.net/2017/09/22/59c4aecba370f.png" /></p>
+<p>如果调用格式不对，check一栏会报相应的错误，并指示正确的填入方法。如下图所示，调用section的末尾漏掉了=号。</p>
+<p><img src="https://i.loli.net/2017/09/22/59c4afa5b06b4.png" /></p>
+<p>需要注意的是：首字符带*的section里，不应该再包含有其他的首字符带*的section，以防止递归等情况下section的互相调用可能造成的死循环。如果在编辑器中出现这个问题，那么check一栏会自动报错。</p>
+</li>
 <li>
 <p>带*号的实参</p>
 <p>某些情况下，某几个test case可能互相之间除了个别参数的数值是不同的，其余部分都是相同的，这种情况下，如果分别为这几个case撰写专门的用例肯定是不经济的。那么这时候，用户就可以采用带*号的实参来处理这种情况，并且程序会自动默认这是一个符合函数形参数据类型的变量。</p>
@@ -422,6 +424,7 @@ img {
 <p><img src="https://i.loli.net/2017/09/25/59c8bee3289cf.png" /></p>
 <p>最终当用户使用vTESTstudio来调用这个case的时候，就可以通过vTESTstudio右侧自带的parameter Values面板，将包括stepRouteNum在内的相应的各实参可能的取值填入，然后由Combinatorics一栏来决定这四个参数间的数值匹配方式。以下是针对上例的最终取值结果：</p>
 <p><img src="https://i.loli.net/2017/09/27/59cb074e04659.png" /></p>
+<p>需要注意的是，符号|的用法，仅针对函数，而不针对于首字符带*的section。</p>
 </li>
 </ol>
 <h3>_testStepCfgEditor的生成文档说明</h3>
