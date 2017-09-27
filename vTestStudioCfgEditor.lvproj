@@ -52,18 +52,18 @@
 				<Property Name="Bld_buildSpecName" Type="Str">builder</Property>
 				<Property Name="Bld_excludeLibraryItems" Type="Bool">true</Property>
 				<Property Name="Bld_excludePolymorphicVIs" Type="Bool">true</Property>
-				<Property Name="Bld_localDestDir" Type="Path">../_testStepCfgEditor/builder</Property>
+				<Property Name="Bld_localDestDir" Type="Path">../vTestStudioCfgEditor/builder</Property>
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Destination[0].destName" Type="Str">Application.exe</Property>
-				<Property Name="Destination[0].path" Type="Path">../_testStepCfgEditor/builder/Application.exe</Property>
+				<Property Name="Destination[0].path" Type="Path">../NI_AB_PROJECTNAME/builder/Application.exe</Property>
 				<Property Name="Destination[0].preserveHierarchy" Type="Bool">true</Property>
 				<Property Name="Destination[0].type" Type="Str">App</Property>
 				<Property Name="Destination[1].destName" Type="Str">Support Directory</Property>
-				<Property Name="Destination[1].path" Type="Path">../_testStepCfgEditor/builder/data</Property>
+				<Property Name="Destination[1].path" Type="Path">../NI_AB_PROJECTNAME/builder/data</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
 				<Property Name="Exe_iconItemID" Type="Ref">/My Computer/pictures/notepad-icon.ico</Property>
-				<Property Name="Source[0].itemID" Type="Str">{F8DE660C-43D9-4334-B983-9B207765196F}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{26C5842C-C322-4D45-9627-A29C67F12DEF}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/VI/check errors exist or not.vi</Property>
