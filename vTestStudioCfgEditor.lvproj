@@ -63,7 +63,7 @@
 				<Property Name="Destination[1].path" Type="Path">../NI_AB_PROJECTNAME/builder/data</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
 				<Property Name="Exe_iconItemID" Type="Ref">/My Computer/pictures/notepad-icon.ico</Property>
-				<Property Name="Source[0].itemID" Type="Str">{845147B2-819B-439A-8520-A16E35D21AEE}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{784071CD-B0DD-43B7-AD95-43675176E93D}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/VI/check errors exist or not.vi</Property>
