@@ -109,22 +109,22 @@ export testcase chkAccImpWhenMode0 (char doorSignal[],char msWaitForTurnOn[]) {
   stateMachine("chkAccImpWhenMode0",routeNum,paraPick);
 }
 
-export testcase chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff (char doorSignal[],char msWaitForTurnOn[],char posLmpStsVal[],int stepRouteNum13,int stepRouteNum14,int stepRouteNum15,int stepRouteNum16,int stepRouteNum17,char Mode3_6[],int stepRouteNum28,int stepRouteNum29,int stepRouteNum30,int stepRouteNum31,int stepRouteNum32,char Mode2_5[]) {
+export testcase chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff (char doorSignal[],char msWaitForTurnOn[],char posLmpStsVal[],int stepRouteNum14,int stepRouteNum16,int stepRouteNum17,int stepRouteNum18,int stepRouteNum19,char Mode3_6[],int stepRouteNum30,int stepRouteNum31,int stepRouteNum32,int stepRouteNum33,int stepRouteNum34,char Mode2_5[]) {
   char paraPick[5][2][100] = {{"doorSignal",""},{"msWaitForTurnOn",""},{"posLmpStsVal",""},{"Mode3_6",""},{"Mode2_5",""}};
   strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
   strncpy(paraPick[1][1],msWaitForTurnOn,elCount(paraPick[1][1]));
   strncpy(paraPick[2][1],posLmpStsVal,elCount(paraPick[2][1]));
-  routeNum[13] = stepRouteNum13;
   routeNum[14] = stepRouteNum14;
-  routeNum[15] = stepRouteNum15;
   routeNum[16] = stepRouteNum16;
   routeNum[17] = stepRouteNum17;
+  routeNum[18] = stepRouteNum18;
+  routeNum[19] = stepRouteNum19;
   strncpy(paraPick[3][1],Mode3_6,elCount(paraPick[3][1]));
-  routeNum[28] = stepRouteNum28;
-  routeNum[29] = stepRouteNum29;
   routeNum[30] = stepRouteNum30;
   routeNum[31] = stepRouteNum31;
   routeNum[32] = stepRouteNum32;
+  routeNum[33] = stepRouteNum33;
+  routeNum[34] = stepRouteNum34;
   strncpy(paraPick[4][1],Mode2_5,elCount(paraPick[4][1]));
   stateMachine("chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff",routeNum,paraPick);
 }
@@ -137,15 +137,15 @@ export testcase chkIgnOnImpWhenMode0 (char doorSignal[],char msWaitForTurnOn[],c
   stateMachine("chkIgnOnImpWhenMode0",routeNum,paraPick);
 }
 
-export testcase chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff (char doorSignal[],char msWaitForTurnOn[],int stepRouteNum6,int stepRouteNum7,int stepRouteNum8,int stepRouteNum9,int stepRouteNum10,char pwmMode[]) {
+export testcase chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff (char doorSignal[],char msWaitForTurnOn[],int stepRouteNum7,int stepRouteNum8,int stepRouteNum9,int stepRouteNum10,int stepRouteNum11,char pwmMode[]) {
   char paraPick[3][2][100] = {{"doorSignal",""},{"msWaitForTurnOn",""},{"pwmMode",""}};
   strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
   strncpy(paraPick[1][1],msWaitForTurnOn,elCount(paraPick[1][1]));
-  routeNum[6] = stepRouteNum6;
   routeNum[7] = stepRouteNum7;
   routeNum[8] = stepRouteNum8;
   routeNum[9] = stepRouteNum9;
   routeNum[10] = stepRouteNum10;
+  routeNum[11] = stepRouteNum11;
   strncpy(paraPick[2][1],pwmMode,elCount(paraPick[2][1]));
   stateMachine("chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff",routeNum,paraPick);
 }
