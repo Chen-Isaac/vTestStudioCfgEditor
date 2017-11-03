@@ -261,4 +261,134 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         ![](https://i.loli.net/2017/09/27/59cb074e04659.png)
         
+###函数功能介绍
+
+- 用户界面操作类函数
+
+    1. testValidateTesterConfirmation
    
+        函数原型： long TestValidateTesterConfirmation(char question[])
+
+        功能： 弹出提示窗口，指示操作人员下一步的操作动作。
+
+        参数：
+
+        - question： 弹出窗口上显示的字符串内容。
+
+        函数返回值： 
+
+        ![](https://i.loli.net/2017/11/03/59fbc79f02e0e.png)
+
+- 通讯协议类函数
+
+    1. signalSetting
+    
+        函数原型： void signalSetting (char sigName[], float valueBase,int range) 
+
+        功能： 给特定信号赋特定范围内的一个随机数。这个数的值为valueBase加上一个随机整数，0 ≤ 随机整数 < range。 
+
+        参数：
+
+        - sigName： 赋值信号在database上的名称。
+        - valueBase： 赋值的基值
+        - range： 赋值在基值上的随机整数范围偏差为0 — range-1
+
+        函数返回值：无
+
+    2. signalContSetting
+   
+        函数原型： void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime)
+
+        功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在150ms后读取信号值，检测信号赋值是否成功，再等待msGapTime毫秒间隔，发送下一条赋值指令。
+
+        参数：
+
+        - sigName： 赋值信号在database上的名称。
+        - startVal： 赋值的初值。
+        - range： 赋值的增长范围。
+        - msGapTime： 赋值的间隔时间（ms）。
+
+        函数返回值： 无
+
+    3. testEnableMsg
+   
+        函数原型： long TestEnableMsg (char aMessageName[])
+
+        功能： 在使用TestDisableMsg函数屏蔽某周期性消息后，利用这条指令，可以重新激活该消息的发送。**注：该函数仅适用于由database定义的周期性消息。**
+
+        参数：
+
+        - aMessageName： 重新激活发送的周期性消息名称。
+
+        函数返回值：
+
+        - 0： No error。
+        - -1: General error。
+
+    4. testDisableMsg
+   
+        函数原型： long TestDisableMsg (char aMessageName[])
+
+        功能： 屏蔽数据库中的某周期性消息的发送。**注：该函数仅适用于由database定义的周期性消息。**
+
+        参数：
+
+        - aMessageName： 屏蔽的周期性消息名称。
+
+        函数返回值：
+
+        - 0： No error。
+        - -1: General error。
+
+    5. linActivateSlot
+   
+        函数原型： long linActivateSlot(int tableIndex, int slotIndex)
+
+        功能： 在使用linDeactivateSlot函数屏蔽某LIN消息后，利用这条指令，可以重新根据该消息在LDF文件中调度表的位置（tableIndex, slotIndex），来激活该消息的发送。
+
+        参数：
+
+        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。
+        - slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。
+
+        函数返回值：
+
+        - 0： 激活发送失败。
+        - 非0: 激活发送成功。
+
+    6. linDeactivateSlot
+   
+        函数原型： long linDeactivateSlot(dword tableIndex, dword slotIndex)
+
+        功能： 根据某LIN消息在LDF文件中调度表的位置（tableIndex, slotIndex），屏蔽该消息的发送。
+
+        参数：
+
+        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。
+        - slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。
+
+        函数返回值：
+
+        - 0： 屏蔽失败。
+        - 非0: 屏蔽成功。
+
+    7. sendCanUdsDiagChkResp
+   
+        函数原型： long linDeactivateSlot(dword tableIndex, dword slotIndex)
+
+        功能： 根据某LIN消息在LDF文件中调度表的位置（tableIndex, slotIndex），屏蔽该消息的发送。
+
+        参数：
+
+        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。
+        - slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。
+
+        函数返回值：
+
+        - 0： 屏蔽失败。
+        - 非0: 屏蔽成功。
+
+
+    
+
+    
