@@ -332,7 +332,7 @@ img {
 </li>
 </ol>
 <h3>_testStepCfgEditor的表格组成</h3>
-<p>_testStepCfgEditor的表格由6个栏目组成，分别是section，function，function arguments，function parameters，check以及note。</p>
+<p>_testStepCfgEditor的表格由6个栏目组成，分别是section，function，function arguments，function parameters，check以及comment。</p>
 <p>下面对每个栏目的意义做分类解释：</p>
 <ol>
 <li>
@@ -369,9 +369,9 @@ img {
 <p>function parameters即对应函数的形参，当你点击面板右侧tree控件添加函数的时候，该函数的形参会自动添加到该栏。填写函数实参的时候，可以参考该栏内容，填入正确类型的实参。需要注意的是，function parameters一栏的存在，仅仅是为了辅助用户填写实参。在最终生成的ini文档中，是没有形参的位置的。</p>
 </li>
 <li>
-<p>note</p>
-<p>note即注释，适当的注释有利于用户回顾编写测试内容时的逻辑。这部分内容也会保留在最终生成的ini文件中，跟随在文本行末尾;//符号的后面。注：//的目的只是为了方便识别注释，真正区分注释和正文的关键在于；号。</p>
-<p>以下是note在应用和生成ini文件中的对应位置：</p>
+<p>comment</p>
+<p>comment即注释，适当的注释有利于用户回顾编写测试内容时的逻辑。这部分内容也会保留在最终生成的ini文件中，跟随在文本行末尾;//符号的后面。注：//的目的只是为了方便识别注释，真正区分注释和正文的关键在于；号。因此，即便用户在comment一栏中的起始没有填入符号//，脚本编辑器最终也会在生成的ini文件中，将符号//补上。</p>
+<p>以下是comment在应用和生成ini文件中的对应位置：</p>
 <p><img src="https://i.loli.net/2017/09/25/59c869f1eef70.png" /></p>
 </li>
 </ol>
@@ -484,6 +484,516 @@ img {
 </ul>
 </li>
 </ol>
+<h3>函数功能介绍</h3>
+<ul>
+<li>
+<p>用户界面操作类函数</p>
+<ol>
+<li>
+<p>testValidateTesterConfirmation</p>
+<p>函数原型： long TestValidateTesterConfirmation(char question[])</p>
+<p>功能： 弹出提示窗口，指示操作人员下一步的操作动作。</p>
+<p>参数：</p>
+<ul>
+<li>question： 弹出窗口上显示的字符串内容。</li>
+</ul>
+<p>函数返回值： </p>
+<p><img src="https://i.loli.net/2017/11/03/59fbc79f02e0e.png" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>通讯协议类函数</p>
+<ol>
+<li>
+<p>signalSetting</p>
+<p>函数原型： void signalSetting (char sigName[], float valueBase,int range) </p>
+<p>功能： 给特定信号赋特定范围内的一个随机数。这个数的值为valueBase加上一个随机整数，0 ≤ 随机整数 &lt; range。 </p>
+<p>参数：</p>
+<ul>
+<li>sigName： 赋值信号在database上的名称。</li>
+<li>valueBase： 赋值的基值</li>
+<li>range： 赋值在基值上的随机整数范围偏差为0 — range-1</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+<li>
+<p>signalContSetting</p>
+<p>函数原型： void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime)</p>
+<p>功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在150ms后读取信号值，检测信号赋值是否成功，再等待msGapTime毫秒间隔，发送下一条赋值指令。</p>
+<p>参数：</p>
+<ul>
+<li>sigName： 赋值信号在database上的名称。</li>
+<li>startVal： 赋值的初值。</li>
+<li>range： 赋值的增长范围。</li>
+<li>msGapTime： 赋值的间隔时间（ms）。</li>
+</ul>
+<p>函数返回值： 无</p>
+</li>
+<li>
+<p>testEnableMsg</p>
+<p>函数原型： long TestEnableMsg (char aMessageName[])</p>
+<p>功能： 在使用TestDisableMsg函数屏蔽某周期性消息后，利用这条指令，可以重新激活该消息的发送。<strong>注：该函数仅适用于由database定义的周期性消息。</strong></p>
+<p>参数：</p>
+<ul>
+<li>aMessageName： 重新激活发送的周期性消息名称。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>0： No error。</li>
+<li>-1: General error。</li>
+</ul>
+</li>
+<li>
+<p>testDisableMsg</p>
+<p>函数原型： long TestDisableMsg (char aMessageName[])</p>
+<p>功能： 屏蔽数据库中的某周期性消息的发送。<strong>注：该函数仅适用于由database定义的周期性消息。</strong></p>
+<p>参数：</p>
+<ul>
+<li>aMessageName： 屏蔽的周期性消息名称。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>0： No error。</li>
+<li>-1: General error。</li>
+</ul>
+</li>
+<li>
+<p>linActivateSlot</p>
+<p>函数原型： long linActivateSlot(int tableIndex, int slotIndex)</p>
+<p>功能： 在使用linDeactivateSlot函数屏蔽某LIN消息后，利用这条指令，可以重新根据该消息在LDF文件中调度表的位置（tableIndex, slotIndex），来激活该消息的发送。</p>
+<p>参数：</p>
+<ul>
+<li>tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。</li>
+<li>slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>0： 激活发送失败。</li>
+<li>非0: 激活发送成功。</li>
+</ul>
+</li>
+<li>
+<p>linDeactivateSlot</p>
+<p>函数原型： long linDeactivateSlot(dword tableIndex, dword slotIndex)</p>
+<p>功能： 根据某LIN消息在LDF文件中调度表的位置（tableIndex, slotIndex），屏蔽该消息的发送。</p>
+<p>参数：</p>
+<ul>
+<li>tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。</li>
+<li>slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>0： 屏蔽失败。</li>
+<li>非0: 屏蔽成功。</li>
+</ul>
+</li>
+<li>
+<p>sendCanUdsDiagChkResp</p>
+<p>函数原型： int sendCanUdsDiagChkResp (char serviceName[]) </p>
+<p>功能： 指示上位机发送某条特定的UDS CAN诊断消息，并检测产品发出的反馈消息是否正确。</p>
+<p>参数：</p>
+<ul>
+<li>serviceName： paraCfg.ini中section：UDS Services下某个key的key name。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>非零正值： 消息发送成功，反馈消息正确，返回接收字节的有效长度（byte）。</li>
+<li>-1： 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
+<li>-2： 上位机发送诊断消息失败；</li>
+<li>-3： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
+<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+</ul>
+</li>
+<li>
+<p>sendCanKostiaDiagChkResp</p>
+<p>函数原型： int sendCanKostiaDiagChkResp (char serviceName[])</p>
+<p>功能： 指示上位机发送某条特定的Kostia CAN诊断消息，并检测产品发出的反馈消息是否正确。</p>
+<p>参数：</p>
+<ul>
+<li>serviceName： paraCfg.ini中section：Kostia Services下某个key的key name。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>7： 消息发送成功，反馈消息正确，返回接收字节的长度（byte）。</li>
+<li>-1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
+<li>-2： 上位机发送诊断消息失败；</li>
+<li>-3： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
+<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+</ul>
+</li>
+<li>
+<p>sendLinUdsDiagChkResp</p>
+<p>函数原型： int sendLinUdsDiagChkResp (char serviceName[])</p>
+<p>功能： 指示上位机发送某条特定的UDS LIN诊断消息，并检测产品发出的反馈消息是否正确。</p>
+<p>参数：</p>
+<ul>
+<li>serviceName： paraCfg.ini中section：UDS Services下某个key的key name。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>非零正值： 消息发送成功，反馈消息正确，返回接收字节的有效长度（byte）。</li>
+<li>-1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
+<li>-2： 上位机发送诊断消息失败；</li>
+<li>-3： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
+<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+</ul>
+</li>
+<li>
+<p>sendLinKostiaDiagChkResp</p>
+<p>函数原型： int sendLinKostiaDiagChkResp (char serviceName[])</p>
+<p>功能： 指示上位机发送某条特定的Kostia LIN诊断消息，并检测产品发出的反馈消息是否正确。</p>
+<p>参数：</p>
+<ul>
+<li>serviceName： paraCfg.ini中section：Kostia Services下某个key的key name。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>7： 消息发送成功，反馈消息正确，返回接收字节的长度（byte）。</li>
+<li>-1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
+<li>-2： 上位机发送诊断消息失败；</li>
+<li>-3： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
+<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+</ul>
+</li>
+<li>
+<p>decodeAsciiFromRecDiag</p>
+<p>函数原型： void decodeAsciiFromRecDiag (int offsetBytePos,char reportContent[]) </p>
+<p>功能： 按照Ascii方式解析接收到的最新的一条产品反馈的LIN或CAN消息。</p>
+<p>参数：</p>
+<ul>
+<li>offsetBytePos： 解析的起始字节位（第一个字节的offsetBytePos=0）</li>
+<li>reportContent： 报告中显示的标题内容。</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+</ol>
+</li>
+<li>
+<p>General类函数</p>
+<ol>
+<li>
+<p>wait</p>
+<p>函数原型： void wait (int waitMs)</p>
+<p>功能： 等待一定时间（ms）。</p>
+<p>参数：</p>
+<ul>
+<li>waitMs： 设置等待时间（ms），当值为0时，可作为空函数使用。</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+</ol>
+</li>
+<li>
+<p>vtSystem操作类函数</p>
+<ol>
+<li>
+<p>vtSysPwrSupInit</p>
+<p>函数原型： void vtSysPwrSupInit (char pwrConnectWay[]) </p>
+<p>功能： 根据paraCfg.ini中section：vt7001Cfg下某个key的配置内容，初始化vtSystem中vt7001板卡，电源供应来自于vt7001板卡内部电源。</p>
+<p>参数：</p>
+<ul>
+<li>pwrConnectWay： paraCfg.ini中section：vt7001Cfg下某个key的key name。</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+<li>
+<p>vtSysWithExPwrSupInit</p>
+<p>函数原型： void vtSysWithExPwrSupInit (char pwrConnectWay[])</p>
+<p>功能： 根据paraCfg.ini中section：vt7001Cfg下某个key的配置内容，初始化vtSystem中vt7001板卡，电源供应来自于vt7001的外接电源。</p>
+<p>参数：</p>
+<ul>
+<li>pwrConnectWay： paraCfg.ini中section：vt7001Cfg下某个key的key name。</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+<li>
+<p>vtSysPwrSupVoltSet</p>
+<p>函数原型： void vtSysPwrSupVoltSet (char pwrConnectWay[], float volt)</p>
+<p>功能： 在之前电源供应配置为vt7001内部的前提下，设置电源电压值。</p>
+<p>参数：</p>
+<ul>
+<li>pwrConnectWay： 与vtSysPwrSupInit中的此参数值相同。</li>
+<li>volt： 电源电压值。</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+<li>
+<p>vtSysExPwrSupSet</p>
+<p>函数原型： void vtSysExPwrSupSet (char pwrConnectWay[], float volt, float maxI, int k) </p>
+<p>功能： 在之前电源供应配置为vt7001外接电源的前提下，设置电源电压值。</p>
+<p>参数：</p>
+<ul>
+<li>pwrConnectWay： 与vtSysWithExPwrSupInit中的此参数值相同；</li>
+<li>volt： 电源电压值；</li>
+<li>maxI： 电源可供最大电流值；</li>
+<li>k： 等于vt7001外接电源的输出电压与vt7001输出对外接电源的控制电压的比值，也是vt7001外接电源的输出最大电流与vt7001输出对外接电源的最大控制电流的比值。对于现今实验室中使用的外接电源SYSKON P4500而言，k=12.</li>
+</ul>
+<p>函数返回值：无</p>
+</li>
+<li>
+<p>vtSysPwrSupVoltGet</p>
+<p>函数原型： float vtSysPwrSupVoltGet (char pwrConnectWay[], float highLimitV, float lowLimitV) </p>
+<p>功能： 测量vt7001板卡的输出电压。</p>
+<p>参数：</p>
+<ul>
+<li>pwrConnectWay： 与之前vtSysPwrSupInit或vtSysWithExPwrSupInit中的此参数值相同；</li>
+<li>highLimitV： 允许的输出电压的最大值，单位V；</li>
+<li>lowLimitV： 允许的输出电压的最小值，单位V；</li>
+</ul>
+<p>函数返回值：测量到的电源电压输出值，单位V。</p>
+</li>
+<li>
+<p>vtSysPwrSupCurrGet</p>
+<p>函数原型： float vtSysPwrSupCurrGet (char pwrConnectWay[],float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) </p>
+<p>功能： 测量vt7001板卡的输出电流。</p>
+<p>参数：</p>
+<ul>
+<li>pwrConnectWay： 与之前vtSysPwrSupInit或vtSysWithExPwrSupInit中的此参数值相同；</li>
+<li>highLimitA： 允许的输出电流的最大值，单位A；</li>
+<li>lowLimitA： 允许的输出电流的最小值，单位A；</li>
+<li>vt7001MeasureRange： 系统电流测量范围，参数意义如下：all = 0,_100uA_1mA = 1,_1mA_10mA = 2,_10mA_100mA = 3,_100mA_1A = 4,_1A_10A = 5,_10A_100A = 6</li>
+<li>currentUnit： 报告中显示的测量结果单位设置，参数意义如下：uA = 0,mA = 1,A = 2</li>
+</ul>
+<p>函数返回值：测量到的电源电流输出值，单位A。</p>
+</li>
+<li>
+<p>vtsSetThreshold1_8</p>
+<p>函数原型： long vtsSetThreshold1_8 (char moduleNum[],double Threshold)</p>
+<p>功能： 设置某张VT2516板卡1-8通道的高低电平间的阈值。阈值电平的高低也同样会影响到vtSystem对PWM波形的占空比和频率的测量结果。</p>
+<p>参数：</p>
+<ul>
+<li>moduleNum： 需要设置阈值的VT2516板卡的模块号；</li>
+<li>Threshold： 所需设定的阈值，范围为0-25V；</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>0： 函数调用成功；</li>
+<li>-1： 函数调用错误；</li>
+<li>-2： 模块号设置错误，导致namespace无法被系统识别；</li>
+<li>-3： 指定的阈值超过允许范围；</li>
+<li>-4： The function wasn't called in the context of the main method of a test module.</li>
+</ul>
+</li>
+<li>
+<p>vtsSetThreshold9_16</p>
+<p>函数原型： long vtsSetThreshold9_16 (char moduleNum[],double Threshold)</p>
+<p>功能： 设置某张VT2516板卡9-16通道的高低电平间的阈值。阈值电平的高低也同样会影响到vtSystem对PWM波形的占空比和频率的测量结果。</p>
+<p>参数：</p>
+<ul>
+<li>moduleNum： 需要设置阈值的VT2516板卡的模块号；</li>
+<li>Threshold： 所需设定的阈值，范围为0-25V；</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>0： 函数调用成功；</li>
+<li>-1： 函数调用错误；</li>
+<li>-2： 模块号设置错误，导致namespace无法被系统识别；</li>
+<li>-3： 指定的阈值超过允许范围；</li>
+<li>-4： The function wasn't called in the context of the main method of a test module.</li>
+</ul>
+</li>
+<li>
+<p>prodPwmOutChk</p>
+<p>函数原型： void prodPwmOutChk (char pinName[],float expectedFreq,float expectedDuty,int deviationRange)</p>
+<p>功能： 检测产品某个pin的输出PWM波形的频率与占空比，看是否在允许的偏差范围内。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
+<li>expectedFreq： 被检测的PWM波形应达到的频率(f)，允许的偏差范围为0.5%；</li>
+<li>expectedDuty： 被检测的PWM波形应达到的占空比；</li>
+<li>deviationRange： 被检测的PWM波形的占空比与expectedDuty间容许的正反偏差(%)。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodPwmOutRisingEdgeMeas</p>
+<p>函数原型： void prodPwmOutRisingEdgeMeas (char productPwmOutMode[])</p>
+<p>功能： 根据paraCfg.ini中section：pwmTimeCfg下某个key的配置内容，监控产品某个pin的输出PWM波形的占空比变化过程，测量占空比上升到最大值的时间等参数是否合乎配置要求。</p>
+<p>参数：</p>
+<ul>
+<li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodPwmOutKeepTimeMeas</p>
+<p>函数原型： void prodPwmOutKeepTimeMeas (char productPwmOutMode[])</p>
+<p>功能： 根据paraCfg.ini中section：pwmTimeCfg下某个key的配置内容，监控产品某个pin的输出PWM波形的占空比变化过程，测量占空比在上升结束后在稳定值维持的时间等参数是否合乎配置要求。</p>
+<p>参数：</p>
+<ul>
+<li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodPwmOutFallingEdgeMeas</p>
+<p>函数原型： void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) </p>
+<p>功能： 根据paraCfg.ini中section：pwmTimeCfg下某个key的配置内容，监控产品某个pin的输出PWM波形的占空比变化过程，测量占空比从稳定值下降到某特定占空比的时间等参数是否合乎配置要求。</p>
+<p>参数：</p>
+<ul>
+<li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodPwmOutRiseFallCurveMeas</p>
+<p>函数原型： void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[])</p>
+<p>功能： 根据paraCfg.ini中section：pwmTimeCfg下某个key的配置内容，监控产品某个pin的输出PWM波形的占空比变化过程，测量占空比从上升到最大值（中间没有稳定值，上升到最大值后立刻下降）再下降到某特定占空比的时间等参数是否合乎配置要求。</p>
+<p>参数：</p>
+<ul>
+<li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>chFixVoltDOSet</p>
+<p>函数原型： void chFixVoltDOSet (char pinName[],enum digitalLevel level) </p>
+<p>功能： 设置VT2516板卡的某通道接电源，接地或悬空。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
+<li>level： 接入电平的级别，参数意义如下：Low = 0,表示接地； High = 1,表示接电源； Floating = 2，表示悬空。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>chAOSet</p>
+<p>函数原型： void chAOSet (char pinName[],float analogValue) </p>
+<p>功能： 设置VT2516板卡的某通道的输出模拟电压大小。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
+<li>analogValue： 输出的模拟电压值。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>chRamVoltDOSet</p>
+<p>函数原型： void chRamVoltDOSet (char pinName[],enum prodInputStat state)  
+</p>
+<p>功能： 根据paraCfg.ini中section：vLevelCfg下某个key的配置内容，设置VT2516板卡的某通道的输出符合产品某pin脚active或inactive状态范围内的一个随机模拟电压值。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vLevelCfg下某个key的key name；</li>
+<li>state： 设置产品pin所需达到的状态，参数意义如下：Inactive = 0； Active = 1。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodDIPinStatGet</p>
+<p>函数原型： int prodDIPinStatGet (char pinName[])  
+</p>
+<p>功能： 根据paraCfg.ini中section：vLevelCfg下某个key的配置内容，来判定与VT2516板卡的某通道相连的产品某pin脚究竟是处于Inactive还是Active状态。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vt2516Cfg和vLevelCfg下某个共同的key的key name。</li>
+</ul>
+<p>函数返回值：</p>
+<ul>
+<li>-1： 此pin脚处于active和inactive之外的一个未定义状态</li>
+<li>0： Inactive；</li>
+<li>1： Active.</li>
+</ul>
+</li>
+<li>
+<p>chPwmOutSet</p>
+<p>函数原型： void chPwmOutSet (char pinName[],char productPwmInMode[])</p>
+<p>功能： 根据paraCfg.ini中section：pwmWaveCfg下某个key的配置内容，让VT2516板卡的某通道输出特定的PWM波形提供给产品某特定pin脚。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
+<li>productPwmInMode： paraCfg.ini中section：pwmWaveCfg下某个key的key name。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>chLoadConnectStatSet</p>
+<p>函数原型： void chLoadConnectStatSet (char pinName[],enum connectStat stat)</p>
+<p>功能： 控制下图红笔圈出位置的开关，设置VT2516板卡的特定通道与original load/sensor的连接状态。</p>
+<p><img src="https://i.loli.net/2017/11/08/5a027d80977af.png" /></p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
+<li>stat： 通道与original load/sensor的连接状态，参数意义如下：disconnect = 0； connect = 1。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>产品操作及状态设置类函数</p>
+<ol>
+<li>
+<p>prodOperWithPinStatImpOnSpecSigChk</p>
+<p>函数原型： void prodOperWithPinStatImpOnSpecSigChk (char operationMode[])</p>
+<p>功能： 根据paraCfg.ini中section：prodOperWithPinStatImpOnSpecSigCfg下某个key的配置内容，检测在产品某个特定pin脚处于某个状态的条件下，针对产品的某个操作动作对产品上某些信号的影响是否符合配置内容。</p>
+<p>参数：</p>
+<ul>
+<li>operationMode： paraCfg.ini中section：prodOperWithPinStatImpOnSpecSigCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodOperWithPinStatImpOnSpecPwmChk</p>
+<p>函数原型： void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[])</p>
+<p>功能： 根据paraCfg.ini中section：prodOperWithPinStatImpOnSpecPwmCfg下某个key的配置内容，检测在产品某个特定pin脚处于某个状态的条件下，针对产品的某个操作动作对产品的PWM输出波形的影响是否符合配置内容。</p>
+<p>参数：</p>
+<ul>
+<li>operationMode： paraCfg.ini中section：prodOperWithPinStatImpOnSpecPwmCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>prodOperWithSigStatImpOnSpecPwmChk</p>
+<p>函数原型： void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[])</p>
+<p>功能： 根据paraCfg.ini中section：prodOperWithSigStatImpOnSpecPwmCfg下某个key的配置内容，检测在产品某个特定信号处于某个状态的条件下，针对产品的某个操作动作对产品的PWM输出波形的影响是否符合配置内容。</p>
+<p>参数：</p>
+<ul>
+<li>operationMode： paraCfg.ini中section：prodOperWithSigStatImpOnSpecPwmCfg下某个key的key name；</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>sigDirTwoStatInSet</p>
+<p>函数原型： void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state)</p>
+<p>功能： 根据paraCfg.ini中section：sigDirTwoStatInCfg下某个key的配置内容，决定是通过设置相应信号还是设置相应PIN的电平状态（信号有效的情况下，该状态优先由信号决定，忽略PIN的电平状态），来使产品进入某个二态中的一态。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：sigDirTwoStatInCfg，vLevelCfg和vt2516Cfg下某个共同的key的key name；</li>
+<li>dFct： 设置是由信号还是由硬线电平来决定产品的该状态，参数意义如下：determinedBySignal = 0，determinedByHardware = 1；</li>
+<li>state： 设置产品需要达到二态中的哪一个状态，参数意义如下：Inactive = 0，Active = 1。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>sigDirMulStatInSet</p>
+<p>函数原型： void sigDirMulStatInSet (char specStat[], enum determiningFactor dFct)</p>
+<p>功能： 根据paraCfg.ini中section：sigDirMulStatInCfg下某个key的配置内容，决定是通过设置相应信号还是设置相应PIN的PWM输入状态（信号有效的情况下，该状态优先由信号决定，忽略PIN的电平状态），来使产品进入某个多态中的一态。</p>
+<p>参数：</p>
+<ul>
+<li>pinName： paraCfg.ini中section：sigDirMulStatInCfg下某个key的key name；</li>
+<li>dFct： 设置是由信号还是由硬线电平来决定产品的该状态，参数意义如下：determinedBySignal = 0，determinedByHardware = 1。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+<li>
+<p>specStatImpOnSigChk</p>
+<p>函数原型： void specStatImpOnSigChk (char specStat[])</p>
+<p>功能： 根据paraCfg.ini中section：specStatImpactOnSigCfg下某个key的配置内容，检测产品进入某个状态后对相应信号的影响是否符合配置要求。</p>
+<p>参数：</p>
+<ul>
+<li>specStat： paraCfg.ini中section：specStatImpactOnSigCfg下某个key的key name。</li>
+</ul>
+<p>函数返回值：无。</p>
+</li>
+</ol>
+</li>
+</ul>
 
 </body>
 </html>

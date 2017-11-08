@@ -450,14 +450,14 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
     11. decodeAsciiFromRecDiag
    
-        函数原型： void decodeAsciiFromRecDiag (int offsetBytePos,char reportContent[]) 
+        函数原型： void decodeAsciiFromRecDiag (int offsetBytePos,char decodeItem[]) 
 
         功能： 按照Ascii方式解析接收到的最新的一条产品反馈的LIN或CAN消息。
 
         参数：
 
         - offsetBytePos： 解析的起始字节位（第一个字节的offsetBytePos=0）
-        - reportContent： 报告中显示的标题内容。
+        - decodeItem： 报告中显示的解析项名称。
 
         函数返回值：无
 
