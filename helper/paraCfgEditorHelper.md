@@ -2,7 +2,7 @@
 
 1. 确认工程中所有VI处于关闭状态，然后运行builder。注意，一定要保证工程中所有VI处于关闭状态，不然主VI运行会有异常，面板不能正常显示。
 
-    ![](https://i.loli.net/2017/11/10/5a0542f197edd.jpg)
+    ![](https://i.loli.net/2017/11/13/5a09371aa9134.png)
 
 2. 点击弹出应用左上角的运行按钮，在菜单栏Editor选择paraCfgEditor。
 
@@ -203,7 +203,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
         对于以上这两个参数的理解，可以参考下图。如果还有不清楚的地方，请参考vector公司的vtSystem帮助文档手册。
 
-        ![](https://i.loli.net/2017/11/10/5a0543ae4693b.jpg)
+        ![](https://i.loli.net/2017/11/13/5a0937e332377.png)
 
 	    应用举例：
 	    <pre>
