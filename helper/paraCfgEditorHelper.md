@@ -2,45 +2,45 @@
 
 1. 确认工程中所有VI处于关闭状态，然后运行builder。注意，一定要保证工程中所有VI处于关闭状态，不然主VI运行会有异常，面板不能正常显示。
 
-    ![](http://ww4.sinaimg.cn/large/0060lm7Tly1fjou772ps6j30bj0cct9b.jpg)
+    ![](https://i.loli.net/2017/11/10/5a0542f197edd.jpg)
 
 2. 点击弹出应用左上角的运行按钮，在菜单栏Editor选择paraCfgEditor。
 
-    ![](https://i.loli.net/2017/09/27/59cb43fc28a22.gif)
+    ![](https://i.loli.net/2017/11/13/5a08fd7093a2c.gif)
 
 3. 在随后弹出的窗口中可以选择加载已有的paraCfg.ini文件进行后续的修改，或者可以在vTestStudioCfgEditor\cfg中新建空白的ini文件导入，从头制作一个新的paraCfg.ini文件.注意，必须导入一个存在的文档，无论是否空白。选择完毕，点击确认键。
 
     ![](https://i.loli.net/2017/09/27/59cb496c787ce.png)
 
-4. 导入ini文件后，check一栏会显示相应的语法检测结果，如果出现某个entry条目的数据类型不匹配或者数目不匹配或者符号格式等输入错误，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。
+4. 导入ini文件后，check一栏会显示相应的语法检测结果，如果出现某个key条目的数据类型不匹配或者数目不匹配或者符号格式等输入错误，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。
 
     下图中同时包含有检测正确和错误的图示。需要注意的是，由于屏幕所限，每一列的宽度可能不足够展示该栏全部的信息，这个时候可以用鼠标双击你希望获得清楚信息的行，则该行每一栏的信息都会清晰地放大到上方的VIEW控件中。以下图为例，它展示的就是出错一行每一栏的详细信息。
 
-    ![](https://i.loli.net/2017/09/30/59cf053e84c0e.png)
+    ![](https://i.loli.net/2017/11/13/5a08fecf95140.png)
 
 5. 修正之前内容的时候，如果需要在两行之间插入新的一行，或者删除某一行内容，可以将鼠标置于表格部分相应的行上，按右键，会弹出一个菜单，根据具体需求，在菜单中选择“在前面插入行”或“删除行”。注意，不要对列进行操作，如果不慎操作错误，请在菜单栏中选择exit退出，再重新启动应用程序，导入paraCfgEditor。
 
-    ![](https://i.loli.net/2017/09/30/59cf05ccdecc0.png)
+    ![](https://i.loli.net/2017/11/13/5a09008b975c5.png)
 
 6. 在原有的section下，添加一行新的key，只需在该行双击鼠标左键，key format一栏就会显示该section下相应的key所应遵循的格式，依次填写新的key name和key value即可。详情参考以下操作图例。
 
-    ![](https://i.loli.net/2017/09/30/59cf2cd0f3950.gif)
+    ![](https://i.loli.net/2017/11/13/5a0901a2f0e1b.gif)
 
 7. 如果需要在新的一行，添加新的section，可以在该行先点击鼠标左键，将鼠标置于该行任一栏内，然后点击面板右侧的tree控件里具体的某个具体的section名称，这时候该section的名称和具体的key fomat说明就会被添加到该行相应的栏内。详情参考以下操作图例。
 
-    ![](https://i.loli.net/2017/09/30/59cf2d965d099.gif)
+    ![](https://i.loli.net/2017/11/13/5a090299ebd92.gif)
 
-8. 在空白处填写新增entry或section，当该行参数全部填写完毕后，如果需要审核该行参数的填写是否符合规范，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到该行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。
+8. 在空白处填写新增key或section，当该行参数全部填写完毕后，如果需要审核该行参数的填写是否符合规范，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到该行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。
 
-    ![](https://i.loli.net/2017/09/30/59cf2e6c333c5.gif)
+    ![](https://i.loli.net/2017/11/13/5a0903e65b263.gif)
 
 9. 当所需数据内容全部添加到表格后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate ParaCfg.ini）。此刻如果程序检测到之前check一列没有任何错误标记，则该表格生成的ini文件会覆盖并更新之前导入的ini文件；如果发现check一栏的错误尚有还未被更正的情况，程序会弹出提示框提示错误所在行，用户可以选择忽视错误继续更新/生成ini文档。或者选择否，不生成文档，回头修改错误。建议，如果没有特殊情况，还请先修复错误后再选择生成文档，否则某些格式错误可能造成生成文档中某些部分的格式和您预想的不一致的情况。以下是错误提醒弹出框的视图：
 
-    ![](https://i.loli.net/2017/09/30/59cf2f0d2c58a.png)
+    ![](https://i.loli.net/2017/11/13/5a09064d1dab5.png)
 
 10. 当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏进行其他操作。注意，当paraCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的\_testStepCfgEditor或者paraCfgEditor操作的，否则会弹出提示框，提示该VI进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单，帮助菜单上的选项随时都可以按）。提示窗口如下图所示：
 
-    ![](https://i.loli.net/2017/09/30/59cf2f61b712e.png)
+    ![](https://i.loli.net/2017/11/13/5a0907095fb0e.png)
 
 ###paraCfgEditor的表格组成
 
@@ -54,17 +54,17 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
     
         譬如下图中，vt2516Cfg这个section，这部分的内容就和vt2516这块板卡的配置有关。
     
-        ![](https://ooo.0o0.ooo/2017/09/30/59cf308a5dc0f.png)
+        ![](https://i.loli.net/2017/11/13/5a0907f82d00d.png)
 
     - section一栏为空的行，归属于该列以上第一个section一栏不空的行所处的section，如下图所示：
 
-        ![](https://i.loli.net/2017/09/30/59cf31af9e584.png)
+        ![](https://i.loli.net/2017/11/13/5a0908f95c904.png)
 
     - section一栏可供选择的名称，通通列于面板右侧的tree控件上。用鼠标单击确认需要添加新的section的行，然后双击右侧面板tree控件上的section，即可自动将该section的名称填入section一栏。当然你非要手写section也没有问题，不过需要注意的是，这里可供填入的section，必须存在于tree控件上。如果填入的section不存在于tree控件上（比如你坚持手写但是不小心写错了），那么系统会报相应的错误。
 
         下图是填入section不存在于tree控件中所报错误的图示：
         
-        ![](https://i.loli.net/2017/10/23/59ed60d738b07.png)
+        ![](https://i.loli.net/2017/11/13/5a0909c53a219.png)
       
 
 2. key name
@@ -73,7 +73,7 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     譬如下图中，vt2516Cfg这个section，根据key format的定义，key name应该代表该PIN的名称。
 
-    ![](https://i.loli.net/2017/10/23/59ed5d4750711.png)
+    ![](https://i.loli.net/2017/11/13/5a090b4a7d7bb.png)
 
 3. key value
 
@@ -81,11 +81,11 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     以下是一个key value与key format定义中数目不符，报错的例子：
 
-    ![](https://i.loli.net/2017/10/23/59ed80f34be8a.png)
+    ![](https://i.loli.net/2017/11/13/5a090c0bb9cd8.png)
 
     以下是一个key value与key format数据类型不符，报错的例子：
 
-    ![](https://i.loli.net/2017/10/23/59ed81792e953.png)
+    ![](https://i.loli.net/2017/11/13/5a090cac8ea05.png)
 
 4. key format
 
@@ -95,7 +95,7 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     举例说明，下图中，key format里头就包含了5个带\_i的参数，而实际的key value则包含10组的这5个带\_i的参数.
 
-    ![](https://i.loli.net/2017/10/23/59edabf738bda.png)
+    ![](https://ooo.0o0.ooo/2017/11/13/5a090d6d6599d.png)
     
 5. comment
 
@@ -103,7 +103,7 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     以下是comment在应用和生成ini文件中的对应位置：
 
-    ![](https://i.loli.net/2017/10/23/59edafb680cb1.png)
+    ![](https://i.loli.net/2017/11/13/5a090f4bf1efb.png)
 
 ###paraCfgEditor的生成文档说明
 
@@ -203,7 +203,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
         对于以上这两个参数的理解，可以参考下图。如果还有不清楚的地方，请参考vector公司的vtSystem帮助文档手册。
 
-	    ![](http://ww4.sinaimg.cn/large/006HJ39wgy1fga2scnc82j30pu0jt0th.jpg)
+        ![](https://i.loli.net/2017/11/10/5a0543ae4693b.jpg)
 
 	    应用举例：
 	    <pre>
@@ -309,7 +309,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 	    Detent = EV_CP2,CF_GWAY_Detentout,0,1
 	    </pre>
 
-	    上例中的`Detent = EV_CP2,CF_GWAY_Detentout,0,1`，意即，Detent的状态由PIN Detent以及message EV_CP2中的信号CF_GWAY_Detentout的值共同决定，其中0为该信号的inactive值，1为该信号的active值。至于Detent这个pin端的电平影响，则参加vLevelCfg这个section对inactive及active状态的电平设定。
+	    上例中的`Detent = EV_CP2,CF_GWAY_Detentout,0,1`，意即，Detent的状态由PIN Detent以及message EV_CP2中的信号CF\_GWAY\_Detentout的值共同决定，其中0为该信号的inactive值，1为该信号的active值。至于Detent这个pin端的电平影响，则参加vLevelCfg这个section对inactive及active状态的电平设定。
 
 	    该section中的内容会影响后续产品状态的设置。库函数中的sigDirTwoStatInSet函数会直接调用该section的内容。
 
@@ -330,7 +330,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 	    No = VCU1,CF_Vcu_GarSelDisp,1,4,PWM_IN
 	    </pre>
 
-	    以上例中的第1行为例：`P = VCU1,CF_Vcu_GarSelDisp,0,1,PWM_IN`，意即，产品进入状态P由message VCU1中的信号CF_Vcu_GarSelDisp的值（其中CF_Vcu_GarSelDisp的值设为0<=CF_Vcu_GarSelDisp<0+1之间的随机整数，即CF_Vcu_GarSelDisp=0）以及PIN PWM_IN的波形共同决定，但是信号的值起决定性的作用。
+	    以上例中的第1行为例：`P = VCU1,CF_Vcu_GarSelDisp,0,1,PWM_IN`，意即，产品进入状态P由message VCU1中的信号CF\_Vcu\_GarSelDisp的值（其中CF\_Vcu\_GarSelDisp的值设为0<=CF_Vcu_GarSelDisp<0+1之间的随机整数，即CF\_Vcu\_GarSelDisp=0）以及PIN PWM_IN的波形共同决定，但是信号的值起决定性的作用。
 
 	    该section中的内容设置会影响后续产品状态的设置。库函数中的函数sigDirMulStatInSet会直接调用该section的内容。
 
@@ -351,7 +351,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 	    No = CF_Lvr_IndicatorStatus,0,1000
 	    </pre>
 
-	    以上例中的第1行为例：`P = CF_Lvr_IndicatorStatus,1,1000`，意即，进入状态P后，信号CF_Lvr_IndicatorStatus的值将在1000ms之内更新为1.
+	    以上例中的第1行为例：`P = CF_Lvr_IndicatorStatus,1,1000`，意即，进入状态P后，信号CF\_Lvr\_IndicatorStatus的值将在1000ms之内更新为1.
 
 	    该section中的内容设置会影响后续产品对是否进入某特定状态的验证。库函数中的函数specStatImpOnSigChk会直接调用该section的内容。
 

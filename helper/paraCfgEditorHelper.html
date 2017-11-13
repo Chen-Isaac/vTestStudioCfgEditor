@@ -295,44 +295,44 @@ img {
 <ol>
 <li>
 <p>确认工程中所有VI处于关闭状态，然后运行builder。注意，一定要保证工程中所有VI处于关闭状态，不然主VI运行会有异常，面板不能正常显示。</p>
-<p><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fjou772ps6j30bj0cct9b.jpg" /></p>
+<p><img src="https://i.loli.net/2017/11/10/5a0542f197edd.jpg" /></p>
 </li>
 <li>
 <p>点击弹出应用左上角的运行按钮，在菜单栏Editor选择paraCfgEditor。</p>
-<p><img src="https://i.loli.net/2017/09/27/59cb43fc28a22.gif" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a08fd7093a2c.gif" /></p>
 </li>
 <li>
 <p>在随后弹出的窗口中可以选择加载已有的paraCfg.ini文件进行后续的修改，或者可以在vTestStudioCfgEditor\cfg中新建空白的ini文件导入，从头制作一个新的paraCfg.ini文件.注意，必须导入一个存在的文档，无论是否空白。选择完毕，点击确认键。</p>
 <p><img src="https://i.loli.net/2017/09/27/59cb496c787ce.png" /></p>
 </li>
 <li>
-<p>导入ini文件后，check一栏会显示相应的语法检测结果，如果出现某个entry条目的数据类型不匹配或者数目不匹配或者符号格式等输入错误，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。</p>
+<p>导入ini文件后，check一栏会显示相应的语法检测结果，如果出现某个key条目的数据类型不匹配或者数目不匹配或者符号格式等输入错误，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。</p>
 <p>下图中同时包含有检测正确和错误的图示。需要注意的是，由于屏幕所限，每一列的宽度可能不足够展示该栏全部的信息，这个时候可以用鼠标双击你希望获得清楚信息的行，则该行每一栏的信息都会清晰地放大到上方的VIEW控件中。以下图为例，它展示的就是出错一行每一栏的详细信息。</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf053e84c0e.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a08fecf95140.png" /></p>
 </li>
 <li>
 <p>修正之前内容的时候，如果需要在两行之间插入新的一行，或者删除某一行内容，可以将鼠标置于表格部分相应的行上，按右键，会弹出一个菜单，根据具体需求，在菜单中选择“在前面插入行”或“删除行”。注意，不要对列进行操作，如果不慎操作错误，请在菜单栏中选择exit退出，再重新启动应用程序，导入paraCfgEditor。</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf05ccdecc0.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a09008b975c5.png" /></p>
 </li>
 <li>
 <p>在原有的section下，添加一行新的key，只需在该行双击鼠标左键，key format一栏就会显示该section下相应的key所应遵循的格式，依次填写新的key name和key value即可。详情参考以下操作图例。</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf2cd0f3950.gif" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a0901a2f0e1b.gif" /></p>
 </li>
 <li>
 <p>如果需要在新的一行，添加新的section，可以在该行先点击鼠标左键，将鼠标置于该行任一栏内，然后点击面板右侧的tree控件里具体的某个具体的section名称，这时候该section的名称和具体的key fomat说明就会被添加到该行相应的栏内。详情参考以下操作图例。</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf2d965d099.gif" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a090299ebd92.gif" /></p>
 </li>
 <li>
-<p>在空白处填写新增entry或section，当该行参数全部填写完毕后，如果需要审核该行参数的填写是否符合规范，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到该行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf2e6c333c5.gif" /></p>
+<p>在空白处填写新增key或section，当该行参数全部填写完毕后，如果需要审核该行参数的填写是否符合规范，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到该行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。</p>
+<p><img src="https://i.loli.net/2017/11/13/5a0903e65b263.gif" /></p>
 </li>
 <li>
 <p>当所需数据内容全部添加到表格后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate ParaCfg.ini）。此刻如果程序检测到之前check一列没有任何错误标记，则该表格生成的ini文件会覆盖并更新之前导入的ini文件；如果发现check一栏的错误尚有还未被更正的情况，程序会弹出提示框提示错误所在行，用户可以选择忽视错误继续更新/生成ini文档。或者选择否，不生成文档，回头修改错误。建议，如果没有特殊情况，还请先修复错误后再选择生成文档，否则某些格式错误可能造成生成文档中某些部分的格式和您预想的不一致的情况。以下是错误提醒弹出框的视图：</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf2f0d2c58a.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a09064d1dab5.png" /></p>
 </li>
 <li>
 <p>当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏进行其他操作。注意，当paraCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的_testStepCfgEditor或者paraCfgEditor操作的，否则会弹出提示框，提示该VI进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单，帮助菜单上的选项随时都可以按）。提示窗口如下图所示：</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf2f61b712e.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a0907095fb0e.png" /></p>
 </li>
 </ol>
 <h3>paraCfgEditor的表格组成</h3>
@@ -345,16 +345,16 @@ img {
 <li>
 <p>section对应的即是ini文件中的section，在这个文本中，section对应的是配置项的分类。</p>
 <p>譬如下图中，vt2516Cfg这个section，这部分的内容就和vt2516这块板卡的配置有关。</p>
-<p><img src="https://ooo.0o0.ooo/2017/09/30/59cf308a5dc0f.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a0907f82d00d.png" /></p>
 </li>
 <li>
 <p>section一栏为空的行，归属于该列以上第一个section一栏不空的行所处的section，如下图所示：</p>
-<p><img src="https://i.loli.net/2017/09/30/59cf31af9e584.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a0908f95c904.png" /></p>
 </li>
 <li>
 <p>section一栏可供选择的名称，通通列于面板右侧的tree控件上。用鼠标单击确认需要添加新的section的行，然后双击右侧面板tree控件上的section，即可自动将该section的名称填入section一栏。当然你非要手写section也没有问题，不过需要注意的是，这里可供填入的section，必须存在于tree控件上。如果填入的section不存在于tree控件上（比如你坚持手写但是不小心写错了），那么系统会报相应的错误。</p>
 <p>下图是填入section不存在于tree控件中所报错误的图示：</p>
-<p><img src="https://i.loli.net/2017/10/23/59ed60d738b07.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a0909c53a219.png" /></p>
 </li>
 </ul>
 </li>
@@ -362,28 +362,28 @@ img {
 <p>key name</p>
 <p>key name对应的即是ini文件中各section下各个key的名字。key name应尽量根据key format中相应部分的格式，取有意义，有识别度的名称。</p>
 <p>譬如下图中，vt2516Cfg这个section，根据key format的定义，key name应该代表该PIN的名称。</p>
-<p><img src="https://i.loli.net/2017/10/23/59ed5d4750711.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a090b4a7d7bb.png" /></p>
 </li>
 <li>
 <p>key value</p>
 <p>key value对应的即是ini文件中各section下各个key相应的值。这部分必须根据key format一栏中对应value的格式来填入。如果填入的key value和key format中定义的数据类型或者数目不符，check一栏会提示相应的错误。</p>
 <p>以下是一个key value与key format定义中数目不符，报错的例子：</p>
-<p><img src="https://i.loli.net/2017/10/23/59ed80f34be8a.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a090c0bb9cd8.png" /></p>
 <p>以下是一个key value与key format数据类型不符，报错的例子：</p>
-<p><img src="https://i.loli.net/2017/10/23/59ed81792e953.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a090cac8ea05.png" /></p>
 </li>
 <li>
 <p>key format</p>
 <p>key format对应的即是key的格式，包括key name和key value的格式。当用户点击面板右侧tree控件添加section的时候，该section对应的key format会自动添加到该栏。填写key相应的参数时，可以参考该栏内容，填入正确类型的参数。需要指出的是，key format一栏的存在，仅仅是为了辅助用户填写key。在最终生成的ini文档中，是没有key format的位置的。</p>
 <p>除此之外，key format还有一种特殊的格式需要注意。key format中，如果key value部分的定义里，参数中带有_i，说明这是一个通项的定义公式，这部分参数的实际配置可以是整数个组别的带_i参数类型。</p>
 <p>举例说明，下图中，key format里头就包含了5个带_i的参数，而实际的key value则包含10组的这5个带_i的参数.</p>
-<p><img src="https://i.loli.net/2017/10/23/59edabf738bda.png" /></p>
+<p><img src="https://ooo.0o0.ooo/2017/11/13/5a090d6d6599d.png" /></p>
 </li>
 <li>
 <p>comment</p>
 <p>comment即注释，适当的注释有利于用户回顾编写key时的逻辑，这部分内容也会保留在最终生成的ini文件中，跟随在文本行末尾的;//符号的后面。注：//的目的只是为了方便识别注释，真正区分注释和正文的关键在于;号。因此，即便用户在comment一栏中的起始没有填入符号//，脚本编辑器最终也会在生成的ini文件中，将符号//补上。</p>
 <p>以下是comment在应用和生成ini文件中的对应位置：</p>
-<p><img src="https://i.loli.net/2017/10/23/59edafb680cb1.png" /></p>
+<p><img src="https://i.loli.net/2017/11/13/5a090f4bf1efb.png" /></p>
 </li>
 </ol>
 <h3>paraCfgEditor的生成文档说明</h3>
@@ -459,7 +459,7 @@ Detent = 8,5,0,4
 }
 </pre>
 <p>对于以上这两个参数的理解，可以参考下图。如果还有不清楚的地方，请参考vector公司的vtSystem帮助文档手册。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006HJ39wgy1fga2scnc82j30pu0jt0th.jpg" /></p>
+<p><img src="https://i.loli.net/2017/11/10/5a0543ae4693b.jpg" /></p>
 <p>应用举例：</p>
 <pre>
 supint->out2 = 12,0,2
@@ -542,7 +542,7 @@ PRelease = IGN,PWM_OUT,0,100,-20,70,3
 <pre>
 Detent = EV_CP2,CF_GWAY_Detentout,0,1
 </pre>
-<p>上例中的<code>Detent = EV_CP2,CF_GWAY_Detentout,0,1</code>，意即，Detent的状态由PIN Detent以及message EV<em>CP2中的信号CF</em>GWAY_Detentout的值共同决定，其中0为该信号的inactive值，1为该信号的active值。至于Detent这个pin端的电平影响，则参加vLevelCfg这个section对inactive及active状态的电平设定。</p>
+<p>上例中的<code>Detent = EV_CP2,CF_GWAY_Detentout,0,1</code>，意即，Detent的状态由PIN Detent以及message EV_CP2中的信号CF_GWAY_Detentout的值共同决定，其中0为该信号的inactive值，1为该信号的active值。至于Detent这个pin端的电平影响，则参加vLevelCfg这个section对inactive及active状态的电平设定。</p>
 <p>该section中的内容会影响后续产品状态的设置。库函数中的sigDirTwoStatInSet函数会直接调用该section的内容。</p>
 </li>
 <li>
@@ -558,7 +558,7 @@ N = VCU1,CF_Vcu_GarSelDisp,6,1,PWM_IN
 D = VCU1,CF_Vcu_GarSelDisp,5,1,PWM_IN
 No = VCU1,CF_Vcu_GarSelDisp,1,4,PWM_IN
 </pre>
-<p>以上例中的第1行为例：<code>P = VCU1,CF_Vcu_GarSelDisp,0,1,PWM_IN</code>，意即，产品进入状态P由message VCU1中的信号CF<em>Vcu</em>GarSelDisp的值（其中CF<em>Vcu<em>GarSelDisp的值设为0&lt;=CF</em>Vcu</em>GarSelDisp&lt;0+1之间的随机整数，即CF<em>Vcu</em>GarSelDisp=0）以及PIN PWM_IN的波形共同决定，但是信号的值起决定性的作用。</p>
+<p>以上例中的第1行为例：<code>P = VCU1,CF_Vcu_GarSelDisp,0,1,PWM_IN</code>，意即，产品进入状态P由message VCU1中的信号CF_Vcu_GarSelDisp的值（其中CF_Vcu_GarSelDisp的值设为0&lt;=CF<em>Vcu</em>GarSelDisp&lt;0+1之间的随机整数，即CF_Vcu_GarSelDisp=0）以及PIN PWM_IN的波形共同决定，但是信号的值起决定性的作用。</p>
 <p>该section中的内容设置会影响后续产品状态的设置。库函数中的函数sigDirMulStatInSet会直接调用该section的内容。</p>
 </li>
 <li>
@@ -574,7 +574,7 @@ N = CF_Lvr_IndicatorStatus,3,1000
 D = CF_Lvr_IndicatorStatus,4,1000
 No = CF_Lvr_IndicatorStatus,0,1000
 </pre>
-<p>以上例中的第1行为例：<code>P = CF_Lvr_IndicatorStatus,1,1000</code>，意即，进入状态P后，信号CF<em>Lvr</em>IndicatorStatus的值将在1000ms之内更新为1.</p>
+<p>以上例中的第1行为例：<code>P = CF_Lvr_IndicatorStatus,1,1000</code>，意即，进入状态P后，信号CF_Lvr_IndicatorStatus的值将在1000ms之内更新为1.</p>
 <p>该section中的内容设置会影响后续产品对是否进入某特定状态的验证。库函数中的函数specStatImpOnSigChk会直接调用该section的内容。</p>
 </li>
 </ol>

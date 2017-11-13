@@ -2,42 +2,41 @@
 
 1. 确认工程中所有VI处于关闭状态，然后运行builder。注意，一定要保证工程中所有VI处于关闭状态，不然主VI运行会有异常，面板不能正常显示。
 
-    ![](http://ww4.sinaimg.cn/large/0060lm7Tly1fjou772ps6j30bj0cct9b.jpg)
+    ![](https://i.loli.net/2017/11/10/5a0542f197edd.jpg)
 
 2. 点击弹出应用左上角的运行按钮，在菜单栏Editor选择testStepCfgEditor。
 
-    ![](http://ww3.sinaimg.cn/large/0060lm7Tly1fjouad3yrtj304o051aa2.jpg)
+    ![](https://i.loli.net/2017/11/10/5a0544863f8fc.jpg)
 
 3. 在随后弹出的窗口中可以选择加载已有的\_testStepCfg.ini文件进行后续的修改，或者可以在vTestStudioCfgEditor\cfg中新建空白的ini文件导入，从头制作一个新的\_testStepCfg.ini文件.注意，必须导入一个存在的文档，无论是否空白。选择完毕，点击确认键。
 
-    ![](http://ww2.sinaimg.cn/large/0060lm7Tly1fjoudum6b9j317s0lw7a5.jpg)
+    ![](https://i.loli.net/2017/11/10/5a0544fb77576.jpg)
 
 4. 导入ini文件后，check一栏会显示相应的语法检测结果，如果出现数据类型不匹配或者数目不匹配或者符号格式等错误，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。
 
     下图中同时包含有检测正确和错误的图示。需要注意的是，由于屏幕所限，每一列的宽度可能不足够展示该栏全部的信息，这个时候可以用鼠标双击你希望获得清楚信息的行，则该行每一栏的信息都会清晰地放大到上方的VIEW控件中。以下图为例，它展示的就是出错一行的每一栏的详细信息。
 
-    ![](http://ww2.sinaimg.cn/large/0060lm7Tly1fjovfr0xk4j30zp0bd74w.jpg)
-
+    ![](https://i.loli.net/2017/11/10/5a0546ee44d2b.png)
     
 5. 修正之前内容的时候，如果需要在两行之间插入新的一行，或者删除某一行内容，可以将鼠标置于表格部分相应的行上，按右键，会弹出一个菜单，根据具体需求，在菜单中选择“在前面插入行”或“删除行”。注意，不要对列进行操作，如果不慎操作错误，请在菜单栏中选择exit退出，再重新启动应用程序，导入testStepCfgEditor。
 
-    ![](http://ww1.sinaimg.cn/large/0060lm7Tly1fjovpt53bzj30es0dtmxg.jpg)
+    ![](https://ooo.0o0.ooo/2017/11/10/5a05475b43a28.jpg)
 
 6. 在空白处填写新增内容，如果需要插入函数的话，先点击鼠标左键，将鼠标置于该行任一栏内，点击面板右侧的tree控件里具体的某个函数，这时候该函数和具体的参数说明就会被添加到该行相应的栏内。详情参考以下操作图例。
 
-    ![](http://ww3.sinaimg.cn/large/0060lm7Tly1fjox5jbptcg312i0e4grh.gif)
+    ![](https://i.loli.net/2017/11/10/5a0553af9d27e.gif)
 
 7. 在空白处填写新增内容，填写完毕后，如果需要查看该行check一栏的判定结果，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到该行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。
 
-    ![](http://ww2.sinaimg.cn/large/0060lm7Tly1fjowptf8gog30ml0e4whq.gif)
+    ![](https://i.loli.net/2017/11/10/5a05693f35b39.gif)
 
 8. 当所需数据内容全部添加到表格后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate testStepCfg.ini）。此刻如果程序检测到之前check一列没有任何错误标记，则该表格生成的ini文件会覆盖并更新之前导入的ini文件；如果发现check一栏的错误尚有还未被更正的情况，程序会弹出提示框提示错误所在行，您可以选择忽视错误继续更新/生成ini文档。或者选择否，不生成文档，回头修改错误。建议，如果没有特殊情况，还请先修复错误后再选择生成文档，否则某些格式错误可能造成生成文档中某些部分的格式和您预想的不一致的情况。以下是错误提醒弹出框的视图：
 
-    ![](https://i.loli.net/2017/09/22/59c47d2b83acc.png)
+    ![](https://i.loli.net/2017/11/10/5a056594d7ccf.png)
 
 9. 当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏进行其他操作。注意，当\_testStepCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的\_testStepCfgEditor或者paraCfgEditor操作的，否则会弹出提示框，提示该VI进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单，帮助菜单上的选项随时都可以按）。提示窗口如下图所示：
 
-    ![](https://i.loli.net/2017/09/22/59c47eaf1dd06.png)
+    ![](https://ooo.0o0.ooo/2017/11/10/5a0569d526e5e.png)
 
 ###_testStepCfgEditor的表格组成
 
@@ -49,7 +48,7 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     - section对应的即是ini文件中的section，在这个测试架构中，一个section对应的是一个testcase条目。
     
-        ![](https://i.loli.net/2017/09/22/59c4870a941b4.png)
+        ![](https://i.loli.net/2017/11/10/5a05551da2726.png)
 
     - section一栏为空的行，归属于该列以上第一个section一栏不空的行所处的section，如下图所示：
 
@@ -61,11 +60,11 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     下图是双击tree控件添加函数的过程：
 
-    ![](https://i.loli.net/2017/09/22/59c4b4065999f.gif)
+    ![](https://i.loli.net/2017/11/10/5a05562f6c147.gif)
 
     如果是你自己填，函数名填错了，那么check栏会提示你函数输入错误：
 
-    ![](https://i.loli.net/2017/09/22/59c4b9f3b7176.gif)
+    ![](https://i.loli.net/2017/11/10/5a05573fa16fb.gif)
 
 3. function arguments
 
@@ -73,11 +72,11 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     以下是一个实参与形参数目不符，报错的例子：
 
-    ![](https://i.loli.net/2017/09/25/59c860bcc22c1.png)
+    ![](https://i.loli.net/2017/11/10/5a05586f59f86.png)
 
     以下是一个实参与形参数据类型不符，报错的例子：
 
-    ![](https://i.loli.net/2017/09/25/59c8623faa1ae.png)
+    ![](https://i.loli.net/2017/11/10/5a05593b679c9.png)
 
 4. function parameters
 
@@ -89,7 +88,7 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     以下是comment在应用和生成ini文件中的对应位置：
 
-    ![](https://i.loli.net/2017/09/25/59c869f1eef70.png)
+    ![](https://i.loli.net/2017/11/10/5a055a4ed460e.png)
 
 ###_testStepCfgEditor的特殊格式说明
 
@@ -99,17 +98,17 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     举例说明，以下是一个首字符为\*的section：\*switchOffByLockSignal，这个case的功能是通过Lock signal来熄灭氛围灯。
 
-    ![](https://i.loli.net/2017/09/22/59c4a7371adf5.png)
+    ![](https://i.loli.net/2017/11/10/5a055b578b2bb.png)
 
     鉴于灭灯是一个测试中经常需要用到的动作，如果每一次灭灯都需要重复\*switchOffByLockSignal中的这5个动作，显然非常不经济。但是如果将这5个动作放到一个首字符带\*的section中，那么将来灭灯只需要引用\*switchOffByLockSignal这个section的名称，即可实现对这5个动作的调用。
 
     调用格式： 在section中需要调用的行的function arguments一栏，填入：首字符为\*的section名称，后面加上=号即可完成调用。如下图所示：
 
-    ![](https://i.loli.net/2017/09/22/59c4aecba370f.png)
+    ![](https://i.loli.net/2017/11/10/5a057604ecdb6.png)
 
     如果调用格式不对，check一栏会报相应的错误，并指示正确的填入方法。如下图所示，调用section的末尾漏掉了=号。
 
-    ![](https://i.loli.net/2017/09/22/59c4afa5b06b4.png)
+    ![](https://i.loli.net/2017/11/10/5a055ccab6349.png)
 
     需要注意的是：首字符带\*的section里，不应该再包含有其他的首字符带\*的section，以防止递归等情况下section的互相调用可能造成的死循环。如果在编辑器中出现这个问题，那么check一栏会自动报错。
 
@@ -121,15 +120,15 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     以下这个例子中，用例chkDrivingModeReqSigImpWhenIgnOff，调用了\*switchOnByDoorOpenSignalWithCheckWhenIgnOff和\*switchOffByLockSignal这两个case，如下图所示：
 
-    ![](https://i.loli.net/2017/09/25/59c87377b7e5c.png)
+    ![](https://i.loli.net/2017/11/10/5a055ef280839.png)
 
     其中\*switchOnByDoorOpenSignalWithCheckWhenIgnOff这个被调用的case详情如下图所示：
 
-    ![](https://i.loli.net/2017/09/25/59c8753adf895.png)
+    ![](https://i.loli.net/2017/11/10/5a055fc6ec3dc.png)
 
     \*switchOffByLockSignal这个被调用的case详情如下图所示：
 
-    ![](https://i.loli.net/2017/09/25/59c8771dc157f.png)
+    ![](https://i.loli.net/2017/11/10/5a05605249a87.png)
 
     终上可以看出，用例chkDrivingModeReqSigImpWhenIgnOff中，一共有\*doorSignal,\*msWaitForTurnOn和\*drvModeReqVal这三个实参变量。
     
@@ -143,39 +142,39 @@ _testStepCfgEditor的表格由6个栏目组成，分别是section，function，f
 
     以下是一个采用了带|号的function的测试用例，其中带|号的function可以理解成上头第一个不带|号的function的另一个实现路径。
 
-    ![](https://i.loli.net/2017/09/25/59c89ec4a73eb.png)
+    ![](https://i.loli.net/2017/11/10/5a0577e6d223a.png)
 
     其对应生成的ini文件如下图所示。譬如上图中第三行开始的signalSetting，|wait和|vtSysPwrSupVoltSet这几个函数，到了生成的ini文件中，就分别对应了step2中的3个不同的实现路径。
 
-    ![](https://i.loli.net/2017/09/25/59c8a173e03d6.png)
+    ![](https://i.loli.net/2017/11/10/5a05791f11d67.png)
 
     由于该用例调用了\*switchOnByDoorOpenSignalWithCheckWhenIgnOff这个case，程序会自动生成一个解析版的ini文件，将原ini中被调用的case展开，解析成其对应的测试函数步骤。
 
     \*switchOnByDoorOpenSignalWithCheckWhenIgnOff这个case对应的步骤如下图所示：
 
-    ![](https://i.loli.net/2017/09/25/59c8753adf895.png)
+    ![](https://i.loli.net/2017/11/10/5a056183822b5.png)
 
     解析结果如下图所示：
 
-    ![](https://i.loli.net/2017/09/25/59c8bc65651d0.png)
+    ![](https://i.loli.net/2017/11/10/5a057a156a4f3.png)
 
     程序除了生成相应的ini文件外，还会自动生成对应的.can文件，将这部分文件导入vTESTstudio才能最终在vTESTstudio中生成相应的测试序列。生成的.can文件的对应部分如下所示：
 
-    ![](https://i.loli.net/2017/09/25/59c8b4902f615.png)
+    ![](https://i.loli.net/2017/11/10/5a057b2657a00.png)
 
     首先说明，事实上，所有ini文件上的step其实对应了一个routeNum数组。默认情况下，该routeNum数组的所有元素均为0，即选择路径标识为0，即第一个路径。因为默认情况下是不存在带|号的function，所以仅有唯一的路径。但是，当带|号的function被引入之后，我们就必须对routeNum数组中的相应元素进行设置。这其中基本的对应关系是，step1对应了routeNum[0]，step2对应了routeNum[1]，以此类推……至于数组元素的取值，0代表第一条路径，1代表第二条路径，2代表第三条路径，以此类推。
 
-    那么我们回过头来看解析版的ini，可以发现，带|号的function被引入进了从step7开始至step11终止的这5个step，因此需要特殊配置的routeNum数组中的相应元素就是[6]至[10]。
+    那么我们回过头来看解析版的ini，可以发现，带|号的function被引入进了从step7开始至step11终止的这5个step，因此需要特殊配置的routeNum数组中的相应元素就是[7]至[11]。
 
-    由于此处的实际情形是只有3条路径，并且这3条路径分别对应了step7-11共同的第1路径，第2路径和第3路径，那么该程序可以被简化。
+    由于此处的实际情形是只有3条路径，并且这3条路径分别对应了step8-12共同的第1路径，第2路径和第3路径，那么该程序可以被简化。
 
     手工将.can文件这部分修改如下：
 
-    ![](https://i.loli.net/2017/09/25/59c8bee3289cf.png)
+    ![](https://i.loli.net/2017/11/10/5a057d62022bc.png)
 
-    最终当用户使用vTESTstudio来调用这个case的时候，就可以通过vTESTstudio右侧自带的parameter Values面板，将包括stepRouteNum在内的相应的各实参可能的取值填入，然后由Combinatorics一栏来决定这四个参数间的数值匹配方式。以下是针对上例的最终取值结果：
+    最终当用户使用vTESTstudio来调用这个case的时候，就可以通过vTESTstudio右侧自带的parameter Values面板，将包括stepRouteNum在内的相应的各实参可能的取值填入，然后由Combinatorics一栏来决定这四个参数间的数值匹配方式。以下是针对上例的最终配置结果：
 
-    ![](https://i.loli.net/2017/09/27/59cb074e04659.png)
+    ![](https://i.loli.net/2017/11/10/5a057f035c5fa.png)
 
     需要注意的是，符号|的用法，仅针对函数，而不针对于首字符带\*的section。
 
@@ -203,7 +202,7 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
     以下是\_testStepCfg.ini和testStepCfg.ini两份文档的一个对比图，从中可以看出testStepCfg.ini这份文档中，已经不存在任何首字符为\*的section了，它们的内容已经被展开代入到\_testStepCfg.ini中相应的调用位置。
 
-    ![](https://i.loli.net/2017/09/26/59c9fbf857475.png)
+    ![](https://i.loli.net/2017/11/10/5a05804532491.png)
 
 3. basicFunctionTest.can
 
@@ -231,11 +230,11 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         解析版ini文件中，chkDrivingModeReqSigImpWhenIgnOff这个section包含有3个带*号的实参。这种情况下，需要专门设定相应数组paraPick，将实参名与同名字符串变量挂钩。
 
-        ![](https://i.loli.net/2017/09/27/59cafccc74809.png)
+        ![](https://i.loli.net/2017/11/10/5a05824e7d0ed.png)
 
         最终通过vTESTstudio中的parameter values面板给同名字符串变量赋值，用例运行时，程序会自动采集同名字符串变量的赋值来运作相应的函数。
 
-        ![](https://i.loli.net/2017/09/27/59cb062088327.png)
+        ![](https://i.loli.net/2017/11/10/5a05856e5c5e1.png)
 
     - 针对section中含带\*号的实参，含带|号的function的情况
 
@@ -243,23 +242,23 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         下面我们来看一个之前的例子，把之前这个案例再总结一下。
 
-        ![](https://i.loli.net/2017/09/27/59cb0a90238a9.png)
+        ![](https://ooo.0o0.ooo/2017/11/13/5a08f16ba8a45.png)
 
         首先，解析版ini的step序号和routeNum元素编号的对应关系是，step1对应routeNum[0]，step2对应routeNum[1]，以此类推.
 
-        其次，routeNum数组元素的取值和路径的对应关系，举图中step7这一行为例来说明。step7对应routeNum[6]，routeNum[6]取值为0，则取路径1，即step7选择操作函数为`signalSetting,RKEDoorLockCmd,1,1`；routeNum[6]取值为1，则取路径2，即step7选择操作函数为`wait,23000`；routeNum[6]取值为2，则取路径3，即step7选择操作函数为`vtSysPwrSupVoltSet,supint->out2,0`。
+        其次，routeNum数组元素的取值和路径的对应关系，举图中step8这一行为例来说明。step8对应routeNum[7]，routeNum[7]取值为0，则取路径1，即step8选择操作函数为`signalSetting,RKEDoorLockCmd,1,1`；routeNum[7]取值为1，则取路径2，即step7选择操作函数为`wait,23000`；routeNum[7]取值为2，则取路径3，即step7选择操作函数为`vtSysPwrSupVoltSet,supint->out2,0`。
 
-        再次，程序为了方便起见，给带|号的function的每一个step都分别设定了一个stepRouteNum变量，譬如routeNum[6]设定了一个stepRouteNum6的变量，routeNum[7]设定了一个stepRouteNum7的变量，以此类推。因为理论上，每一个routeNum都可以独立选取各自路径，但是事实上，不同的情况下可能会有不同的限制。譬如该例中，唯有当route[6]到route[10]这5个step的路径选取保持一致的时候，才符合需求文档的意义。那么这个时候，我们就可以将stepRouteNum6到stepRouteNum10这5个变量用同一个变量stepRouteNum来替换，这样变量的数量就可以大幅减少，这样parameter values面板的设定就会简易很多。
+        再次，程序为了方便起见，给带|号的function的每一个step都分别设定了一个stepRouteNum变量，譬如routeNum[7]设定了一个stepRouteNum7的变量，routeNum[8]设定了一个stepRouteNum8的变量，以此类推。因为理论上，每一个routeNum都可以独立选取各自路径，但是事实上，不同的情况下可能会有不同的限制。譬如该例中，唯有当routeNum[7]到routeNum[11]这5个step的路径选取保持一致的时候，才符合需求文档的意义。那么这个时候，我们就可以将stepRouteNum7到stepRouteNum11这5个变量用同一个变量stepRouteNum来替换，这样变量的数量就可以大幅减少，这样parameter values面板的设定就会简易很多。
 
         不过这部分工作需要用户自己手动完成，因为程序不可能事先预知你对routeNum的限定条件。
 
         手工将.can文件这部分修改如下：
 
-        ![](https://i.loli.net/2017/09/25/59c8bee3289cf.png)
+        ![](https://i.loli.net/2017/11/10/5a057d62022bc.png)
 
         以下是针对上例的最终取值结果：
 
-        ![](https://i.loli.net/2017/09/27/59cb074e04659.png)
+        ![](https://i.loli.net/2017/11/10/5a057f035c5fa.png)
         
 ###函数功能介绍
 
