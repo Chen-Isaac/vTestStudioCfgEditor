@@ -276,7 +276,13 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值： 
 
-        ![](https://i.loli.net/2017/11/03/59fbc79f02e0e.png)
+        - 3: The tester clicked Unclear；
+        - 2： The tester clicked No；
+        - 1： The tester clicked Yes；
+        - 0： Timeout occurred；
+        - -1001: General error, e.g. due to a call outside of a test sequence.；
+        - -1002: Constraint occurred.
+        <br></br>
 
 - 通讯协议类函数
 
@@ -292,13 +298,17 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - valueBase： 赋值的基值
         - range： 赋值在基值上的随机整数范围偏差为0 — range-1
 
-        函数返回值：无
+        函数返回值：
 
+        - 0： 信号设置成功；
+        - -1001: 该名称的信号不存在；
+        - -1002: 5s内信号未被设定为指定值。
+<br></br>
     2. signalContSetting
    
         函数原型： void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime)
 
-        功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在150ms后读取信号值，检测信号赋值是否成功，再等待msGapTime毫秒间隔，发送下一条赋值指令。
+        功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在检测信号赋值成功后，再等待msGapTime毫秒间隔，发送下一条赋值指令。
 
         参数：
 
@@ -307,8 +317,15 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - range： 赋值的增长范围。
         - msGapTime： 赋值的间隔时间（ms）。
 
-        函数返回值： 无
+        函数返回值： 
 
+        - 0： 信号设置成功；
+        - -1001: 该名称的信号不存在；
+        - -1002: 5s内信号未被设定为指定值；
+        - -1003: General error, for example, TestWaitForTimeout functionality is not available；
+        - -1004: Resume due to constraint violation in function:testWaitForTimeout；
+        - -1005: 输入的msGapTime值为负数。
+<br></br>
     3. testEnableMsg
    
         函数原型： long TestEnableMsg (char aMessageName[])
@@ -321,9 +338,9 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值：
 
-        - 0： No error。
-        - -1: General error。
-
+        - 0： No error;
+        - -1001: General error，譬如，该消息不存在。
+<br></br>
     4. testDisableMsg
    
         函数原型： long TestDisableMsg (char aMessageName[])
@@ -336,9 +353,9 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值：
 
-        - 0： No error。
-        - -1: General error。
-
+        - 0： No error；
+        - -1001: General error，譬如，该消息不存在。
+<br></br>
     5. linActivateSlot
    
         函数原型： long linActivateSlot(int tableIndex, int slotIndex)
@@ -347,14 +364,18 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         参数：
 
-        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。
+        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数；
         - slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。
+
+            关于这两个参数的取值，打开LDF文件，参考下图的标注自然就清楚了。需要注意的是，如果你想激活下图中所示的消息BCM1\_LIN1\_01，那么请激活所有和BCM1\_LIN1\_01相关的tableIndex和slotIndex，以保证消息发送的频率和LDF的定义是一致的。
+
+            ![](https://s1.ax1x.com/2017/11/29/hXhrD.png)
 
         函数返回值：
 
-        - 0： 激活发送失败。
-        - 非0: 激活发送成功。
-
+        - -1001： 激活发送失败；
+        - 非0正值: 激活发送成功。
+<br></br>
     6. linDeactivateSlot
    
         函数原型： long linDeactivateSlot(dword tableIndex, dword slotIndex)
@@ -363,14 +384,18 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         参数：
 
-        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数。
+        - tableIndex： 查看LDF文件，获取其在调度表中的tableIndex。该Index是从0开始的整数；
         - slotIndex： 查看LDF文件，获取其在调度表中的slotIndex。该Index是从0开始的整数。
+        
+            关于这两个参数的取值，打开LDF文件，参考下图的标注自然就清楚了。需要注意的是，如果你想屏蔽下图中所示的消息BCM1\_LIN1\_01，那么你需要屏蔽所有和BCM1\_LIN1\_01相关的tableIndex和slotIndex。
+
+            ![](https://s1.ax1x.com/2017/11/29/hXhrD.png)
 
         函数返回值：
 
-        - 0： 屏蔽失败。
-        - 非0: 屏蔽成功。
-
+        - -1001： 屏蔽失败；
+        - 非0正值: 屏蔽成功。
+<br></br>
     7. sendCanUdsDiagChkResp
    
         函数原型： int sendCanUdsDiagChkResp (char serviceName[]) 
@@ -383,13 +408,13 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值：
 
-        - 非零正值： 消息发送成功，反馈消息正确，返回接收字节的有效长度（byte）。
-        - -1： 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；
-        - -2： 上位机发送诊断消息失败；
-        - -3： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
-        - -4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8
-        - -5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
-
+        - 非零正值： 消息发送成功，反馈消息正确，返回接收消息的字节位的取值（byte）。
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：UDS Services下找到相应的key；
+        - -1002： 上位机发送诊断消息失败；
+        - -1003： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
+        - -1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；
+        - -10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br>
     8. sendCanKostiaDiagChkResp
    
         函数原型： int sendCanKostiaDiagChkResp (char serviceName[])
@@ -402,13 +427,13 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值：
 
-        - 7： 消息发送成功，反馈消息正确，返回接收字节的长度（byte）。
-        - -1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；
-        - -2： 上位机发送诊断消息失败；
-        - -3： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
-        - -4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8
-        - -5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
-
+        - 7： 消息发送成功，反馈消息正确，返回接收消息的有效字节长度（byte）。Kostia消息的有效字节长度为7；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：Kostia Services下找到相应的key；
+        - -1002： 上位机发送诊断消息失败；
+        - -1003： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
+        - -1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；
+        - -10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br>
     9. sendLinUdsDiagChkResp
    
         函数原型： int sendLinUdsDiagChkResp (char serviceName[])
@@ -421,13 +446,13 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值：
 
-        - 非零正值： 消息发送成功，反馈消息正确，返回接收字节的有效长度（byte）。
-        - -1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；
-        - -2： 上位机发送诊断消息失败；
-        - -3： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
-        - -4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8
-        - -5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
-
+        - 非零正值： 消息发送成功，反馈消息正确，返回接收消息的字节位的取值（byte）；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：UDS Services下找到相应的key；
+        - -1002： 上位机发送诊断消息失败；
+        - -1003： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
+        - -1004： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；
+        - -10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br>
     10. sendLinKostiaDiagChkResp
    
         函数原型： int sendLinKostiaDiagChkResp (char serviceName[])
@@ -440,26 +465,35 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         函数返回值：
 
-        - 7： 消息发送成功，反馈消息正确，返回接收字节的长度（byte）。
-        - -1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；
-        - -2： 上位机发送诊断消息失败；
-        - -3： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
-        - -4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8
-        - -5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
-
+        - 7： 消息发送成功，反馈消息正确，返回接收消息的有效字节长度（byte）。Kostia消息的有效字节长度为7；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：Kostia Services下找到相应的key；
+        - -1002： 上位机发送诊断消息失败；
+        - -1003： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
+        - -1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；
+        - -10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br>
     11. decodeAsciiFromRecDiag
    
-        函数原型： void decodeAsciiFromRecDiag (int offsetBytePos,char decodeItem[]) 
+        函数原型： void decodeAsciiFromRecDiag (int offsetBytePos,int chkByteLen,char decodeItem[]) 
 
         功能： 按照Ascii方式解析接收到的最新的一条产品反馈的LIN或CAN消息。
 
         参数：
 
-        - offsetBytePos： 解析的起始字节位（第一个字节的offsetBytePos=0）
+        - offsetBytePos： 针对sendCanUdsDiagChkResp，sendCanKostiaDiagChkResp，sendLinUdsDiagChkResp，sendLinKostiaDiagChkResp这四个函数的返回消息的有效字节内容，定义的为解析而截取的起始字节位（第一个字节的offsetBytePos=0）。注：针对sendCanUdsDiagChkResp，sendLinUdsDiagChkResp这两个函数，有效字节内容就是接收到返回UDS message字节长度位之后的所有字节（如果有续帧的话，则将续帧标识相关的字节剔除）；针对sendCanKostiaDiagChkResp，sendLinKostiaDiagChkResp这两个函数，有效字节内容就是接收到返回Kostia message的Function title字节位之后的所有字节；
+        - chkByteLen： 为解析而截取的字节长度；
         - decodeItem： 报告中显示的解析项名称。
 
-        函数返回值：无
+        函数返回值：
 
+        - 0： ASCII码转换成功；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；
+        - -1002： 上位机发送诊断消息失败；
+        - -1003： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；
+        - -1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；
+        - -1005： 为进行转码而配置的offsetByteChkPos及chkByteLen的值输入错误，二者之和大于之前接收到消息的有效字节长度，造成无法正确截取字节内容，进行ASCII码转换失败；
+        - -10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br>
 - General类函数
 
     1. wait
@@ -470,10 +504,15 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         参数：
 
-        - waitMs： 设置等待时间（ms），当值为0时，可作为空函数使用。
+        - waitMs： 设置等待时间（ms），当值为0时，可作为空函数（NOP）使用。
 
-        函数返回值：无
-    
+        函数返回值：
+
+        - 0： Resume due to timeout；
+        - -1001： General error, for example, testWaitForTimeout functionality is not available；
+        - -1002： Resume due to constraint violation in function:testWaitForTimeout；
+        - -1003： 输入的waitMs值为负数。
+<br></br>    
 - vtSystem操作类函数
 
     1. vtSysPwrSupInit
@@ -486,8 +525,20 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - pwrConnectWay： paraCfg.ini中section：vt7001Cfg下某个key的key name。
 
-        函数返回值：无
+        函数返回值：
 
+        - 0： vt7001板卡内部电源模式配置初始化成功；
+        - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
+        - -1002： paraCfg.ini中section:vt7001Cfg对应key下的interConnectionMode不等于0（0=Internal Power Supply only），outChNum不等于1或2；
+        - -1003： Call function:vtsSetInterconnectionMode or vtsSetRefVoltageMode error；
+        - -1004： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1005： The specified mode is not valid；
+        - -1006： The function vtsSetInterconnectionMode or vtsSetRefVoltageMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
+        - -1007： name space was not found or second try to define the same name space;
+        - -1008： variable was not found or second try to define the same variable;
+        - -1009： no writing right for the name space available;
+        - -1010： the variable has no suitable type for the function:SysSetVariableInt.
+<br></br>
     2. vtSysWithExPwrSupInit
 
         函数原型： void vtSysWithExPwrSupInit (char pwrConnectWay[])
@@ -498,8 +549,20 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - pwrConnectWay： paraCfg.ini中section：vt7001Cfg下某个key的key name。
 
-        函数返回值：无
+        函数返回值：
 
+        - 0： vt7001板卡外部电源模式配置初始化成功；
+        - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
+        - -1002： paraCfg.ini中section:vt7001Cfg对应key下的interConnectionMode不等于1或2（1=Power Supply 1 only，2=Power Supply 2 only），outChNum不等于1或2；
+        - -1003： Call function:vtsSetInterconnectionMode or vtsSetRefVoltageMode or vtsSetMaxCurrentMode error；
+        - -1004： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1005： The specified mode is not valid；
+        - -1006： The function vtsSetInterconnectionMode or vtsSetRefVoltageMode or vtsSetMaxCurrentMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
+        - -1007： name space was not found or second try to define the same name space;
+        - -1008： variable was not found or second try to define the same variable;
+        - -1009： no writing right for the name space available;
+        - -1010： the variable has no suitable type for the function:SysSetVariableInt.
+<br></br>
     3. vtSysPwrSupVoltSet
 
         函数原型： void vtSysPwrSupVoltSet (char pwrConnectWay[], float volt)
@@ -511,8 +574,15 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pwrConnectWay： 与vtSysPwrSupInit中的此参数值相同。
         - volt： 电源电压值。
 
-        函数返回值：无
+        函数返回值：
 
+        - 0： vt7001板卡内部电源模式电压设置成功；
+        - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
+        - -1002： name space was not found or second try to define the same name space；
+        - -1003： variable was not found or second try to define the same variable；
+        - -1004： no writing right for the name space available；
+        - -1005： the variable has no suitable type for the function：sysSetVariableFloat.
+<br></br>
     4. vtSysExPwrSupSet
 
         函数原型： void vtSysExPwrSupSet (char pwrConnectWay[], float volt, float maxI, int k) 
@@ -526,8 +596,16 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - maxI： 电源可供最大电流值；
         - k： 等于vt7001外接电源的输出电压与vt7001输出对外接电源的控制电压的比值，也是vt7001外接电源的输出最大电流与vt7001输出对外接电源的最大控制电流的比值。对于现今实验室中使用的外接电源SYSKON P4500而言，k=12.
 
-        函数返回值：无
+        函数返回值：
 
+        - 0： vt7001板卡外部电源模式电压设置成功；
+        - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
+        - -1002： paraCfg.ini中section:vt7001Cfg对应key下的interConnectionMode不等于1或2（1=Power Supply 1 only，2=Power Supply 2 only），outChNum不等于1或2；
+        - -1003： name space was not found or second try to define the same name space；
+        - -1004： variable was not found or second try to define the same variable；
+        - -1005： no writing right for the name space available；
+        - -1006： the variable has no suitable type for the function：sysSetVariableFloat.
+<br></br>
     5. vtSysPwrSupVoltGet
 
         函数原型： float vtSysPwrSupVoltGet (char pwrConnectWay[], float highLimitV, float lowLimitV) 
@@ -540,8 +618,12 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - highLimitV： 允许的输出电压的最大值，单位V；
         - lowLimitV： 允许的输出电压的最小值，单位V；
 
-        函数返回值：测量到的电源电压输出值，单位V。
+        函数返回值：
 
+        - 0： vt7001板卡电源电压读取成功，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
+        - -10001： 电压值超过paraCfg.ini配置文件指定的范围。
+<br></br>
     6. vtSysPwrSupCurrGet
 
         函数原型： float vtSysPwrSupCurrGet (char pwrConnectWay[],float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) 
@@ -556,8 +638,15 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - vt7001MeasureRange： 系统电流测量范围，参数意义如下：all = 0,\_100uA\_1mA = 1,\_1mA\_10mA = 2,\_10mA\_100mA = 3,\_100mA\_1A = 4,\_1A\_10A = 5,\_10A\_100A = 6
         - currentUnit： 报告中显示的测量结果单位设置，参数意义如下：uA = 0,mA = 1,A = 2
 
-        函数返回值：测量到的电源电流输出值，单位A。
-    
+        函数返回值：
+
+        - 0： vt7001板卡电源电流读取成功，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
+        - -1002： Call function:vtsSetMinCurrentMeasurementRange error；
+        - -1003： The namespace on which the command was called does not exist or is not a valid VT system namespace；
+        - -1005： The function vtsSetMinCurrentMeasurementRange wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT system. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
+        - -10001： 电流值超过paraCfg.ini配置文件指定的范围。
+<br></br>    
     7. vtsSetThreshold1_8
 
         函数原型： long vtsSetThreshold1_8 (char moduleNum[],double Threshold)
@@ -572,11 +661,11 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         函数返回值：
 
         - 0： 函数调用成功；
-        - -1： 函数调用错误；
-        - -2： 模块号设置错误，导致namespace无法被系统识别；
-        - -3： 指定的阈值超过允许范围；
-        - -4： The function wasn't called in the context of the main method of a test module.
-
+        - -1001： 函数调用错误；
+        - -1002： 模块号设置错误，导致namespace无法被系统识别；
+        - -1003： 指定的阈值超过允许范围；
+        - -1004： The function wasn't called in the context of the main method of a test module.
+<br></br>
     8. vtsSetThreshold9_16
 
         函数原型： long vtsSetThreshold9_16 (char moduleNum[],double Threshold)
@@ -591,11 +680,11 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         函数返回值：
 
         - 0： 函数调用成功；
-        - -1： 函数调用错误；
-        - -2： 模块号设置错误，导致namespace无法被系统识别；
-        - -3： 指定的阈值超过允许范围；
-        - -4： The function wasn't called in the context of the main method of a test module.
-
+        - -1001： 函数调用错误；
+        - -1002： 模块号设置错误，导致namespace无法被系统识别；
+        - -1003： 指定的阈值超过允许范围；
+        - -1004： The function wasn't called in the context of the main method of a test module.
+<br></br>
     9. prodPwmOutChk
 
         函数原型： void prodPwmOutChk (char pinName[],float expectedFreq,float expectedDuty,int deviationRange)
@@ -609,8 +698,16 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - expectedDuty： 被检测的PWM波形应达到的占空比；
         - deviationRange： 被检测的PWM波形的占空比与expectedDuty间容许的正反偏差(%)。
 
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功检测到产品输出的PWM波形，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -10001： 产品输出的PWM波形不合格，不符合电压小于0.5V的单一低电平要求；
+        - -10002： 产品输出的PWM波形不合格，不符合电压大于10V的单一高电平要求；
+        - -10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；
+        - -10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；
+        - -10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     10. prodPwmOutRisingEdgeMeas
 
         函数原型： void prodPwmOutRisingEdgeMeas (char productPwmOutMode[])
@@ -621,8 +718,14 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功检测到产品输出的PWM波形占空比的上升时间，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -10001： 产品输出的PWM波形的占空比，在3s内都没有检测到上升的趋势；
+        - -10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；
+        - -10005： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     11. prodPwmOutKeepTimeMeas
 
         函数原型： void prodPwmOutKeepTimeMeas (char productPwmOutMode[])
@@ -633,8 +736,14 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功检测到产品输出的PWM波形占空比的保持时间，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；
+        - -10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势。
+        - -10006： 产品输出的PWM波形不合格，占空比保持时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     12. prodPwmOutFallingEdgeMeas
 
         函数原型： void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) 
@@ -645,20 +754,36 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功检测到产品输出的PWM波形占空比的下降时间，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势；
+        - -10004： 产品输出的PWM波形的占空比，在下降结束点检测开始5s后占空比仍然在继续下降；
+        - -10007： 产品输出的PWM波形不合格，占空比下降时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     13. prodPwmOutRiseFallCurveMeas
 
         函数原型： void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[])
 
-        功能： 根据paraCfg.ini中section：pwmTimeCfg下某个key的配置内容，监控产品某个pin的输出PWM波形的占空比变化过程，测量占空比从上升到最大值（中间没有稳定值，上升到最大值后立刻下降）再下降到某特定占空比的时间等参数是否合乎配置要求。
+        功能： 根据paraCfg.ini中section：pwmTimeCfg下某个key的配置内容，监控产品某个pin的输出PWM波形的占空比变化过程，测量占空比从上升到最大值（上升到最大值后，立刻下降或稳定一段时间后再下降）再下降到某特定占空比的时间等参数是否合乎配置要求。
 
         参数：
 
         - productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功检测到产品输出的PWM波形占空比的上升下降时间，且在paraCfg.ini配置文件指定的范围；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -10001： 产品输出的PWM波形的占空比，在3s内都没有检测到上升的趋势；
+        - -10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；
+        - -10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势；
+        - -10004： 产品输出的PWM波形的占空比，在下降结束点检测开始5s后占空比仍然在继续下降；
+        - -10005： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围；
+        - -10007： 产品输出的PWM波形不合格，占空比下降时间超过paraCfg.ini配置文件指定的偏差范围；
+        - -10008： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围，且占空比下降时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     14. chFixVoltDOSet
 
         函数原型： void chFixVoltDOSet (char pinName[],enum digitalLevel level) 
@@ -670,8 +795,18 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；
         - level： 接入电平的级别，参数意义如下：Low = 0,表示接地； High = 1,表示接电源； Floating = 2，表示悬空。
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： VT2516板卡的通道电平状态设置成功；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1002： name space was not found or second try to define the same name space；
+        - -1003： variable was not found or second try to define the same variable；
+        - -1004： no writing right for the name space available；
+        - -1005： the variable has no suitable type for the function：sysSetVariableInt；
+        - -1006： General error, for example, functionality is not available；
+        - -1007： Resume due to constraint violation；
+        - -1008： 输入未知的电平状态。
+<br></br>
     15. chAOSet
 
         函数原型： void chAOSet (char pinName[],float analogValue) 
@@ -683,8 +818,19 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；
         - analogValue： 输出的模拟电压值。
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： VT2516板卡的通道输出电压设置成功；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1002： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；
+        - -1003： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1004： The specified mode is not valid；
+        - -1005： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
+        - -1006： name space was not found or second try to define the same name space；
+        - -1007： variable was not found or second try to define the same variable；
+        - -1008： no writing right for the name space available；
+        - -1009： the variable has no suitable type for the function：SysSetVariableInt。
+<br></br>
     16. chRamVoltDOSet
 
         函数原型： void chRamVoltDOSet (char pinName[],enum prodInputStat state)  
@@ -696,8 +842,19 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pinName： paraCfg.ini中section：vLevelCfg下某个key的key name；
         - state： 设置产品pin所需达到的状态，参数意义如下：Inactive = 0； Active = 1。
         
-        函数返回值：无。
+        函数返回值： 
 
+        - 0： VT2516板卡的通道电平状态设置成功；
+        - -1001： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1002： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；
+        - -1003： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1004： The specified mode is not valid；
+        - -1005： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；
+        - -1006： name space was not found or second try to define the same name space；
+        - -1007： variable was not found or second try to define the same variable；
+        - -1008： no writing right for the name space available；
+        - -1009： the variable has no suitable type for the function：SysSetVariableInt。
+<br></br>
     17. prodDIPinStatGet
 
         函数原型： int prodDIPinStatGet (char pinName[])  
@@ -710,9 +867,20 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         
         函数返回值：
 
-        - -1： 此pin脚处于active和inactive之外的一个未定义状态
+        - 1： Active；
         - 0： Inactive；
-        - 1： Active.
+        - -1001： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1002： 此pin脚的电平处于active和inactive之外的一个未定义状态。
+
+        注：启用该函数前，针对填入的实参pinName值，需要预先开启对该pin对应的VT2516通道的电压测量功能。
+
+        首先，在CANoe菜单栏上选择Configuration下的I/O Hardware，然后点击其下的VT System…
+
+        ![](https://s1.ax1x.com/2017/11/28/hdFwq.png)
+ 
+        在随后打开的VT System Configuration界面中，选中左侧相应板卡的通道，然后勾选右侧的Avg功能，即可开启该通道的电压测量功能。
+
+        ![](https://s1.ax1x.com/2017/11/28/hdplQ.png)
 
     18. chPwmOutSet
 
@@ -725,8 +893,19 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；
         - productPwmInMode： paraCfg.ini中section：pwmWaveCfg下某个key的key name。
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： VT2516板卡输出PWM波形成功；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2或section:pwmWaveCfg对应key下的key value数目不等于5；
+        - -1002： Call function:vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation error；
+        - -1003： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1004： The specified mode is not valid；
+        - -1005： The function vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
+        - -1006： name space was not found or second try to define the same name space；
+        - -1007： variable was not found or second try to define the same variable；
+        - -1008： no writing right for the name space available；
+        - -1009： the variable has no suitable type for the function：sysSetVariableFloat。
+<br></br>
     19. chLoadConnectStatSet
 
         函数原型： void chLoadConnectStatSet (char pinName[],enum connectStat stat)
@@ -740,8 +919,17 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；
         - stat： 通道与original load/sensor的连接状态，参数意义如下：disconnect = 0； connect = 1。
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： VT2516板卡通道的负载连接状态设置成功；
+        - -1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1002： name space was not found or second try to define the same name space；
+        - -1003： variable was not found or second try to define the same variable；
+        - -1004： no writing right for the name space available；
+        - -1005： the variable has no suitable type for the function：sysSetVariableInt；
+        - -1006： General error, for example, testWaitForTimeout functionality is not available；
+        - -1007： Resume due to constraint violation in function:testWaitForTimeout。
+<br></br>
 - 产品操作及状态设置类函数
 
     1. prodOperWithPinStatImpOnSpecSigChk
@@ -754,8 +942,17 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - operationMode： paraCfg.ini中section：prodOperWithPinStatImpOnSpecSigCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： paraCfg.ini中定义的产品的某个操作动作对产品上某些信号的影响符合配置内容；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：prodOperWithPinStatImpOnSpecSigCfg下找到相应的key；
+        - -1002： paraCfg.ini中section:prodOperWithPinStatImpOnSpecSigCfg对应key下的数值数目减1后不能被5整除或paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1003： paraCfg.ini中定义的pin脚电平处于active和inactive之外的一个未定义状态；
+        - -1004： General error, for example, testWaitForTimeout functionality is not available；
+        - -1005： Resume due to constraint violation in function:testWaitForTimeout；
+        - -10001： 某信号的值未按paraCfg.ini中的配置要求更新；
+        - -10002： 某信号的值未按paraCfg.ini中的配置要求维持现状。
+<br></br>
     2. prodOperWithPinStatImpOnSpecPwmChk
 
         函数原型： void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[])
@@ -766,8 +963,18 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - operationMode： paraCfg.ini中section：prodOperWithPinStatImpOnSpecPwmCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： paraCfg.ini中定义的产品的某个操作动作对产品的PWM输出波形的影响符合配置内容；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：prodOperWithPinStatImpOnSpecPwmCfg下找到相应的key；
+        - -1002： paraCfg.ini中section:prodOperWithPinStatImpOnSpecPwmCfg对应key下的数值数目减1后不能被6整除或paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1003： paraCfg.ini中定义的pin脚电平处于active和inactive之外的一个未定义状态；
+        - -10001： 产品输出的PWM波形不合格，不符合电压小于0.5V的单一低电平要求；
+        - -10002： 产品输出的PWM波形不合格，不符合电压大于10V的单一高电平要求；
+        - -10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；
+        - -10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；
+        - -10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     3. prodOperWithSigStatImpOnSpecPwmChk
 
         函数原型： void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[])
@@ -778,8 +985,18 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - operationMode： paraCfg.ini中section：prodOperWithSigStatImpOnSpecPwmCfg下某个key的key name；
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： paraCfg.ini中定义的产品的某个操作动作对产品的PWM输出波形的影响符合配置内容；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：prodOperWithSigStatImpOnSpecPwmCfg下找到相应的key；
+        - -1002： paraCfg.ini中section:prodOperWithSigStatImpOnSpecPwmCfg对应key下的数值数目减1后不能被6整除或section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1003： paraCfg.ini中定义的信号的取值不等于0也不等于1，即该信号不是一个二态的信号；
+        - -10001： 产品输出的PWM波形不合格，不符合电压小于0.5V的单一低电平要求；
+        - -10002： 产品输出的PWM波形不合格，不符合电压大于10V的单一高电平要求；
+        - -10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；
+        - -10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；
+        - -10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+<br></br>
     4. sigDirTwoStatInSet
 
         函数原型： void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state)
@@ -792,8 +1009,25 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - dFct： 设置是由信号还是由硬线电平来决定产品的该状态，参数意义如下：determinedBySignal = 0，determinedByHardware = 1；
         - state： 设置产品需要达到二态中的哪一个状态，参数意义如下：Inactive = 0，Active = 1。
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功地设置产品进入某特定状态；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：sigDirTwoStatInCfg下找到相应的key；
+        - -1002： General error；
+        - -1003： 该名称的信号不存在；
+        - -1004： 5s内信号未被设定为指定值。
+        - -1005： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；
+        - -1006： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；
+        - -1007： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1008： The specified mode is not valid；
+        - -1009： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；
+        - -1010： name space was not found or second try to define the same name space；
+        - -1011： variable was not found or second try to define the same variable；
+        - -1012： no writing right for the name space available；
+        - -1013： the variable has no suitable type for the function：SysSetVariableInt；
+        - -1014： testWaitForTimeout functionality is not available；
+        - -1015： Resume due to constraint violation in function:testWaitForTimeout。
+<br></br>
     5. sigDirMulStatInSet
 
         函数原型： void sigDirMulStatInSet (char specStat[], enum determiningFactor dFct)
@@ -805,8 +1039,23 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - pinName： paraCfg.ini中section：sigDirMulStatInCfg下某个key的key name；
         - dFct： 设置是由信号还是由硬线电平来决定产品的该状态，参数意义如下：determinedBySignal = 0，determinedByHardware = 1。
         
-        函数返回值：无。
+        函数返回值：
 
+        - 0： 成功地设置产品进入某特定状态；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：sigDirMulStatInCfg下找到相应的key；
+        - -1002： General error；
+        - -1003： 该名称的信号不存在；
+        - -1004： 5s内信号未被设定为指定值；
+        - -1005： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2或section:pwmWaveCfg对应key下的key value数目不等于5；
+        - -1006： Call function:vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation error；
+        - -1007： The namespace on which the command was called does not exist or is not a valid VT System namespace；
+        - -1008： The specified mode is not valid；
+        - -1009： The function vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；
+        - -1010： name space was not found or second try to define the same name space；
+        - -1011： variable was not found or second try to define the same variable；
+        - -1012： no writing right for the name space available；
+        - -1013： the variable has no suitable type for the function：sysSetVariableFloat。
+<br></br>
     6. specStatImpOnSigChk
 
         函数原型： void specStatImpOnSigChk (char specStat[])
@@ -817,9 +1066,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - specStat： paraCfg.ini中section：specStatImpactOnSigCfg下某个key的key name。
         
-        函数返回值：无。
+        函数返回值：
 
-
-
-        
-       
+        - 0： 产品进入特定状态后对相应信号的影响符合配置要求；
+        - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：specStatImpactOnSigCfg下找到相应的key；
+        - -1002： General error, for example, testWaitForTimeout functionality is not available；
+        - -1003： Resume due to constraint violation in function:testWaitForTimeout；
+        - -10001： paraCfg.ini中定义的信号没有在配置文档要求的时间之内更新为指定值。

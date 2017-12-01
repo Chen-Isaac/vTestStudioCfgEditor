@@ -19,6 +19,9 @@
 		<Item Name="helper" Type="Folder" URL="../helper">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
+		<Item Name="hotfix" Type="Folder" URL="../hotfix">
+			<Property Name="NI.DISK" Type="Bool">true</Property>
+		</Item>
 		<Item Name="menu" Type="Folder" URL="../menu">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
@@ -29,6 +32,29 @@
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
+			<Item Name="instr.lib" Type="Folder">
+				<Item Name="gmpsp Check Error.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/_gmpsp.llb/gmpsp Check Error.vi"/>
+				<Item Name="gmpsp Close.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Close.vi"/>
+				<Item Name="gmpsp Configure Output State.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Configure Output State.vi"/>
+				<Item Name="gmpsp Configure Overcurrent Protection.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Configure Overcurrent Protection.vi"/>
+				<Item Name="gmpsp Configure Overvoltage Protection.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Configure Overvoltage Protection.vi"/>
+				<Item Name="gmpsp Default Instrument Setup.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/_gmpsp.llb/gmpsp Default Instrument Setup.vi"/>
+				<Item Name="gmpsp Error Query.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Error Query.vi"/>
+				<Item Name="gmpsp Global Data.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/_gmpsp.llb/gmpsp Global Data.vi"/>
+				<Item Name="gmpsp Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Initialize.vi"/>
+				<Item Name="gmpsp Meas Output Current.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Meas Output Current.vi"/>
+				<Item Name="gmpsp Meas Output Voltage.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Meas Output Voltage.vi"/>
+				<Item Name="gmpsp Read.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/_gmpsp.llb/gmpsp Read.vi"/>
+				<Item Name="gmpsp Reset.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Reset.vi"/>
+				<Item Name="gmpsp Set Analog Interface State.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Analog Interface State.vi"/>
+				<Item Name="gmpsp Set Overcurrent Protection Delay.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Overcurrent Protection Delay.vi"/>
+				<Item Name="gmpsp Set Overcurrent Protection State.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Overcurrent Protection State.vi"/>
+				<Item Name="gmpsp Set Overcurrent Protection Value.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Overcurrent Protection Value.vi"/>
+				<Item Name="gmpsp Set Overvoltage Protection Delay.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Overvoltage Protection Delay.vi"/>
+				<Item Name="gmpsp Set Overvoltage Protection State.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Overvoltage Protection State.vi"/>
+				<Item Name="gmpsp Set Overvoltage Protection Value.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/gmpsp.llb/gmpsp Set Overvoltage Protection Value.vi"/>
+				<Item Name="gmpsp Write.vi" Type="VI" URL="/&lt;instrlib&gt;/gmpsp/_gmpsp.llb/gmpsp Write.vi"/>
+			</Item>
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Check if File or Folder Exists.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/libraryn.llb/Check if File or Folder Exists.vi"/>
 				<Item Name="Clear Errors.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Clear Errors.vi"/>
@@ -64,7 +90,7 @@
 				<Property Name="Destination[1].path" Type="Path">../NI_AB_PROJECTNAME/builder/data</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
 				<Property Name="Exe_iconItemID" Type="Ref">/My Computer/pictures/notepad-icon.ico</Property>
-				<Property Name="Source[0].itemID" Type="Str">{5A41382C-C815-4702-91D0-9F5D0FC085CD}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{CE35A4B7-06F0-4126-A605-BF8D3BAC017F}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/VI/check errors exist or not.vi</Property>
@@ -226,6 +252,14 @@
 				<Property Name="Source[44].itemID" Type="Ref">/My Computer/VI/vTestStudioCfgEditor.vi</Property>
 				<Property Name="Source[44].sourceInclusion" Type="Str">TopLevel</Property>
 				<Property Name="Source[44].type" Type="Str">VI</Property>
+				<Property Name="Source[45].destinationIndex" Type="Int">0</Property>
+				<Property Name="Source[45].itemID" Type="Ref">/My Computer/VI/getFilePath.vi</Property>
+				<Property Name="Source[45].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[45].type" Type="Str">VI</Property>
+				<Property Name="Source[46].destinationIndex" Type="Int">0</Property>
+				<Property Name="Source[46].itemID" Type="Ref">/My Computer/VI/SYSKON P4500 Init Config.vi</Property>
+				<Property Name="Source[46].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[46].type" Type="Str">VI</Property>
 				<Property Name="Source[5].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[5].itemID" Type="Ref">/My Computer/VI/chkItemFoundInTree.vi</Property>
 				<Property Name="Source[5].sourceInclusion" Type="Str">Include</Property>
@@ -246,7 +280,7 @@
 				<Property Name="Source[9].itemID" Type="Ref">/My Computer/VI/copySecFromIniToTable.vi</Property>
 				<Property Name="Source[9].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[9].type" Type="Str">VI</Property>
-				<Property Name="SourceCount" Type="Int">45</Property>
+				<Property Name="SourceCount" Type="Int">47</Property>
 				<Property Name="TgtF_companyName" Type="Str">Microsoft</Property>
 				<Property Name="TgtF_fileDescription" Type="Str">builder</Property>
 				<Property Name="TgtF_fileVersion.major" Type="Int">1</Property>

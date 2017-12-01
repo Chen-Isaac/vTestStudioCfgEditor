@@ -498,7 +498,15 @@ img {
 <li>question： 弹出窗口上显示的字符串内容。</li>
 </ul>
 <p>函数返回值： </p>
-<p><img src="https://i.loli.net/2017/11/03/59fbc79f02e0e.png" /></p>
+<ul>
+<li>3: The tester clicked Unclear；</li>
+<li>2： The tester clicked No；</li>
+<li>1： The tester clicked Yes；</li>
+<li>0： Timeout occurred；</li>
+<li>-1001: General error, e.g. due to a call outside of a test sequence.；</li>
+<li>-1002: Constraint occurred.
+<br></br></li>
+</ul>
 </li>
 </ol>
 </li>
@@ -515,12 +523,18 @@ img {
 <li>valueBase： 赋值的基值</li>
 <li>range： 赋值在基值上的随机整数范围偏差为0 — range-1</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 信号设置成功；</li>
+<li>-1001: 该名称的信号不存在；</li>
+<li>-1002: 5s内信号未被设定为指定值。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>signalContSetting</p>
 <p>函数原型： void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime)</p>
-<p>功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在150ms后读取信号值，检测信号赋值是否成功，再等待msGapTime毫秒间隔，发送下一条赋值指令。</p>
+<p>功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在检测信号赋值成功后，再等待msGapTime毫秒间隔，发送下一条赋值指令。</p>
 <p>参数：</p>
 <ul>
 <li>sigName： 赋值信号在database上的名称。</li>
@@ -528,7 +542,15 @@ img {
 <li>range： 赋值的增长范围。</li>
 <li>msGapTime： 赋值的间隔时间（ms）。</li>
 </ul>
-<p>函数返回值： 无</p>
+<p>函数返回值： </p>
+<ul>
+<li>0： 信号设置成功；</li>
+<li>-1001: 该名称的信号不存在；</li>
+<li>-1002: 5s内信号未被设定为指定值；</li>
+<li>-1003: General error, for example, TestWaitForTimeout functionality is not available；</li>
+<li>-1004: Resume due to constraint violation in function:testWaitForTimeout。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>testEnableMsg</p>
@@ -541,7 +563,8 @@ img {
 <p>函数返回值：</p>
 <ul>
 <li>0： No error。</li>
-<li>-1: General error。</li>
+<li>-1001: General error。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -555,7 +578,8 @@ img {
 <p>函数返回值：</p>
 <ul>
 <li>0： No error。</li>
-<li>-1: General error。</li>
+<li>-1001: General error。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -569,8 +593,9 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>0： 激活发送失败。</li>
-<li>非0: 激活发送成功。</li>
+<li>-1001： 激活发送失败。</li>
+<li>非0正值: 激活发送成功。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -584,8 +609,9 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>0： 屏蔽失败。</li>
-<li>非0: 屏蔽成功。</li>
+<li>-1001： 屏蔽失败。</li>
+<li>非0正值: 屏蔽成功。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -598,12 +624,13 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>非零正值： 消息发送成功，反馈消息正确，返回接收字节的有效长度（byte）。</li>
-<li>-1： 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
-<li>-2： 上位机发送诊断消息失败；</li>
-<li>-3： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
-<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
-<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+<li>非零正值： 消息发送成功，反馈消息正确，返回接收消息的字节位的取值（byte）。</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：UDS Services下找到相应的key；</li>
+<li>-1002： 上位机发送诊断消息失败；</li>
+<li>-1003： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；</li>
+<li>-10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -616,12 +643,13 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>7： 消息发送成功，反馈消息正确，返回接收字节的长度（byte）。</li>
-<li>-1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
-<li>-2： 上位机发送诊断消息失败；</li>
-<li>-3： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
-<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
-<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+<li>7： 消息发送成功，反馈消息正确，返回接收消息的有效字节长度（byte）。Kostia消息的有效字节长度为7；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：Kostia Services下找到相应的key；</li>
+<li>-1002： 上位机发送诊断消息失败；</li>
+<li>-1003： 测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；</li>
+<li>-10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -634,12 +662,13 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>非零正值： 消息发送成功，反馈消息正确，返回接收字节的有效长度（byte）。</li>
-<li>-1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
-<li>-2： 上位机发送诊断消息失败；</li>
-<li>-3： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
-<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
-<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+<li>非零正值： 消息发送成功，反馈消息正确，返回接收消息的字节位的取值（byte）；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：UDS Services下找到相应的key；</li>
+<li>-1002： 上位机发送诊断消息失败；</li>
+<li>-1003： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-1004： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；</li>
+<li>-10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -652,12 +681,13 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>7： 消息发送成功，反馈消息正确，返回接收字节的长度（byte）。</li>
-<li>-1: 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
-<li>-2： 上位机发送诊断消息失败；</li>
-<li>-3： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
-<li>-4： paraCfg.ini中相应位置下的配置参数 offsetByteChkPos及chkByteLen的值输入错误，和大于8</li>
-<li>-5： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。</li>
+<li>7： 消息发送成功，反馈消息正确，返回接收消息的有效字节长度（byte）。Kostia消息的有效字节长度为7；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：Kostia Services下找到相应的key；</li>
+<li>-1002： 上位机发送诊断消息失败；</li>
+<li>-1003： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；</li>
+<li>-10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -669,7 +699,17 @@ img {
 <li>offsetBytePos： 解析的起始字节位（第一个字节的offsetBytePos=0）</li>
 <li>decodeItem： 报告中显示的解析项名称。</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： ASCII码转换成功；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini中找到相应的key；</li>
+<li>-1002： 上位机发送诊断消息失败；</li>
+<li>-1003： 5s内测试系统未检测到符合paraCfg.ini中相应位置下的配置参数recMsgId的反馈消息；</li>
+<li>-1004： paraCfg.ini中相应位置下的配置参数offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法检测相应的字节内容是否正确；</li>
+<li>-1005： 对之前反馈消息的字节内容offsetByteChkPos及chkByteLen的值输入错误，和大于8，无法对相应部分进行ASCII码转换；</li>
+<li>-10001： 产品反馈消息中的检测部分字节内容与paraCfg.ini中相应位置下的配置参数chkRecMsgPartData不符。
+<br></br></li>
+</ul>
 </li>
 </ol>
 </li>
@@ -682,9 +722,16 @@ img {
 <p>功能： 等待一定时间（ms）。</p>
 <p>参数：</p>
 <ul>
-<li>waitMs： 设置等待时间（ms），当值为0时，可作为空函数使用。</li>
+<li>waitMs： 设置等待时间（ms），当值为0时，可作为空函数（NOP）使用。</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： Resume due to timeout；</li>
+<li>-1001： General error, for example, testWaitForTimeout functionality is not available；</li>
+<li>-1002： Resume due to constraint violation in function:testWaitForTimeout。
+<br></br>    
+</li>
+</ul>
 </li>
 </ol>
 </li>
@@ -699,7 +746,21 @@ img {
 <ul>
 <li>pwrConnectWay： paraCfg.ini中section：vt7001Cfg下某个key的key name。</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： vt7001板卡内部电源模式配置初始化成功；</li>
+<li>-1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；</li>
+<li>-1002： paraCfg.ini中section:vt7001Cfg对应key下的interConnectionMode不等于0（0=Internal Power Supply only），outChNum不等于1或2；</li>
+<li>-1003： Call function:vtsSetInterconnectionMode or vtsSetRefVoltageMode error；</li>
+<li>-1004： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1005： The specified mode is not valid；</li>
+<li>-1006： The function vtsSetInterconnectionMode or vtsSetRefVoltageMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；</li>
+<li>-1007： name space was not found or second try to define the same name space;</li>
+<li>-1008： variable was not found or second try to define the same variable;</li>
+<li>-1009： no writing right for the name space available;</li>
+<li>-1010： the variable has no suitable type for the function:SysSetVariableInt.
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>vtSysWithExPwrSupInit</p>
@@ -709,7 +770,21 @@ img {
 <ul>
 <li>pwrConnectWay： paraCfg.ini中section：vt7001Cfg下某个key的key name。</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： vt7001板卡外部电源模式配置初始化成功；</li>
+<li>-1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；</li>
+<li>-1002： paraCfg.ini中section:vt7001Cfg对应key下的interConnectionMode不等于1或2（1=Power Supply 1 only，2=Power Supply 2 only），outChNum不等于1或2；</li>
+<li>-1003： Call function:vtsSetInterconnectionMode or vtsSetRefVoltageMode or vtsSetMaxCurrentMode error；</li>
+<li>-1004： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1005： The specified mode is not valid；</li>
+<li>-1006： The function vtsSetInterconnectionMode or vtsSetRefVoltageMode or vtsSetMaxCurrentMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；</li>
+<li>-1007： name space was not found or second try to define the same name space;</li>
+<li>-1008： variable was not found or second try to define the same variable;</li>
+<li>-1009： no writing right for the name space available;</li>
+<li>-1010： the variable has no suitable type for the function:SysSetVariableInt.
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>vtSysPwrSupVoltSet</p>
@@ -720,7 +795,16 @@ img {
 <li>pwrConnectWay： 与vtSysPwrSupInit中的此参数值相同。</li>
 <li>volt： 电源电压值。</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： vt7001板卡内部电源模式电压设置成功；</li>
+<li>-1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；</li>
+<li>-1002： name space was not found or second try to define the same name space；</li>
+<li>-1003： variable was not found or second try to define the same variable；</li>
+<li>-1004： no writing right for the name space available；</li>
+<li>-1005： the variable has no suitable type for the function：sysSetVariableFloat.
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>vtSysExPwrSupSet</p>
@@ -733,7 +817,17 @@ img {
 <li>maxI： 电源可供最大电流值；</li>
 <li>k： 等于vt7001外接电源的输出电压与vt7001输出对外接电源的控制电压的比值，也是vt7001外接电源的输出最大电流与vt7001输出对外接电源的最大控制电流的比值。对于现今实验室中使用的外接电源SYSKON P4500而言，k=12.</li>
 </ul>
-<p>函数返回值：无</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： vt7001板卡外部电源模式电压设置成功；</li>
+<li>-1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；</li>
+<li>-1002： paraCfg.ini中section:vt7001Cfg对应key下的interConnectionMode不等于1或2（1=Power Supply 1 only，2=Power Supply 2 only），outChNum不等于1或2；</li>
+<li>-1003： name space was not found or second try to define the same name space；</li>
+<li>-1004： variable was not found or second try to define the same variable；</li>
+<li>-1005： no writing right for the name space available；</li>
+<li>-1006： the variable has no suitable type for the function：sysSetVariableFloat.
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>vtSysPwrSupVoltGet</p>
@@ -745,7 +839,13 @@ img {
 <li>highLimitV： 允许的输出电压的最大值，单位V；</li>
 <li>lowLimitV： 允许的输出电压的最小值，单位V；</li>
 </ul>
-<p>函数返回值：测量到的电源电压输出值，单位V。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： vt7001板卡电源电压读取成功，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；</li>
+<li>-10001： 电压值超过paraCfg.ini配置文件指定的范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>vtSysPwrSupCurrGet</p>
@@ -759,7 +859,17 @@ img {
 <li>vt7001MeasureRange： 系统电流测量范围，参数意义如下：all = 0,_100uA_1mA = 1,_1mA_10mA = 2,_10mA_100mA = 3,_100mA_1A = 4,_1A_10A = 5,_10A_100A = 6</li>
 <li>currentUnit： 报告中显示的测量结果单位设置，参数意义如下：uA = 0,mA = 1,A = 2</li>
 </ul>
-<p>函数返回值：测量到的电源电流输出值，单位A。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： vt7001板卡电源电流读取成功，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；</li>
+<li>-1002： Call function:vtsSetMinCurrentMeasurementRange error；</li>
+<li>-1003： The namespace on which the command was called does not exist or is not a valid VT system namespace；</li>
+<li>-1005： The function vtsSetMinCurrentMeasurementRange wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT system. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；</li>
+<li>-10001： 电流值超过paraCfg.ini配置文件指定的范围。
+<br></br>    
+</li>
+</ul>
 </li>
 <li>
 <p>vtsSetThreshold1_8</p>
@@ -773,10 +883,11 @@ img {
 <p>函数返回值：</p>
 <ul>
 <li>0： 函数调用成功；</li>
-<li>-1： 函数调用错误；</li>
-<li>-2： 模块号设置错误，导致namespace无法被系统识别；</li>
-<li>-3： 指定的阈值超过允许范围；</li>
-<li>-4： The function wasn't called in the context of the main method of a test module.</li>
+<li>-1001： 函数调用错误；</li>
+<li>-1002： 模块号设置错误，导致namespace无法被系统识别；</li>
+<li>-1003： 指定的阈值超过允许范围；</li>
+<li>-1004： The function wasn't called in the context of the main method of a test module.
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -794,7 +905,8 @@ img {
 <li>-1： 函数调用错误；</li>
 <li>-2： 模块号设置错误，导致namespace无法被系统识别；</li>
 <li>-3： 指定的阈值超过允许范围；</li>
-<li>-4： The function wasn't called in the context of the main method of a test module.</li>
+<li>-4： The function wasn't called in the context of the main method of a test module.
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -808,7 +920,17 @@ img {
 <li>expectedDuty： 被检测的PWM波形应达到的占空比；</li>
 <li>deviationRange： 被检测的PWM波形的占空比与expectedDuty间容许的正反偏差(%)。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功检测到产品输出的PWM波形，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-10001： 产品输出的PWM波形不合格，不符合电压小于0.5V的单一低电平要求；</li>
+<li>-10002： 产品输出的PWM波形不合格，不符合电压大于10V的单一高电平要求；</li>
+<li>-10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；</li>
+<li>-10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；</li>
+<li>-10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodPwmOutRisingEdgeMeas</p>
@@ -818,7 +940,15 @@ img {
 <ul>
 <li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功检测到产品输出的PWM波形占空比的上升时间，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-10001： 产品输出的PWM波形的占空比，在3s内都没有检测到上升的趋势；</li>
+<li>-10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；</li>
+<li>-10005： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodPwmOutKeepTimeMeas</p>
@@ -828,7 +958,15 @@ img {
 <ul>
 <li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功检测到产品输出的PWM波形占空比的保持时间，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；</li>
+<li>-10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势。</li>
+<li>-10006： 产品输出的PWM波形不合格，占空比保持时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodPwmOutFallingEdgeMeas</p>
@@ -838,7 +976,15 @@ img {
 <ul>
 <li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功检测到产品输出的PWM波形占空比的下降时间，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势；</li>
+<li>-10004： 产品输出的PWM波形的占空比，在下降结束点检测开始5s后占空比仍然在继续下降；</li>
+<li>-10007： 产品输出的PWM波形不合格，占空比下降时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodPwmOutRiseFallCurveMeas</p>
@@ -848,7 +994,19 @@ img {
 <ul>
 <li>productPwmOutMode： paraCfg.ini中section：pwmTimeCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功检测到产品输出的PWM波形占空比的上升下降时间，且在paraCfg.ini配置文件指定的范围；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-10001： 产品输出的PWM波形的占空比，在3s内都没有检测到上升的趋势；</li>
+<li>-10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；</li>
+<li>-10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势；</li>
+<li>-10004： 产品输出的PWM波形的占空比，在下降结束点检测开始5s后占空比仍然在继续下降；</li>
+<li>-10005： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围；</li>
+<li>-10007： 产品输出的PWM波形不合格，占空比下降时间超过paraCfg.ini配置文件指定的偏差范围；</li>
+<li>-10008： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围，且占空比下降时间超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>chFixVoltDOSet</p>
@@ -859,7 +1017,19 @@ img {
 <li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
 <li>level： 接入电平的级别，参数意义如下：Low = 0,表示接地； High = 1,表示接电源； Floating = 2，表示悬空。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： VT2516板卡的通道电平状态设置成功；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1002： name space was not found or second try to define the same name space；</li>
+<li>-1003： variable was not found or second try to define the same variable；</li>
+<li>-1004： no writing right for the name space available；</li>
+<li>-1005： the variable has no suitable type for the function：sysSetVariableInt；</li>
+<li>-1006： General error, for example, functionality is not available；</li>
+<li>-1007： Resume due to constraint violation；</li>
+<li>-1008： 输入未知的电平状态。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>chAOSet</p>
@@ -870,7 +1040,20 @@ img {
 <li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
 <li>analogValue： 输出的模拟电压值。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： VT2516板卡的通道输出电压设置成功；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1002： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；</li>
+<li>-1003： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1004： The specified mode is not valid；</li>
+<li>-1005： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；</li>
+<li>-1006： name space was not found or second try to define the same name space；</li>
+<li>-1007： variable was not found or second try to define the same variable；</li>
+<li>-1008： no writing right for the name space available；</li>
+<li>-1009： the variable has no suitable type for the function：SysSetVariableInt。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>chRamVoltDOSet</p>
@@ -882,7 +1065,20 @@ img {
 <li>pinName： paraCfg.ini中section：vLevelCfg下某个key的key name；</li>
 <li>state： 设置产品pin所需达到的状态，参数意义如下：Inactive = 0； Active = 1。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值： </p>
+<ul>
+<li>0： VT2516板卡的通道电平状态设置成功；</li>
+<li>-1001： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1002： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；</li>
+<li>-1003： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1004： The specified mode is not valid；</li>
+<li>-1005： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；</li>
+<li>-1006： name space was not found or second try to define the same name space；</li>
+<li>-1007： variable was not found or second try to define the same variable；</li>
+<li>-1008： no writing right for the name space available；</li>
+<li>-1009： the variable has no suitable type for the function：SysSetVariableInt。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodDIPinStatGet</p>
@@ -895,9 +1091,11 @@ img {
 </ul>
 <p>函数返回值：</p>
 <ul>
-<li>-1： 此pin脚处于active和inactive之外的一个未定义状态</li>
+<li>1： Active；</li>
 <li>0： Inactive；</li>
-<li>1： Active.</li>
+<li>-1001： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1002： 此pin脚的电平处于active和inactive之外的一个未定义状态。
+<br></br></li>
 </ul>
 </li>
 <li>
@@ -909,7 +1107,20 @@ img {
 <li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
 <li>productPwmInMode： paraCfg.ini中section：pwmWaveCfg下某个key的key name。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： VT2516板卡输出PWM波形成功；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2或section:pwmWaveCfg对应key下的key value数目不等于5；</li>
+<li>-1002： Call function:vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation error；</li>
+<li>-1003： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1004： The specified mode is not valid；</li>
+<li>-1005： The function vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；</li>
+<li>-1006： name space was not found or second try to define the same name space；</li>
+<li>-1007： variable was not found or second try to define the same variable；</li>
+<li>-1008： no writing right for the name space available；</li>
+<li>-1009： the variable has no suitable type for the function：sysSetVariableFloat。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>chLoadConnectStatSet</p>
@@ -921,7 +1132,18 @@ img {
 <li>pinName： paraCfg.ini中section：vt2516Cfg下某个key的key name；</li>
 <li>stat： 通道与original load/sensor的连接状态，参数意义如下：disconnect = 0； connect = 1。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： VT2516板卡通道的负载连接状态设置成功；</li>
+<li>-1001： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1002： name space was not found or second try to define the same name space；</li>
+<li>-1003： variable was not found or second try to define the same variable；</li>
+<li>-1004： no writing right for the name space available；</li>
+<li>-1005： the variable has no suitable type for the function：sysSetVariableInt；</li>
+<li>-1006： General error, for example, testWaitForTimeout functionality is not available；</li>
+<li>-1007： Resume due to constraint violation in function:testWaitForTimeout。
+<br></br></li>
+</ul>
 </li>
 </ol>
 </li>
@@ -936,7 +1158,18 @@ img {
 <ul>
 <li>operationMode： paraCfg.ini中section：prodOperWithPinStatImpOnSpecSigCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： paraCfg.ini中定义的产品的某个操作动作对产品上某些信号的影响符合配置内容；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：prodOperWithPinStatImpOnSpecSigCfg下找到相应的key；</li>
+<li>-1002： paraCfg.ini中section:prodOperWithPinStatImpOnSpecSigCfg对应key下的数值数目减1后不能被5整除或paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1003： paraCfg.ini中定义的pin脚电平处于active和inactive之外的一个未定义状态；</li>
+<li>-1004： General error, for example, testWaitForTimeout functionality is not available；</li>
+<li>-1005： Resume due to constraint violation in function:testWaitForTimeout；</li>
+<li>-10001： 某信号的值未按paraCfg.ini中的配置要求更新；</li>
+<li>-10002： 某信号的值未按paraCfg.ini中的配置要求维持现状。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodOperWithPinStatImpOnSpecPwmChk</p>
@@ -946,7 +1179,19 @@ img {
 <ul>
 <li>operationMode： paraCfg.ini中section：prodOperWithPinStatImpOnSpecPwmCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： paraCfg.ini中定义的产品的某个操作动作对产品的PWM输出波形的影响符合配置内容；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：prodOperWithPinStatImpOnSpecPwmCfg下找到相应的key；</li>
+<li>-1002： paraCfg.ini中section:prodOperWithPinStatImpOnSpecSigCfg对应key下的数值数目减1后不能被6整除或paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1003： paraCfg.ini中定义的pin脚电平处于active和inactive之外的一个未定义状态；</li>
+<li>-10001： 产品输出的PWM波形不合格，不符合电压小于0.5V的单一低电平要求；</li>
+<li>-10002： 产品输出的PWM波形不合格，不符合电压大于10V的单一高电平要求；</li>
+<li>-10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；</li>
+<li>-10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；</li>
+<li>-10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>prodOperWithSigStatImpOnSpecPwmChk</p>
@@ -956,7 +1201,19 @@ img {
 <ul>
 <li>operationMode： paraCfg.ini中section：prodOperWithSigStatImpOnSpecPwmCfg下某个key的key name；</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： paraCfg.ini中定义的产品的某个操作动作对产品的PWM输出波形的影响符合配置内容；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：prodOperWithSigStatImpOnSpecPwmCfg下找到相应的key；</li>
+<li>-1002： paraCfg.ini中section:prodOperWithPinStatImpOnSpecSigCfg对应key下的数值数目减1后不能被6整除或section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1003： paraCfg.ini中定义的信号的取值不等于0也不等于1，即该信号不是一个二态的信号；</li>
+<li>-10001： 产品输出的PWM波形不合格，不符合电压小于0.5V的单一低电平要求；</li>
+<li>-10002： 产品输出的PWM波形不合格，不符合电压大于10V的单一高电平要求；</li>
+<li>-10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；</li>
+<li>-10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；</li>
+<li>-10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>sigDirTwoStatInSet</p>
@@ -968,7 +1225,26 @@ img {
 <li>dFct： 设置是由信号还是由硬线电平来决定产品的该状态，参数意义如下：determinedBySignal = 0，determinedByHardware = 1；</li>
 <li>state： 设置产品需要达到二态中的哪一个状态，参数意义如下：Inactive = 0，Active = 1。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功地设置产品进入某特定状态；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：sigDirTwoStatInCfg下找到相应的key；</li>
+<li>-1002： General error；</li>
+<li>-1003： 该名称的信号不存在；</li>
+<li>-1004： 5s内信号未被设定为指定值。</li>
+<li>-1005： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；</li>
+<li>-1006： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；</li>
+<li>-1007： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1008： The specified mode is not valid；</li>
+<li>-1009： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；</li>
+<li>-1010： name space was not found or second try to define the same name space；</li>
+<li>-1011： variable was not found or second try to define the same variable；</li>
+<li>-1012： no writing right for the name space available；</li>
+<li>-1013： the variable has no suitable type for the function：SysSetVariableInt；</li>
+<li>-1014： testWaitForTimeout functionality is not available；</li>
+<li>-1015： Resume due to constraint violation in function:testWaitForTimeout。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>sigDirMulStatInSet</p>
@@ -979,7 +1255,24 @@ img {
 <li>pinName： paraCfg.ini中section：sigDirMulStatInCfg下某个key的key name；</li>
 <li>dFct： 设置是由信号还是由硬线电平来决定产品的该状态，参数意义如下：determinedBySignal = 0，determinedByHardware = 1。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 成功地设置产品进入某特定状态；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：sigDirMulStatInCfg下找到相应的key；</li>
+<li>-1002： General error；</li>
+<li>-1003： 该名称的信号不存在；</li>
+<li>-1004： 5s内信号未被设定为指定值；</li>
+<li>-1005： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2或section:pwmWaveCfg对应key下的key value数目不等于5；</li>
+<li>-1006： Call function:vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation error；</li>
+<li>-1007： The namespace on which the command was called does not exist or is not a valid VT System namespace；</li>
+<li>-1008： The specified mode is not valid；</li>
+<li>-1009： The function vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；</li>
+<li>-1010： name space was not found or second try to define the same name space；</li>
+<li>-1011： variable was not found or second try to define the same variable；</li>
+<li>-1012： no writing right for the name space available；</li>
+<li>-1013： the variable has no suitable type for the function：sysSetVariableFloat。
+<br></br></li>
+</ul>
 </li>
 <li>
 <p>specStatImpOnSigChk</p>
@@ -989,7 +1282,14 @@ img {
 <ul>
 <li>specStat： paraCfg.ini中section：specStatImpactOnSigCfg下某个key的key name。</li>
 </ul>
-<p>函数返回值：无。</p>
+<p>函数返回值：</p>
+<ul>
+<li>0： 产品进入特定状态后对相应信号的影响符合配置要求；</li>
+<li>-1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：specStatImpactOnSigCfg下找到相应的key；</li>
+<li>-1002： General error, for example, testWaitForTimeout functionality is not available；</li>
+<li>-1003： Resume due to constraint violation in function:testWaitForTimeout；</li>
+<li>-10001： paraCfg.ini中定义的信号没有在配置文档要求的时间之内更新为指定值。</li>
+</ul>
 </li>
 </ol>
 </li>

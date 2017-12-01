@@ -260,11 +260,11 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 - 产品操作及状态设置相关的配置
 
-    1. btnPrsImpOnSpecSigCfg
+    1. prodOperWithPinStatImpOnSpecSigCfg
 
 	    该section是针对产品上的特定按钮或pin脚等操作对特定信号产生的影响的配置。
 
-        key format的格式为：`operationMode = char DirPinName[],char signame_i[],float updateSigVal_i,int msWaitBefCheck_i,int demandRes_k_i,int demandRes_b_i`,意即对产品进行某种方式的操作，该操作产生的结果会受DirPinName[]这个pin的状态影响，最终的影响会作用于信号signame\_i[]，该信号可能会被更新成updateSigVal\_i，检测前需要等待的时间(ms)，判定该信号是否应该被更新成值updateSigVal\_i，是由DirPinName[]这个pin的active或inactive的状态，以及参数demandRes\_k\_i,demandRes\_b\_i所决定的。计算公式为：demRes = demandRes\_k\_i*(DirPinName[]的active或inactive状态，其中active=1，inactive=0，由section:vLevelCfg的key值区间判定) +demandRes\_b\_i。如果demRes = 1，则要求信号signame\_i[]的值更新为updateSigVal\_i；如果demRes = 0，则要求信号signame\_i[]的值不可更新为updateSigVal\_i。
+        key format的格式为：`operationMode = char DirPinName[],char signame_i[],float updateSigVal_i,int msWaitBefCheck_i,int demandRes_k_i,int demandRes_b_i`,意即对产品进行某种方式的操作，该操作产生的结果会受DirPinName[]这个pin的状态影响，最终的影响会作用于信号signame\_i[]，该信号可能会被更新成updateSigVal\_i，检测前需要等待的时间(ms)，判定该信号是否应该被更新成值updateSigVal\_i，是由DirPinName[]这个pin的active或inactive的状态，以及参数demandRes\_k\_i,demandRes\_b\_i共同决定的。计算公式为：demRes = demandRes\_k\_i*(DirPinName[]的active或inactive状态，其中active=1，inactive=0，由section:vLevelCfg的key值区间判定) +demandRes\_b\_i。如果demRes = 1，则要求信号signame\_i[]的值更新为updateSigVal\_i；如果demRes = 0，则要求信号signame\_i[]的值不可更新为updateSigVal\_i。
 
 	    应用举例：
 	    <pre>
@@ -274,13 +274,13 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 	    以上例中的第1行为例：`P = IGN,CF_Lvr_PButtonStatus,1,500,0,1,CF_Lvr_PButtonStatus_Reversed,2,500,0,1`,意即产品操作方式为P按键的按压，这个按压的操作结合IGN的电平状态，会对CF\_Lvr\_PButtonStatus和CF\_Lvr\_PButtonStatus\_Reversed这两个信号产生影响。其中对CF\_Lvr\_PButtonStatus产生的影响是，P按钮按压500ms后，CF\_Lvr\_PButtonStatus有可能会被更新为1，更新与否取决于内部参数demRes。当demRes = 1时，则表示程序认定该按钮的按压应该会导致该信号更新为1；当demRes = 0时，则表示程序认定该按钮的按压不会导致该信号更新为1。内部参数demRes取值的计算公式是：demRes = demandRes\_k × [IGN的状态(Active=1，Inactive=0)]+demandRes\_b。这里，demandRes\_k1=0,demandRes\_b1=1，因此demRes = 1，也就是说，无论IGN处在何种状态，P按钮的按压都应该会让信号CF\_Lvr\_PButtonStatus在500ms内更新为1.同理，无论IGN处在何种状态，P按钮的按压都应该会让信号CF\_Lvr\_PButtonStatus\_Reversed在500ms内更新为2.
 
-	    该section中的内容设置会影响后续产品操作（比如对按钮的按压，或对某个PIN的高低电平输入变化）对相应信号变化的判断。库函数中的函数btnPrsImpOnSpecSigChk会直接调用该section的内容。
+	    该section中的内容设置会影响后续产品操作（比如对按钮的按压，或对某个PIN的高低电平输入变化）对相应信号变化的判断。库函数中的函数prodOperWithPinStatImpOnSpecSigChk会直接调用该section的内容。
 
-    2. btnPrsImpOnSpecPwmCfg
+    2. prodOperWithPinStatImpOnSpecPwmCfg
 
 	    该section是针对产品上的特定按钮或pin脚等操作对产品PWM输出波形影响的配置。
 
-        key format的格式为：`operationMode = char DirPinName[],char outPwmPinName_i[],int freqk_i,int freqb_i,int dutyk_i,int dutyb_i,int deviation_i`，意即对产品进行某种方式的操作，该操作产生的结果会受DirPinName[]这个pin的状态影响，最终的影响会作用于outPwmPinName\_i[]这个pin的PWM输出波形上。其中，输出波形的频率由DirPinName[]这个pin的active或inactive的状态，以及参数freqk\_i,freqb\_i所决定，计算公式为：freq = freqk\_i × (DirPinName[]的active或inactive状态，其中active=1，inactive=0，由section:vLevelCfg的key值区间判定)+freqb\_i；输出波形的占空比由DirPinName[]这个pin的active或inactive的状态，以及参数dutyk\_i,dutyb\_i所决定，计算公式为：duty = dutyk\_i*(DirPinName[]的active或inactive状态，其中active=1，inactive=0，由section:vLevelCfg的key值区间判定)+dutyb\_i,在测量过程中，占空比允许的偏差为±deviation\_i% 。
+        key format的格式为：`operationMode = char DirPinName[],char outPwmPinName_i[],int freqk_i,int freqb_i,int dutyk_i,int dutyb_i,int deviation_i`，意即对产品进行某种方式的操作，该操作产生的结果会受DirPinName[]这个pin的状态影响，最终的影响会作用于outPwmPinName\_i[]这个pin的PWM输出波形上。其中，输出波形的频率由DirPinName[]这个pin的active或inactive的状态，以及参数freqk\_i,freqb\_i共同决定，计算公式为：freq = freqk\_i × (DirPinName[]的active或inactive状态，其中active=1，inactive=0，由section:vLevelCfg的key值区间判定)+freqb\_i；输出波形的占空比由DirPinName[]这个pin的active或inactive的状态，以及参数dutyk\_i,dutyb\_i共同决定，计算公式为：duty = dutyk\_i*(DirPinName[]的active或inactive状态，其中active=1，inactive=0，由section:vLevelCfg的key值区间判定)+dutyb\_i,在测量过程中，占空比允许的偏差为±deviation\_i% 。
 
 	    应用举例：
 	    <pre>
@@ -294,9 +294,27 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 	    以上例中的第3行为例：`R = IGN,PWM_OUT,0,100,-30,50,3`。意即产品操作方式为R按键的按压，这个按压的操作结合IGN的电平状态，会对产品的PWM\_OUT pin上产生的PWM波造成影响。其中，生成PWM波形的频率依据计算公式：freq = freqk\_i × [IGN的状态(Active=1，Inactive=0)]+freqb\_i，代入freqk1=0,freqb1=100，因此，freq=100Hz，也就是说，无论IGN处在何种状态，输出频率的大小都会是100Hz；生成PWM波形的占空比依据计算公式：duty = dutyk\_i × [IGN的状态(Active=1，Inactive=0)]+dutyb\_i，代入dutyk1=-30，dutyb1=50，因此当IGN处在Active状态下，duty=20%；当IGN处在Inactive状态下，duty=50%。整个测量过程中，允许占空比测量结果的偏差为±3% 。
 
-	    该section中的内容设置会影响后续产品操作（比如按压产品按钮，或对某个PIN的高低电平输入变化），测试台架对产品相应PIN输出PWM波形的判断。库函数中的函数btnPrsImpOnSpecPwmChk会直接调用该section的内容。
+	    该section中的内容设置会影响后续产品操作（比如按压产品按钮，或对某个PIN的高低电平输入变化），测试台架对产品相应PIN输出PWM波形的判断。库函数中的函数prodOperWithPinStatImpOnSpecPwmChk会直接调用该section的内容。
 
-    3. sigDirTwoStatInCfg
+    3. prodOperWithSigStatImpOnSpecPwmCfg
+
+	    该section是针对产品上的特定按钮或pin脚等操作对产品PWM输出波形影响的配置。
+
+        key format的格式为：`operationMode = char DirSigName[],char outPwmPinName_i[],int freqk_i,int freqb_i,int dutyk_i,int dutyb_i,int deviation_i`，意即对产品进行某种方式的操作，该操作产生的结果会受DirSigName[]这个信号的状态影响，最终的影响会作用于outPwmPinName\_i[]这个pin的PWM输出波形上。其中，输出波形的频率由DirSigName[]这个信号的active或inactive的状态，以及参数freqk\_i,freqb\_i共同决定，计算公式为：freq = freqk\_i × (DirSigName[]的active或inactive状态，其中active=1，inactive=0)+freqb\_i；输出波形的占空比由DirSigName[]这个信号的active或inactive的状态，以及参数dutyk\_i,dutyb\_i共同决定，计算公式为：duty = dutyk\_i*(DirSigName[]的active或inactive状态，其中active=1，inactive=0)+dutyb\_i,在测量过程中，占空比允许的偏差为±deviation\_i% 。
+
+	    应用举例：
+	    <pre>
+        Mode0 = PosLmpSts,Zone1_R+,0,0,0,0,2,Zone1_G+,0,0,0,0,2,Zone1_B+,0,0,0,0,2
+        color_change_sw->Mode1_4 = PosLmpSts,Zone1_R+,200,0,-25,100,2,Zone1_G+,0,0,0,0,2,Zone1_B+,0,200,-1,3,2
+        color_change_sw->Mode2_5 = PosLmpSts,Zone1_R+,0,0,0,0,2,Zone1_G+,0,200,-5,20,2,Zone1_B+,0,200,-24,96,2
+        color_change_sw->Mode3_6 = PosLmpSts,Zone1_R+,200,0,-25,100,2,Zone1_G+,0,200,-8,32,2,Zone1_B+,0,0,0,0,2
+	    </pre>
+
+	    以上例中的第2行为例：`color_change_sw->Mode1_4 = PosLmpSts,Zone1_R+,200,0,-25,100,2,Zone1_G+,0,0,0,0,2,Zone1_B+,0,200,-1,3,2`。意即产品的操作方式为color\_change\_sw的按压，这个按压的操作结合信号PosLmpSts的状态，会对产品的Zone1\_R+，Zone1\_G+及Zone1\_B+ 这三个pin上产生的PWM波形造成影响。其中，Zone1\_R+生成的PWM波形频率依据计算公式：freq = freqk\_i × [PosLmpSts的值(Active=1，Inactive=0)]+freqb\_i，代入freqk1=200,freqb1=0，因此，Zone1\_R+的PWM波形频率，当PosLmpSts=0时，freq1=0Hz，当PosLmpSts=1时，freq1=200Hz；生成PWM波形的占空比依据计算公式：duty = dutyk\_i × [PosLmpSts的值(Active=1，Inactive=0)]+dutyb\_i，代入dutyk1=-25，dutyb1=100，因此，Zone1\_R+的PWM波形占空比，当PosLmpSts=0时，duty1=100%，当PosLmpSts=1时，duty1=75%，允许的偏差范围为±2%。同理，Zone1\_G的PWM波形频率，freq2恒等于0Hz；duty2恒等于0，允许的偏差范围为±2%。Zone1_B+的PWM波形频率，freq3恒等于200Hz；PWM波形占空比，当PosLmpSts=0时，duty3=3%，当PosLmpSts=1时，duty3=2%，允许的偏差范围为±2%；
+
+	    该section中的内容设置会影响后续产品特定信号变化导致的测试台架对产品相应PIN输出PWM波形的判断。库函数中的函数prodOperWithSigStatImpOnSpecPwmChk会直接调用该section的内容。
+
+    4. sigDirTwoStatInCfg
 
 	    该section是针对设定产品进入某二态之一的状态（该状态由某signal值主导，如果该signal失效，则由产品相应PIN的高低电平状态决定），所需提供的输入配置。
 
@@ -313,7 +331,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 	    该section中的内容会影响后续产品状态的设置。库函数中的sigDirTwoStatInSet函数会直接调用该section的内容。
 
-    4. sigDirMulStatInCfg
+    5. sigDirMulStatInCfg
 
 	    该section是针对为使产品进入某多态之一的状态（该状态由某signal值主导，如果该signal失效，则由产品相应的PWM_INPUT pin的PWM状态决定），所需提供的输入配置。
 
@@ -334,7 +352,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 	    该section中的内容设置会影响后续产品状态的设置。库函数中的函数sigDirMulStatInSet会直接调用该section的内容。
 
-    5. specStatImpOnSigCfg
+    6. specStatImpOnSigCfg
 
 	    该section是针对产品是否进入某种状态的验证配置。当然，你也可以理解为是进入某种状态后相应地对某信号产生的影响的配置。
 
