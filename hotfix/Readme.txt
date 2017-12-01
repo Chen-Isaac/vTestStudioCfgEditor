@@ -1,0 +1,1 @@
+将Write Key (String without quotation) workaround.vi存放于C:\Program Files (x86)\National Instruments\LabVIEW 2010\vi.lib\Utility\config.llb下，这样就可以正常修改VI源代码了。
