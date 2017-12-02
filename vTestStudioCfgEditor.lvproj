@@ -75,7 +75,6 @@
 				<Property Name="App_copyErrors" Type="Bool">true</Property>
 				<Property Name="App_INI_aliasGUID" Type="Str">{F41D41C4-D436-4F1C-82C1-99D37DD06D45}</Property>
 				<Property Name="App_INI_GUID" Type="Str">{F9EFA54E-8EC9-4381-8894-4F091199939B}</Property>
-				<Property Name="App_winsec.description" Type="Str">http://www.FALSE.com</Property>
 				<Property Name="Bld_buildSpecName" Type="Str">builder</Property>
 				<Property Name="Bld_excludeLibraryItems" Type="Bool">true</Property>
 				<Property Name="Bld_excludePolymorphicVIs" Type="Bool">true</Property>
@@ -90,7 +89,7 @@
 				<Property Name="Destination[1].path" Type="Path">../NI_AB_PROJECTNAME/builder/data</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
 				<Property Name="Exe_iconItemID" Type="Ref">/My Computer/pictures/notepad-icon.ico</Property>
-				<Property Name="Source[0].itemID" Type="Str">{CE35A4B7-06F0-4126-A605-BF8D3BAC017F}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{AFD662E0-DD56-4D11-BA1D-B420419D89F3}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/VI/check errors exist or not.vi</Property>
