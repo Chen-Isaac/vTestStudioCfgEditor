@@ -306,7 +306,7 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 <br></br>
     2. signalContSetting
    
-        函数原型： void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime)
+        函数原型： void signalContSetting (char sigName[], float startVal, int range, long msGapTime)
 
         功能： 让特定信号从初始值startVal开始连续自增，增幅为1，一直自增到startVal+range-1为止。其中，每次赋值指令发出后，会在检测信号赋值成功后，再等待msGapTime毫秒间隔，发送下一条赋值指令。
 
@@ -515,6 +515,8 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 <br></br>    
 - vtSystem操作类函数
 
+    需要注意的是，要使用vtSystem操作类函数，必须先在CANoe工程中将VT SYSTEM功能开启后，方可正常使用。某些特定函数的使用，还必须事先在VT SYSTEM Configuration特定的通道设置中勾选特定的变量（对于一个CANoe工程而言，勾选一次即可，设置会被工程自动保存，下次使用的时候就不必重新设置了）。
+
     1. vtSysPwrSupInit
 
         函数原型： void vtSysPwrSupInit (char pwrConnectWay[]) 
@@ -581,19 +583,23 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -1002： name space was not found or second try to define the same name space；
         - -1003： variable was not found or second try to define the same variable；
         - -1004： no writing right for the name space available；
-        - -1005： the variable has no suitable type for the function：sysSetVariableFloat.
+        - -1005： the variable has no suitable type for the function：sysSetVariableFloat；
+        - -1006： General error, for example, testWaitForTimeout functionality is not available；
+        - -1007： Resume due to constraint violation in function:testWaitForTimeout；
 <br></br>
     4. vtSysExPwrSupSet
 
         函数原型： void vtSysExPwrSupSet (char pwrConnectWay[], float volt, float maxI, int k) 
 
-        功能： 在之前电源供应配置为vt7001外接电源的前提下，设置电源电压值。
+        功能： 在之前电源供应配置为vt7001外接电源的前提下，设置外接电源电压值和最大电流值。
+
+        控制方式：由VT7001板卡的Control Voltage Connector中的PIN3（Control voltage for max current of power supply 1）或PIN6（Control voltage for max current of power supply 2）连接外接电源的Iext+端子，VT7001板卡的Control Voltage Connector中的PIN2（Control voltage for voltage of power supply 1）或PIN5（Control voltage for voltage of power supply 2）连接外接电源的Uext+端子，VT7001板卡的Control Voltage Connector中的PIN1（Ground）或PIN4（Ground）连接外接电源的AGND，Uext-，Iext-。外接电源电压值和最大电流值由VT7001板卡的Control Voltage Connector中的PIN的电压值来控制。
 
         参数：
 
         - pwrConnectWay： 与vtSysWithExPwrSupInit中的此参数值相同；
-        - volt： 电源电压值；
-        - maxI： 电源可供最大电流值；
+        - volt： 外接电源电压输出值；
+        - maxI： 外接电源可供最大电流值；
         - k： 等于vt7001外接电源的输出电压与vt7001输出对外接电源的控制电压的比值，也是vt7001外接电源的输出最大电流与vt7001输出对外接电源的最大控制电流的比值。对于现今实验室中使用的外接电源SYSKON P4500而言，k=12.
 
         函数返回值：
@@ -604,7 +610,9 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -1003： name space was not found or second try to define the same name space；
         - -1004： variable was not found or second try to define the same variable；
         - -1005： no writing right for the name space available；
-        - -1006： the variable has no suitable type for the function：sysSetVariableFloat.
+        - -1006： the variable has no suitable type for the function：sysSetVariableFloat；
+        - -1007： General error, for example, testWaitForTimeout functionality is not available；
+        - -1008： Resume due to constraint violation in function:testWaitForTimeout；
 <br></br>
     5. vtSysPwrSupVoltGet
 
@@ -616,13 +624,17 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - pwrConnectWay： 与之前vtSysPwrSupInit或vtSysWithExPwrSupInit中的此参数值相同；
         - highLimitV： 允许的输出电压的最大值，单位V；
-        - lowLimitV： 允许的输出电压的最小值，单位V；
+        - lowLimitV： 允许的输出电压的最小值，单位V。
 
         函数返回值：
 
         - 0： vt7001板卡电源电压读取成功，且在paraCfg.ini配置文件指定的范围；
         - -1001： paraCfg.ini中section:vt7001Cfg对应key下的key value数目不等于3；
         - -10001： 电压值超过paraCfg.ini配置文件指定的范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的AvgVoltage一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T3uV0.png)
 <br></br>
     6. vtSysPwrSupCurrGet
 
@@ -646,6 +658,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -1003： The namespace on which the command was called does not exist or is not a valid VT system namespace；
         - -1005： The function vtsSetMinCurrentMeasurementRange wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT system. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
         - -10001： 电流值超过paraCfg.ini配置文件指定的范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的AvgCurrent一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T3KaV.png)
 <br></br>    
     7. vtsSetThreshold1_8
 
@@ -707,6 +723,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；
         - -10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；
         - -10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的Avg，PWMDC，PWMFreq一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T31GF.png)
 <br></br>
     10. prodPwmOutRisingEdgeMeas
 
@@ -725,6 +745,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10001： 产品输出的PWM波形的占空比，在3s内都没有检测到上升的趋势；
         - -10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；
         - -10005： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的Avg，PWMDC，PWMFreq一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T31GF.png)
 <br></br>
     11. prodPwmOutKeepTimeMeas
 
@@ -743,6 +767,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10002： 产品输出的PWM波形的占空比，在上升结束点检测开始5s后占空比仍然在继续上升；
         - -10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势。
         - -10006： 产品输出的PWM波形不合格，占空比保持时间超过paraCfg.ini配置文件指定的偏差范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的Avg，PWMDC，PWMFreq一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T31GF.png)
 <br></br>
     12. prodPwmOutFallingEdgeMeas
 
@@ -761,6 +789,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10003： 产品输出的PWM波形的占空比，在1min内都没有检测到下降的趋势；
         - -10004： 产品输出的PWM波形的占空比，在下降结束点检测开始5s后占空比仍然在继续下降；
         - -10007： 产品输出的PWM波形不合格，占空比下降时间超过paraCfg.ini配置文件指定的偏差范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的Avg，PWMDC，PWMFreq一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T31GF.png)
 <br></br>
     13. prodPwmOutRiseFallCurveMeas
 
@@ -783,6 +815,10 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10005： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围；
         - -10007： 产品输出的PWM波形不合格，占空比下降时间超过paraCfg.ini配置文件指定的偏差范围；
         - -10008： 产品输出的PWM波形不合格，占空比上升时间超过paraCfg.ini配置文件指定的偏差范围，且占空比下降时间超过paraCfg.ini配置文件指定的偏差范围。
+
+        注：在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的Avg，PWMDC，PWMFreq一项是勾选的，如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/07/T31GF.png)
 <br></br>
     14. chFixVoltDOSet
 
@@ -950,9 +986,20 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -1003： paraCfg.ini中定义的pin脚电平处于active和inactive之外的一个未定义状态；
         - -1004： General error, for example, testWaitForTimeout functionality is not available；
         - -1005： Resume due to constraint violation in function:testWaitForTimeout；
+        - -1006： 输入的waitMs值为负数。
         - -10001： 某信号的值未按paraCfg.ini中的配置要求更新；
         - -10002： 某信号的值未按paraCfg.ini中的配置要求维持现状。
-<br></br>
+
+        注：
+
+          1. 在使用该函数之前，确保相应的决定产品状态的PIN在VT SYSTEM Configuration中对应的测量通道的Avg项是勾选的，如下图所示：
+
+            ![](https://s1.ax1x.com/2017/11/28/hdplQ.png)
+
+          2. 对于无需操作产品而需要验证的状态，请在paraCfg.ini的配置中，将该项key name写作IDLE，如下图所示：
+
+            ![](https://s1.ax1x.com/2017/12/08/TTIsO.png)
+
     2. prodOperWithPinStatImpOnSpecPwmChk
 
         函数原型： void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[])
@@ -974,7 +1021,17 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；
         - -10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；
         - -10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
-<br></br>
+
+        注：
+
+          1. 在使用该函数之前，确保相应的决定产品状态的PIN在VT SYSTEM Configuration中对应的测量通道的Avg项是勾选的，如下图所示：
+
+            ![](https://s1.ax1x.com/2017/11/28/hdplQ.png)
+
+          2. 对于无需操作产品而需要验证的状态，请在paraCfg.ini的配置中，将该项key name写作IDLE，如下图所示：
+
+            ![](https://s1.ax1x.com/2017/12/08/Tzoa6.png)
+
     3. prodOperWithSigStatImpOnSpecPwmChk
 
         函数原型： void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[])
@@ -996,7 +1053,15 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -10003： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%；
         - -10004： 产品输出的PWM波形不合格，PWM占空比超过paraCfg.ini配置文件指定的偏差范围；
         - -10005： 产品输出的PWM波形不合格，PWM频率超过paraCfg.ini配置文件指定频率的0.5%，且PWM占空比超过paraCfg.ini配置文件指定的偏差范围。
-<br></br>
+
+        注：
+
+          1. 在使用该函数之前，确保在VT SYSTEM Configuration中相应的测量通道的Avg，PWMDC，PWMFreq一项是勾选的，如下图所示：
+
+            ![](https://s1.ax1x.com/2017/12/07/T31GF.png)
+
+          2. 对于无需操作产品而需要验证的状态，请在paraCfg.ini的配置中，将该项key name写作IDLE。
+
     4. sigDirTwoStatInSet
 
         函数原型： void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state)
@@ -1013,14 +1078,14 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - 0： 成功地设置产品进入某特定状态；
         - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：sigDirTwoStatInCfg下找到相应的key；
-        - -1002： General error；
+        - -1002： General error for testEnableMsg or testDisableMsg，e.g message can't be found；
         - -1003： 该名称的信号不存在；
         - -1004： 5s内信号未被设定为指定值。
         - -1005： paraCfg.ini中section:vLevelCfg对应key下的key value数目不等于4或section:vt2516Cfg对应key下的key value数目不等于2；
         - -1006： Call function:vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode error；
         - -1007： The namespace on which the command was called does not exist or is not a valid VT System namespace；
         - -1008： The specified mode is not valid；
-        - -1009： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；
+        - -1009： The function vtsSetStimulationMode or vtsSetCurveType or vtsSetPWMVoltageHigh or vtsSetStimulationMode wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
         - -1010： name space was not found or second try to define the same name space；
         - -1011： variable was not found or second try to define the same variable；
         - -1012： no writing right for the name space available；
@@ -1043,19 +1108,23 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
 
         - 0： 成功地设置产品进入某特定状态；
         - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：sigDirMulStatInCfg下找到相应的key；
-        - -1002： General error；
+        - -1002： General error for testEnableMsg or testDisableMsg，e.g message can't be found；
         - -1003： 该名称的信号不存在；
         - -1004： 5s内信号未被设定为指定值；
         - -1005： paraCfg.ini中section:vt2516Cfg对应key下的key value数目不等于2或section:pwmWaveCfg对应key下的key value数目不等于5；
         - -1006： Call function:vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation error；
         - -1007： The namespace on which the command was called does not exist or is not a valid VT System namespace；
         - -1008： The specified mode is not valid；
-        - -1009： The function vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns.；
+        - -1009： The function vtsSetStimulationMode or vtsSetPWMVoltageLow or vtsSetPWMVoltageHigh or vtsSetCurveType or vtsStartStimulation wasn't called in the context of the main method of a test module. So it is not possible to wait until the setting will be taken over from the VT System. Otherwise the call was successful but it is not sure if the settings have been taken over already when the call returns；
         - -1010： name space was not found or second try to define the same name space；
         - -1011： variable was not found or second try to define the same variable；
         - -1012： no writing right for the name space available；
         - -1013： the variable has no suitable type for the function：sysSetVariableFloat。
-<br></br>
+
+        注：信号有效的情况下，该状态优先由信号决定，忽略PIN的电平状态，即是说，这个情况下PIN可以输出任意的电平。因此在pwmWaveCfg这个section下，需要事先设定一个key name为ANY的key，库函数会利用这个key的配置来输出一个任意的PWM波形。如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/08/79p8S.png)
+
     6. specStatImpOnSigChk
 
         函数原型： void specStatImpOnSigChk (char specStat[])
@@ -1072,4 +1141,5 @@ _testStepCfgEditor应用程序在正常运行结束后，会生成3个文档。
         - -1001： 输入的section或者key name不正确，无法在paraCfg.ini的section：specStatImpactOnSigCfg下找到相应的key；
         - -1002： General error, for example, testWaitForTimeout functionality is not available；
         - -1003： Resume due to constraint violation in function:testWaitForTimeout；
+        - -1004： 输入的waitMs值为负数；
         - -10001： paraCfg.ini中定义的信号没有在配置文档要求的时间之内更新为指定值。

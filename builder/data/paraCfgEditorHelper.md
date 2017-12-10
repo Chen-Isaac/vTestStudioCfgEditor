@@ -177,7 +177,6 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
         其中enum vt7001InterConnectionMode的取值范围为:
 
         <pre>
-        {
           supint = 0, 
           sup1 = 1, 
           sup2 = 2, 
@@ -189,16 +188,13 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
           sup2_sup1 = 8, 
           sup_series = 9, 
           sup_parallel = 10
-        }
         </pre>
 
         enum vt7001OutputChannelNo的取值范围为：
 
         <pre>
-        {
           out1 = 1,
           out2 = 2
-        }
         </pre>
 
         对于以上这两个参数的理解，可以参考下图。如果还有不清楚的地方，请参考vector公司的vtSystem帮助文档手册。
@@ -220,7 +216,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 	    该section是关于vt2516板卡的PWM输出波形的配置，目的是为产品的PWM-INPUT pin端提供特定的PWM输入以令产品进入某特定状态。
 
-        key format的格式为：`prodStat = int freq,int voltLow,int voltHigh,int dutyBase,int dutyRange;;`，意即定义了产品进入状态prodStat，所需的pin端PWM输入频率，低高电平伏值，以及占空比基值和范围。
+        key format的格式为：`prodStat = int freq,int voltLow,int voltHigh,int dutyBase,int dutyRange`，意即定义了产品进入状态prodStat，所需的pin端PWM输入频率，低高电平伏值，以及占空比基值和范围。
 
         **注:这个key的目的主要是配置台架给到产品某一pin端具体的PWM输入波形，使产品进入某种特定状态，其中的key name表示产品具体的某一状态，该值会被后续的section：sigDirMulStatInCfg引用。因此，该section的key name务必和section:sigDirMulStatInCfg中的key name保持一致。**
 
@@ -242,7 +238,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
         该section是针对产品在某个模式下由某pin端产生的PWM波形从发生变化伊始，到稳定，到下降或消失，这三个阶段的匹配参数定义。这里的上升过程，是指占空比增大的过程；下降过程，是指占空比减小的过程。
 
-        key format的格式为：`productPwmOutMode = char pinname[],float freqAfterRise,float dutyAfterRise,float freqAfterFall,float dutyAfterFall,int dutydeviation,int maxrisetime,int msKeepTime,int msKeepTimeDeviation,int maxfalltime`，意即定义了产品所处的PWM输出的某个特定模式下，具体是由哪个pin生成了PWM，波形上升稳定后的频率、占空比，波形下降后达到的（未必是稳定值，可以是中间量）频率、占空比，整个过程中占空比允许的偏差，波形占空比上升到指定值允许的最大时间(ms)，波形占空比维持稳定的时间(ms)及偏差(ms)，波形占空比下降到指定值允许的最大时间(ms)。
+        key format的格式为：`productPwmOutMode = char pinName[],float freqAfterRise,float dutyAfterRise,float freqAfterFall,float dutyAfterFall,int dutyDeviation,int maxRiseTime,int msKeepTime,int msKeepTimeDeviation,int maxFallTime`，意即定义了产品所处的PWM输出的某个特定模式下，具体是由哪个pin生成了PWM，波形上升稳定后的频率、占空比，波形下降后达到的（未必是稳定值，可以是中间量）频率、占空比，整个过程中占空比允许的偏差，波形占空比上升到指定值允许的最大时间(ms)，波形占空比维持稳定的时间(ms)及偏差(ms)，波形占空比下降到指定值允许的最大时间(ms)。
 
         应用举例：
         <pre>

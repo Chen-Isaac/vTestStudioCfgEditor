@@ -1,5 +1,9 @@
 ###使用vTESTstudio和vTestStudioCfgEditor生成的配置文件进行测试的方法
 
+1. 打开测试项目的CANoe工程，先使能VT SYSTEM，操作方法如下图所示：
+
+    ![](https://s1.ax1x.com/2017/12/07/T3P58.gif)
+
 1. 打开vTESTstudio，在菜单栏上选择**New Project**。
 
     ![](https://ooo.0o0.ooo/2017/11/09/5a03d031dab74.png)

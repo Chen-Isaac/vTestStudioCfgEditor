@@ -89,7 +89,7 @@
 				<Property Name="Destination[1].path" Type="Path">../NI_AB_PROJECTNAME/builder/data</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
 				<Property Name="Exe_iconItemID" Type="Ref">/My Computer/pictures/notepad-icon.ico</Property>
-				<Property Name="Source[0].itemID" Type="Str">{A01CEC3E-3E5B-44AA-9CF5-197CF09AB07C}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{FB690982-4E82-4CCF-B279-7FBCAAA78D44}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/VI/check errors exist or not.vi</Property>
@@ -104,35 +104,35 @@
 				<Property Name="Source[11].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[11].type" Type="Str">VI</Property>
 				<Property Name="Source[12].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[12].itemID" Type="Ref">/My Computer/VI/funcArgChk.vi</Property>
+				<Property Name="Source[12].itemID" Type="Ref">/My Computer/VI/genInterpretedIniFile.vi</Property>
 				<Property Name="Source[12].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[12].type" Type="Str">VI</Property>
 				<Property Name="Source[13].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[13].itemID" Type="Ref">/My Computer/VI/genInterpretedIniFile.vi</Property>
+				<Property Name="Source[13].itemID" Type="Ref">/My Computer/VI/getLoopArgI.vi</Property>
 				<Property Name="Source[13].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[13].type" Type="Str">VI</Property>
 				<Property Name="Source[14].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[14].itemID" Type="Ref">/My Computer/VI/getKeyFormatAndValChkRes.vi</Property>
+				<Property Name="Source[14].itemID" Type="Ref">/My Computer/VI/GetNewStepOutRowNum.vi</Property>
 				<Property Name="Source[14].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[14].type" Type="Str">VI</Property>
 				<Property Name="Source[15].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[15].itemID" Type="Ref">/My Computer/VI/getLoopArgI.vi</Property>
+				<Property Name="Source[15].itemID" Type="Ref">/My Computer/VI/getNormal&amp;LoopParaArraySubsetEachTime.vi</Property>
 				<Property Name="Source[15].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[15].type" Type="Str">VI</Property>
 				<Property Name="Source[16].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[16].itemID" Type="Ref">/My Computer/VI/GetNewStepOutRowNum.vi</Property>
+				<Property Name="Source[16].itemID" Type="Ref">/My Computer/VI/getParaTypeNum.vi</Property>
 				<Property Name="Source[16].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[16].type" Type="Str">VI</Property>
 				<Property Name="Source[17].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[17].itemID" Type="Ref">/My Computer/VI/getNormal&amp;LoopParaArraySubsetEachTime.vi</Property>
+				<Property Name="Source[17].itemID" Type="Ref">/My Computer/VI/indexFormatCopyFromTreeToTable.vi</Property>
 				<Property Name="Source[17].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[17].type" Type="Str">VI</Property>
 				<Property Name="Source[18].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[18].itemID" Type="Ref">/My Computer/VI/getParAndArgChkRes.vi</Property>
+				<Property Name="Source[18].itemID" Type="Ref">/My Computer/VI/indexSectionForEntry.vi</Property>
 				<Property Name="Source[18].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[18].type" Type="Str">VI</Property>
 				<Property Name="Source[19].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[19].itemID" Type="Ref">/My Computer/VI/getParaTypeNum.vi</Property>
+				<Property Name="Source[19].itemID" Type="Ref">/My Computer/VI/initTable.vi</Property>
 				<Property Name="Source[19].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[19].type" Type="Str">VI</Property>
 				<Property Name="Source[2].destinationIndex" Type="Int">0</Property>
@@ -140,43 +140,43 @@
 				<Property Name="Source[2].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[2].type" Type="Str">VI</Property>
 				<Property Name="Source[20].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[20].itemID" Type="Ref">/My Computer/VI/indexFormatCopyFromTreeToTable.vi</Property>
+				<Property Name="Source[20].itemID" Type="Ref">/My Computer/VI/judgeSecvarFormat.vi</Property>
 				<Property Name="Source[20].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[20].type" Type="Str">VI</Property>
 				<Property Name="Source[21].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[21].itemID" Type="Ref">/My Computer/VI/indexSectionForEntry.vi</Property>
+				<Property Name="Source[21].itemID" Type="Ref">/My Computer/VI/loadLocalVI.vi</Property>
 				<Property Name="Source[21].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[21].type" Type="Str">VI</Property>
 				<Property Name="Source[22].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[22].itemID" Type="Ref">/My Computer/VI/initTable.vi</Property>
+				<Property Name="Source[22].itemID" Type="Ref">/My Computer/VI/LoadOrCreateAParaIniCfg.vi</Property>
 				<Property Name="Source[22].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[22].type" Type="Str">VI</Property>
 				<Property Name="Source[23].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[23].itemID" Type="Ref">/My Computer/VI/judgeSecvarFormat.vi</Property>
+				<Property Name="Source[23].itemID" Type="Ref">/My Computer/VI/LoadOrCreateATeststepIniCfg.vi</Property>
 				<Property Name="Source[23].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[23].type" Type="Str">VI</Property>
 				<Property Name="Source[24].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[24].itemID" Type="Ref">/My Computer/VI/loadLocalVI.vi</Property>
+				<Property Name="Source[24].itemID" Type="Ref">/My Computer/VI/noteOutputDeal.vi</Property>
 				<Property Name="Source[24].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[24].type" Type="Str">VI</Property>
 				<Property Name="Source[25].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[25].itemID" Type="Ref">/My Computer/VI/LoadOrCreateAParaIniCfg.vi</Property>
+				<Property Name="Source[25].itemID" Type="Ref">/My Computer/VI/openOrCreateAIniCfg.vi</Property>
 				<Property Name="Source[25].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[25].type" Type="Str">VI</Property>
 				<Property Name="Source[26].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[26].itemID" Type="Ref">/My Computer/VI/LoadOrCreateATeststepIniCfg.vi</Property>
+				<Property Name="Source[26].itemID" Type="Ref">/My Computer/VI/outputCanFileArray.vi</Property>
 				<Property Name="Source[26].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[26].type" Type="Str">VI</Property>
 				<Property Name="Source[27].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[27].itemID" Type="Ref">/My Computer/VI/noteOutputDeal.vi</Property>
+				<Property Name="Source[27].itemID" Type="Ref">/My Computer/VI/outputJudgeToTbl.vi</Property>
 				<Property Name="Source[27].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[27].type" Type="Str">VI</Property>
 				<Property Name="Source[28].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[28].itemID" Type="Ref">/My Computer/VI/openOrCreateAIniCfg.vi</Property>
+				<Property Name="Source[28].itemID" Type="Ref">/My Computer/VI/outPutOneTestCaseInCanFile.vi</Property>
 				<Property Name="Source[28].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[28].type" Type="Str">VI</Property>
 				<Property Name="Source[29].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[29].itemID" Type="Ref">/My Computer/VI/outputCanFileArray.vi</Property>
+				<Property Name="Source[29].itemID" Type="Ref">/My Computer/VI/paraCfgEditor.vi</Property>
 				<Property Name="Source[29].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[29].type" Type="Str">VI</Property>
 				<Property Name="Source[3].destinationIndex" Type="Int">0</Property>
@@ -184,81 +184,65 @@
 				<Property Name="Source[3].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[3].type" Type="Str">VI</Property>
 				<Property Name="Source[30].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[30].itemID" Type="Ref">/My Computer/VI/outputJudgeToTbl.vi</Property>
+				<Property Name="Source[30].itemID" Type="Ref">/My Computer/VI/popupHelpInfo.vi</Property>
 				<Property Name="Source[30].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[30].type" Type="Str">VI</Property>
 				<Property Name="Source[31].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[31].itemID" Type="Ref">/My Computer/VI/outPutOneTestCaseInCanFile.vi</Property>
+				<Property Name="Source[31].itemID" Type="Ref">/My Computer/VI/remindUserViIsRunning.vi</Property>
 				<Property Name="Source[31].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[31].type" Type="Str">VI</Property>
 				<Property Name="Source[32].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[32].itemID" Type="Ref">/My Computer/VI/paraCfgEditor.vi</Property>
+				<Property Name="Source[32].itemID" Type="Ref">/My Computer/VI/setCol4ColorAccordingToChkResult.vi</Property>
 				<Property Name="Source[32].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[32].type" Type="Str">VI</Property>
 				<Property Name="Source[33].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[33].itemID" Type="Ref">/My Computer/VI/popupHelpInfo.vi</Property>
+				<Property Name="Source[33].itemID" Type="Ref">/My Computer/VI/splitParAndArg.vi</Property>
 				<Property Name="Source[33].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[33].type" Type="Str">VI</Property>
 				<Property Name="Source[34].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[34].itemID" Type="Ref">/My Computer/VI/remindUserViIsRunning.vi</Property>
+				<Property Name="Source[34].itemID" Type="Ref">/My Computer/VI/UpdateCfgIni.vi</Property>
 				<Property Name="Source[34].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[34].type" Type="Str">VI</Property>
 				<Property Name="Source[35].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[35].itemID" Type="Ref">/My Computer/VI/secParaChk.vi</Property>
+				<Property Name="Source[35].itemID" Type="Ref">/My Computer/VI/updateCol4ColorWhenLoading.vi</Property>
 				<Property Name="Source[35].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[35].type" Type="Str">VI</Property>
+				<Property Name="Source[36].Container.applyInclusion" Type="Bool">true</Property>
 				<Property Name="Source[36].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[36].itemID" Type="Ref">/My Computer/VI/setCol4ColorAccordingToChkResult.vi</Property>
+				<Property Name="Source[36].itemID" Type="Ref">/My Computer/pictures</Property>
 				<Property Name="Source[36].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[36].type" Type="Str">VI</Property>
+				<Property Name="Source[36].type" Type="Str">Container</Property>
+				<Property Name="Source[37].Container.applyInclusion" Type="Bool">true</Property>
 				<Property Name="Source[37].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[37].itemID" Type="Ref">/My Computer/VI/splitParAndArg.vi</Property>
+				<Property Name="Source[37].itemID" Type="Ref">/My Computer/menu</Property>
 				<Property Name="Source[37].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[37].type" Type="Str">VI</Property>
+				<Property Name="Source[37].type" Type="Str">Container</Property>
+				<Property Name="Source[38].Container.applyInclusion" Type="Bool">true</Property>
 				<Property Name="Source[38].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[38].itemID" Type="Ref">/My Computer/VI/UpdateCfgIni.vi</Property>
+				<Property Name="Source[38].itemID" Type="Ref">/My Computer/helper</Property>
 				<Property Name="Source[38].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[38].type" Type="Str">VI</Property>
+				<Property Name="Source[38].type" Type="Str">Container</Property>
+				<Property Name="Source[39].Container.applyInclusion" Type="Bool">true</Property>
 				<Property Name="Source[39].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[39].itemID" Type="Ref">/My Computer/VI/updateCol4ColorWhenLoading.vi</Property>
+				<Property Name="Source[39].itemID" Type="Ref">/My Computer/controller</Property>
 				<Property Name="Source[39].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[39].type" Type="Str">VI</Property>
+				<Property Name="Source[39].type" Type="Str">Container</Property>
 				<Property Name="Source[4].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[4].itemID" Type="Ref">/My Computer/VI/chkArgCompToPar.vi</Property>
 				<Property Name="Source[4].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[4].type" Type="Str">VI</Property>
-				<Property Name="Source[40].Container.applyInclusion" Type="Bool">true</Property>
 				<Property Name="Source[40].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[40].itemID" Type="Ref">/My Computer/pictures</Property>
-				<Property Name="Source[40].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[40].type" Type="Str">Container</Property>
-				<Property Name="Source[41].Container.applyInclusion" Type="Bool">true</Property>
+				<Property Name="Source[40].itemID" Type="Ref">/My Computer/VI/vTestStudioCfgEditor.vi</Property>
+				<Property Name="Source[40].sourceInclusion" Type="Str">TopLevel</Property>
+				<Property Name="Source[40].type" Type="Str">VI</Property>
 				<Property Name="Source[41].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[41].itemID" Type="Ref">/My Computer/menu</Property>
+				<Property Name="Source[41].itemID" Type="Ref">/My Computer/VI/getFilePath.vi</Property>
 				<Property Name="Source[41].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[41].type" Type="Str">Container</Property>
-				<Property Name="Source[42].Container.applyInclusion" Type="Bool">true</Property>
+				<Property Name="Source[41].type" Type="Str">VI</Property>
 				<Property Name="Source[42].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[42].itemID" Type="Ref">/My Computer/helper</Property>
+				<Property Name="Source[42].itemID" Type="Ref">/My Computer/VI/SYSKON P4500 Init Config.vi</Property>
 				<Property Name="Source[42].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[42].type" Type="Str">Container</Property>
-				<Property Name="Source[43].Container.applyInclusion" Type="Bool">true</Property>
-				<Property Name="Source[43].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[43].itemID" Type="Ref">/My Computer/controller</Property>
-				<Property Name="Source[43].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[43].type" Type="Str">Container</Property>
-				<Property Name="Source[44].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[44].itemID" Type="Ref">/My Computer/VI/vTestStudioCfgEditor.vi</Property>
-				<Property Name="Source[44].sourceInclusion" Type="Str">TopLevel</Property>
-				<Property Name="Source[44].type" Type="Str">VI</Property>
-				<Property Name="Source[45].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[45].itemID" Type="Ref">/My Computer/VI/getFilePath.vi</Property>
-				<Property Name="Source[45].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[45].type" Type="Str">VI</Property>
-				<Property Name="Source[46].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[46].itemID" Type="Ref">/My Computer/VI/SYSKON P4500 Init Config.vi</Property>
-				<Property Name="Source[46].sourceInclusion" Type="Str">Include</Property>
-				<Property Name="Source[46].type" Type="Str">VI</Property>
+				<Property Name="Source[42].type" Type="Str">VI</Property>
 				<Property Name="Source[5].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[5].itemID" Type="Ref">/My Computer/VI/chkItemFoundInTree.vi</Property>
 				<Property Name="Source[5].sourceInclusion" Type="Str">Include</Property>
@@ -279,7 +263,7 @@
 				<Property Name="Source[9].itemID" Type="Ref">/My Computer/VI/copySecFromIniToTable.vi</Property>
 				<Property Name="Source[9].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[9].type" Type="Str">VI</Property>
-				<Property Name="SourceCount" Type="Int">47</Property>
+				<Property Name="SourceCount" Type="Int">43</Property>
 				<Property Name="TgtF_companyName" Type="Str">Microsoft</Property>
 				<Property Name="TgtF_fileDescription" Type="Str">builder</Property>
 				<Property Name="TgtF_fileVersion.major" Type="Int">1</Property>
