@@ -22,3 +22,7 @@ SYSKON P4500 Init Config是用来初始化SYSKON P4500外接电源的基础配�
 
 7. Output Current：该控件是用来显示，当Output State为ON时，SYSKON P4500对外输出的电流值的。当Output State为OFF时，SYSKON P4500并不对外输出电压，因而此时该栏空白，没有数值显示。
 
+需要注意的是，如果paraCfgEditor或testStepCfgEditor还在运行中的话，SYSKON P4500 Init Config是不被允许运行的，除非paraCfgEditor或testStepCfgEditor结束运行。如果强制运行的话，会得到类似如下的提示画面：
+
+![](https://i.loli.net/2017/11/13/5a0907095fb0e.png)
+

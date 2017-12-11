@@ -294,6 +294,10 @@ img {
 <h3>使用vTESTstudio和vTestStudioCfgEditor生成的配置文件进行测试的方法</h3>
 <ol>
 <li>
+<p>打开测试项目的CANoe工程，先使能VT SYSTEM，操作方法如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2017/12/07/T3P58.gif" /></p>
+</li>
+<li>
 <p>打开vTESTstudio，在菜单栏上选择<strong>New Project</strong>。</p>
 <p><img src="https://ooo.0o0.ooo/2017/11/09/5a03d031dab74.png" /></p>
 <p>选择路径和项目名称后，保存。</p>
@@ -324,7 +328,7 @@ img {
 <li>
 <p>打开该项目的CANoe工程，在configuration菜单栏下选择System Variables。</p>
 <p><img src="https://i.loli.net/2017/11/09/5a03efeedf0ee.png" /></p>
-<p>在打开界面的User-Defined一栏，新建iniParaCfgPath和iniTestStepCfgPath这两个自定义的系统变量。其中，Data Type全部设成String，Initial Value分别设成paraCfg.ini和testStepCfg.ini所在的路径，Read Only属性全部设成Read Only，如下图所示：</p>
+<p>在打开界面的User-Defined一栏，新建iniParaCfgPath和iniTestStepCfgPath这两个自定义的系统变量。其中，Data Type全部设成String，Initial Value分别设成paraCfg.ini和testStepCfg.ini所在的路径，属性全部设成Read Only，如下图所示：</p>
 <p><img src="https://i.loli.net/2017/11/09/5a03f1556431a.png" /></p>
 </li>
 <li>
@@ -334,7 +338,10 @@ img {
 <p><img src="https://i.loli.net/2017/11/10/5a0506287760f.png" /></p>
 </li>
 <li>
-<p>在Project View下，点击进入Test Table。在其中的Test Tree下，就可以根据需要，开始编排选取Test Case。各Test Case的具体内容之前已经在testStepCfg.ini中被配置完成。用户只需在Test Tree下方，点击各栏目中的小三角，就可以选择testStepCfg.ini中已配置好的Test Case。</p>
+<p>将vTestStudioCfgEditor\caplLibrary文件夹下的KostalSoftwareTestLibrary.cin置于D:\Isaac\Library之下。</p>
+</li>
+<li>
+<p>在Project View下，点击进入Test Table。在其中的Test Tree下，就可以根据需要，开始编排选取Test Case。各Test Case的具体内容之前已经在testStepCfg.ini中被配置完成，并且在basicFunctionTest.can文件中被定义。用户只需在Test Tree下方，点击各栏目中的小三角，就可以选择testStepCfg.ini中已配置好的Test Case。</p>
 <p><img src="https://i.loli.net/2017/11/09/5a03f971545b0.png" /></p>
 <p>如果想要选择的某个Test Case在下拉栏中有含list和不含list的情况，请选择含list的Test Case。选定后，Test Case右侧会出现针对Case的参数配置栏。</p>
 <p><img src="https://i.loli.net/2017/11/09/5a03fc9a1dcb2.png" /></p>
@@ -358,7 +365,7 @@ img {
 </li>
 <li>
 <p>Parameter File配置完成后，就可以在Test Case右侧的Case参数配置栏中进行相应的配置了。对于需要选取Parameter File中参数的场合，需先在Type of Values一栏选择List from Parameter File，然后就可在Value Source中选取该参数。</p>
-<p>需要注意的是，这配置栏中的Combinatorics如果是选择Sequential，则参数间的组合是以将同一行的参数值配置成一个case；如果选择Combinatorial，则会将这三列的参数值按排列组合的方式生成相应参数值组合的case。具体的选择依据实际需求和参数栏中Values的配置方式。</p>
+<p>需要注意的是，这配置栏中的Combinatorics如果是选择Sequential，则参数间的组合是以将同一行的参数值配置成一个case；如果选择Combinatorial，则会将这三列的参数值按排列组合的方式生成相应参数值组合的case。具体的选择依据实际需求和参数栏中Values的配置方式而定。</p>
 <p><img src="https://i.loli.net/2017/11/09/5a0414df5af99.png" /></p>
 </li>
 <li>
@@ -366,7 +373,7 @@ img {
 <p><img src="https://i.loli.net/2017/11/10/5a05156fb32da.png" /></p>
 <p>如果build成功，则在vTESTstudio下方的Output一栏，会显示某vtuexe文件已被创建，Build succeeded之类的字样。</p>
 <p><img src="https://i.loli.net/2017/11/10/5a0516d77521c.png" /></p>
-<p>如果创建失败，会显示Build failed之类的字样。双击Output中的Error字眼，界面会指向错误出现的地方。</p>
+<p>如果创建失败，会显示Build failed之类的字样。双击Output中的Error字眼，界面光标会指向错误出现的地方。</p>
 </li>
 <li>
 <p>vtuexe文件创建成功后，再次进入CANoe工程。在View菜单栏中，选择Test Setup下的Test Configurations for Test Units。</p>
@@ -386,6 +393,26 @@ img {
 <p><img src="https://i.loli.net/2017/11/10/5a051e148f984.png" /></p>
 <p>测试完成后，点击Unit右上方的Test Report按钮，可以查看测试过程的报告。</p>
 <p><img src="https://i.loli.net/2017/11/10/5a051ea92bc45.png" /></p>
+</li>
+<li>
+<p>关于测试报告，需要说明以下几点。以下以同一个测试序列为例说明。</p>
+<ul>
+<li>
+<p>如果测试序列在运行过程中没有任何问题，且检测值均在需求文档的规定范围内，那么每一项都会在报告中显示绿色的pass标识。这类情形下，函数返回的error code值都大等于0。如下图所示： </p>
+<p><img src="https://s1.ax1x.com/2017/12/11/HJhWV.png" /></p>
+</li>
+<li>
+<p>如果测试序列在运行过程中没有任何问题，但某些检测值在需求文档的规定范围外，那么检测值不达标的项都会显示红色的fail标识，并且程序会继续进行fail项之后的序列测试。这类情形下，函数返回的error code值都小于-10000。如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2017/12/11/HJTL4.png" /></p>
+</li>
+<li>
+<p>如果测试序列在运行过程中出现系统性错误，譬如配置表出错或某些符号使用不得当等问题，那么错误项会显示红色的fail标识，并且程序出于安全考虑，会中断之后的序列运行。这类情形下，函数返回的error code值都小于-1000，但大等于-10000。</p>
+<p>以下是routeNum数组配置错误时的报告情形，可以看到step3后的step4就没有继续运行：</p>
+<p><img src="https://s1.ax1x.com/2017/12/11/HJHeJ.png" /></p>
+<p>以下是supint-&gt;out2这个key的value配置错误时的报告情形，可以看到step1后的3个step就没有继续运行：</p>
+<p><img src="https://s1.ax1x.com/2017/12/11/HJOF1.png" /></p>
+</li>
+</ul>
 </li>
 </ol>
 

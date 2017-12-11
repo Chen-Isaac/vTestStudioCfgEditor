@@ -34,7 +34,7 @@
 
     ![](https://i.loli.net/2017/11/10/5a056594d7ccf.png)
 
-9. 当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏其他选项进行操作。注意，当\_testStepCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的\_testStepCfgEditor或者paraCfgEditor操作的，否则会弹出提示框，提示该VI进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单和Instrument菜单，这两个菜单上的选项随时都可以按）。提示窗口如下图所示：
+9. 当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏其他选项进行操作。注意，当\_testStepCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的\_testStepCfgEditor或者Instrument菜单操作的，否则会弹出提示框，提示_testStepCfgEditor.vi进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单，帮助菜单上的选项随时都可以按）。提示窗口如下图所示：
 
     ![](https://ooo.0o0.ooo/2017/11/10/5a0569d526e5e.png)
 
