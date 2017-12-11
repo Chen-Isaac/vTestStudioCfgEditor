@@ -4,7 +4,7 @@
 
     ![](https://s1.ax1x.com/2017/12/07/T3P58.gif)
 
-1. 打开vTESTstudio，在菜单栏上选择**New Project**。
+2. 打开vTESTstudio，在菜单栏上选择**New Project**。
 
     ![](https://ooo.0o0.ooo/2017/11/09/5a03d031dab74.png)
 
@@ -12,7 +12,7 @@
 
     ![](https://ooo.0o0.ooo/2017/11/09/5a0432e461011.png)
 
-2. 在Project View下右击新项目，在弹出菜单中选择**New Test Unit**。
+3. 在Project View下右击新项目，在弹出菜单中选择**New Test Unit**。
 
     ![](https://i.loli.net/2017/11/09/5a03d139636fb.png)
 
@@ -20,7 +20,7 @@
 
     ![](https://i.loli.net/2017/11/09/5a0433a7a3330.png)
 
-3. 在当前Project View的Test Unit下，右键，新建一个Test Table。
+4. 在当前Project View的Test Unit下，右键，新建一个Test Table。
 
     ![](https://ooo.0o0.ooo/2017/11/09/5a04346f8f3d1.png)
 
@@ -28,7 +28,7 @@
 
     ![](https://i.loli.net/2017/11/10/5a04fada745b9.png)
 
-4. 将之前运行\_testStepCfgEditor.vi时生成的basicFunctionTest.can文件放置在和step3中生成的Table文件同一的路径下。然后，在当前Project View的Test Unit下，右键，选择Add Existing File。
+5. 将之前运行\_testStepCfgEditor.vi时生成的basicFunctionTest.can文件放置在和step3中生成的Table文件同一的路径下。然后，在当前Project View的Test Unit下，右键，选择Add Existing File。
 
     ![](https://i.loli.net/2017/11/10/5a04fda17422c.png)
 
@@ -36,19 +36,19 @@
 
     ![](https://i.loli.net/2017/11/10/5a04ffd3f3ede.png)
 
-5. 在项目目录下新建cfg目录，将之前vTestStudioCfgEditor应用中生成的paraCfg.ini和testStepCfg.ini这两个配置文件，复制黏贴到该目录下；
+6. 在项目目录下新建cfg目录，将之前vTestStudioCfgEditor应用中生成的paraCfg.ini和testStepCfg.ini这两个配置文件，复制黏贴到该目录下；
 
     ![](https://i.loli.net/2017/11/09/5a03ef0132608.png)
 
-6. 打开该项目的CANoe工程，在configuration菜单栏下选择System Variables。
+7. 打开该项目的CANoe工程，在configuration菜单栏下选择System Variables。
 
     ![](https://i.loli.net/2017/11/09/5a03efeedf0ee.png)
 
-    在打开界面的User-Defined一栏，新建iniParaCfgPath和iniTestStepCfgPath这两个自定义的系统变量。其中，Data Type全部设成String，Initial Value分别设成paraCfg.ini和testStepCfg.ini所在的路径，Read Only属性全部设成Read Only，如下图所示：
+    在打开界面的User-Defined一栏，新建iniParaCfgPath和iniTestStepCfgPath这两个自定义的系统变量。其中，Data Type全部设成String，Initial Value分别设成paraCfg.ini和testStepCfg.ini所在的路径，属性全部设成Read Only，如下图所示：
 
     ![](https://i.loli.net/2017/11/09/5a03f1556431a.png)
 
-7. 返回vTESTstudio，在菜单栏Tools中选择**Import CANoe Environment**下的Import System Environment and Symbols，将CANoe工程中的系统变量和环境变量导入vTESTstudio项目。
+8. 返回vTESTstudio，在菜单栏Tools中选择**Import CANoe Environment**下的Import System Environment and Symbols，将CANoe工程中的系统变量和环境变量导入vTESTstudio项目。
 
     ![](https://i.loli.net/2017/11/09/5a03f6faada10.png)
 
@@ -56,7 +56,9 @@
 
     ![](https://i.loli.net/2017/11/10/5a0506287760f.png)
 
-8. 在Project View下，点击进入Test Table。在其中的Test Tree下，就可以根据需要，开始编排选取Test Case。各Test Case的具体内容之前已经在testStepCfg.ini中被配置完成。用户只需在Test Tree下方，点击各栏目中的小三角，就可以选择testStepCfg.ini中已配置好的Test Case。
+9. 将vTestStudioCfgEditor\\caplLibrary文件夹下的KostalSoftwareTestLibrary.cin置于D:\\Isaac\\Library之下。
+
+10. 在Project View下，点击进入Test Table。在其中的Test Tree下，就可以根据需要，开始编排选取Test Case。各Test Case的具体内容之前已经在testStepCfg.ini中被配置完成，并且在basicFunctionTest.can文件中被定义。用户只需在Test Tree下方，点击各栏目中的小三角，就可以选择testStepCfg.ini中已配置好的Test Case。
 
     ![](https://i.loli.net/2017/11/09/5a03f971545b0.png)
 
@@ -64,13 +66,13 @@
 
     ![](https://i.loli.net/2017/11/09/5a03fc9a1dcb2.png)
 
-9. 如果该Case的参数是孤立的，仅仅在一个Case中使用，那可以在参数配置栏的该参数下，选择Type of Values为Single Values，然后将该参数在测试中可能的取值填入，如下图所示：
+11. 如果该Case的参数是孤立的，仅仅在一个Case中使用，那可以在参数配置栏的该参数下，选择Type of Values为Single Values，然后将该参数在测试中可能的取值填入，如下图所示：
 
     ![](https://i.loli.net/2017/11/10/5a050ecd4ef74.png)
 
     但是，如果该参数及其可能取值，会运用到后续多个Test Case中的话，则建议创建一个Parameter File，将多个Case会共用的参数配置其中，这样后续使用起来会方便得多。你可以将Parameter File里的参数理解成C语言中的宏定义。
 
-10. 在当前Project View的Test Unit下，右键，新建一个Parameter File。
+12. 在当前Project View的Test Unit下，右键，新建一个Parameter File。
 
     ![](https://i.loli.net/2017/11/09/5a03fe6bd2c83.png)
 
@@ -78,7 +80,7 @@
 
     ![](https://i.loli.net/2017/11/10/5a0510f277496.png)
 
-11. 在Parameter File中，选择insert list，添加新参数。
+13. 在Parameter File中，选择insert list，添加新参数。
 
     ![](https://i.loli.net/2017/11/10/5a0511e076389.png)
 
@@ -86,13 +88,13 @@
 
     ![](https://i.loli.net/2017/11/09/5a0403c066f1d.png)
 
-12. Parameter File配置完成后，就可以在Test Case右侧的Case参数配置栏中进行相应的配置了。对于需要选取Parameter File中参数的场合，需先在Type of Values一栏选择List from Parameter File，然后就可在Value Source中选取该参数。
+14. Parameter File配置完成后，就可以在Test Case右侧的Case参数配置栏中进行相应的配置了。对于需要选取Parameter File中参数的场合，需先在Type of Values一栏选择List from Parameter File，然后就可在Value Source中选取该参数。
 
-    需要注意的是，这配置栏中的Combinatorics如果是选择Sequential，则参数间的组合是以将同一行的参数值配置成一个case；如果选择Combinatorial，则会将这三列的参数值按排列组合的方式生成相应参数值组合的case。具体的选择依据实际需求和参数栏中Values的配置方式。
+    需要注意的是，这配置栏中的Combinatorics如果是选择Sequential，则参数间的组合是以将同一行的参数值配置成一个case；如果选择Combinatorial，则会将这三列的参数值按排列组合的方式生成相应参数值组合的case。具体的选择依据实际需求和参数栏中Values的配置方式而定。
 
     ![](https://i.loli.net/2017/11/09/5a0414df5af99.png)
 
-13. 当Test Tree中的Test Case及Case相应参数都配置完成后，在vTESTstudio中点击Build Test Unit按钮或按快捷键shift+F6，进行build。
+15. 当Test Tree中的Test Case及Case相应参数都配置完成后，在vTESTstudio中点击Build Test Unit按钮或按快捷键shift+F6，进行build。
 
     ![](https://i.loli.net/2017/11/10/5a05156fb32da.png)
 
@@ -100,9 +102,9 @@
 
     ![](https://i.loli.net/2017/11/10/5a0516d77521c.png)
 
-    如果创建失败，会显示Build failed之类的字样。双击Output中的Error字眼，界面会指向错误出现的地方。
+    如果创建失败，会显示Build failed之类的字样。双击Output中的Error字眼，界面光标会指向错误出现的地方。
 
-14. vtuexe文件创建成功后，再次进入CANoe工程。在View菜单栏中，选择Test Setup下的Test Configurations for Test Units。
+16. vtuexe文件创建成功后，再次进入CANoe工程。在View菜单栏中，选择Test Setup下的Test Configurations for Test Units。
 
     ![](https://i.loli.net/2017/11/09/5a03f408dd5b3.png)
 
@@ -120,7 +122,7 @@
 
     因为上例中我在配置的Combinatorics一栏选择了Combinatorial，所以最终这个case匹配出了4\*1\*11=44中组合。具体运行的时候，可以勾选需要的case来运行。
 
-15. 点击CANoe菜单栏下方的Start按钮(闪电图标)，或者使用快捷键F9，会发现Unit上方的开始按钮由灰变红。
+17. 点击CANoe菜单栏下方的Start按钮(闪电图标)，或者使用快捷键F9，会发现Unit上方的开始按钮由灰变红。
 
     ![](https://i.loli.net/2017/11/10/5a051d3167dee.png)
 
@@ -131,3 +133,23 @@
     测试完成后，点击Unit右上方的Test Report按钮，可以查看测试过程的报告。
 
     ![](https://i.loli.net/2017/11/10/5a051ea92bc45.png)
+
+18. 关于测试报告，需要说明以下几点。以下以同一个测试序列为例说明。
+
+    - 如果测试序列在运行过程中没有任何问题，且检测值均在需求文档的规定范围内，那么每一项都会在报告中显示绿色的pass标识。这类情形下，函数返回的error code值都大等于0。如下图所示： 
+
+        ![](https://s1.ax1x.com/2017/12/11/HJhWV.png)
+
+    - 如果测试序列在运行过程中没有任何问题，但某些检测值在需求文档的规定范围外，那么检测值不达标的项都会显示红色的fail标识，并且程序会继续进行fail项之后的序列测试。这类情形下，函数返回的error code值都小于-10000。如下图所示：
+
+        ![](https://s1.ax1x.com/2017/12/11/HJTL4.png)
+
+    - 如果测试序列在运行过程中出现系统性错误，譬如配置表出错或某些符号使用不得当等问题，那么错误项会显示红色的fail标识，并且程序出于安全考虑，会中断之后的序列运行。这类情形下，函数返回的error code值都小于-1000，但大等于-10000。
+
+        以下是routeNum数组配置错误时的报告情形，可以看到step3后的step4就没有继续运行：
+
+        ![](https://s1.ax1x.com/2017/12/11/HJHeJ.png)
+
+        以下是supint->out2这个key的value配置错误时的报告情形，可以看到step1后的3个step就没有继续运行：
+
+        ![](https://s1.ax1x.com/2017/12/11/HJOF1.png)

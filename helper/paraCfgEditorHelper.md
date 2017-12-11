@@ -12,7 +12,7 @@
 
     ![](https://i.loli.net/2017/09/27/59cb496c787ce.png)
 
-4. 导入ini文件后，check一栏会显示相应的语法检测结果，如果出现某个key条目的数据类型不匹配或者数目不匹配或者符号格式等输入错误，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。
+4. 导入ini文件后，check一栏会显示相应的语法检测结果，如果出现某个key条目的数据类型不匹配或者数目不匹配，符号格式输入错误，key name重复，section缺失或输入的section不在tree控件界定范围内等问题，check一栏会打上红色的×，并且会标注错误原因；检测正确的话，则会标注绿色的√。
 
     下图中同时包含有检测正确和错误的图示。需要注意的是，由于屏幕所限，每一列的宽度可能不足够展示该栏全部的信息，这个时候可以用鼠标双击你希望获得清楚信息的行，则该行每一栏的信息都会清晰地放大到上方的VIEW控件中。以下图为例，它展示的就是出错一行每一栏的详细信息。
 
@@ -26,19 +26,19 @@
 
     ![](https://i.loli.net/2017/11/13/5a0901a2f0e1b.gif)
 
-7. 如果需要在新的一行，添加新的section，可以在该行先点击鼠标左键，将鼠标置于该行任一栏内，然后点击面板右侧的tree控件里具体的某个具体的section名称，这时候该section的名称和具体的key fomat说明就会被添加到该行相应的栏内。详情参考以下操作图例。
+7. 如果需要在新的一行，添加新的section，可以在该行先点击鼠标左键，将鼠标置于该行任一栏内，然后点击面板右侧的tree控件里具体的某个section名称，这时候该section的名称和具体的key fomat说明就会被添加到该行相应的栏内。详情参考以下操作图例。
 
     ![](https://i.loli.net/2017/11/13/5a090299ebd92.gif)
 
-8. 在空白处填写新增key或section，当该行参数全部填写完毕后，如果需要审核该行参数的填写是否符合规范，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到该行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。
+8. 在空白处填写新增key或section，当该行参数全部填写完毕后，如果需要审核该行参数的填写是否符合规范，只需将鼠标点击到除此行以外的其他任意行上，就能立刻看到之前填入行check栏上的判定结果。如果需要查看该行的详细信息，只需鼠标左键双击该行，就可以在上部view控件栏上显示该行所有栏目的详细内容。详情参考以下操作图例。
 
     ![](https://i.loli.net/2017/11/13/5a0903e65b263.gif)
 
-9. 当所需数据内容全部添加到表格后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate ParaCfg.ini）。此刻如果程序检测到之前check一列没有任何错误标记，则该表格生成的ini文件会覆盖并更新之前导入的ini文件；如果发现check一栏的错误尚有还未被更正的情况，程序会弹出提示框提示错误所在行，用户可以选择忽视错误继续更新/生成ini文档。或者选择否，不生成文档，回头修改错误。建议，如果没有特殊情况，还请先修复错误后再选择生成文档，否则某些格式错误可能造成生成文档中某些部分的格式和您预想的不一致的情况。以下是错误提醒弹出框的视图：
+9. 当所需数据内容全部添加到表格后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate ParaCfg.ini字样）。此刻如果程序检测到之前check一列没有任何错误标记，则该表格生成的ini文件会覆盖并更新之前导入的ini文件；如果发现check一栏的错误尚有未被更正的情况，程序会弹出提示框提示错误所在行，用户可以选择忽视错误继续更新/生成ini文档，或者选择否，不生成文档，回头修改错误。建议，如果没有特殊情况，还请先修复错误后再选择生成文档，否则某些格式错误可能造成生成文档中某些部分的格式和用户预想的不一致的情况。以下是错误提醒弹出框的视图：
 
     ![](https://i.loli.net/2017/11/13/5a09064d1dab5.png)
 
-10. 当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏进行其他操作。注意，当paraCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的\_testStepCfgEditor或者paraCfgEditor操作的，否则会弹出提示框，提示该VI进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单，帮助菜单上的选项随时都可以按）。提示窗口如下图所示：
+10. 当ini文件生成成功后，可以点击菜单栏上的exit按钮退出，或者点击菜单栏上其他选项进行操作。注意，当paraCfgEditor还没有运行结束时（生成ini文件后才算正常结束），是不可以在菜单栏创建新的\_testStepCfgEditor或者paraCfgEditor操作的，否则会弹出提示框，提示该VI进程仍然在运行中，必须结束该进程才可以进行其他操作（不限于帮助菜单和Instrument菜单，这两个菜单栏上的选项随时都可以按）。提示窗口如下图所示：
 
     ![](https://i.loli.net/2017/11/13/5a0907095fb0e.png)
 
@@ -52,7 +52,7 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     - section对应的即是ini文件中的section，在这个文本中，section对应的是配置项的分类。
     
-        譬如下图中，vt2516Cfg这个section，这部分的内容就和vt2516这块板卡的配置有关。
+        譬如下图中，vt2516Cfg这个section，这部分的内容就和vt2516这块板卡的连接配置有关。
     
         ![](https://i.loli.net/2017/11/13/5a0907f82d00d.png)
 
@@ -69,7 +69,7 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
 2. key name
 
-    key name对应的即是ini文件中各section下各个key的名字。key name应尽量根据key format中相应部分的格式，取有意义，有识别度的名称。
+    key name对应的即是ini文件中各section下各个key的名称。key name应尽量根据key format中相应部分的格式，取有意义，有识别度的名称。
 
     譬如下图中，vt2516Cfg这个section，根据key format的定义，key name应该代表该PIN的名称。
 
@@ -79,17 +79,17 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     key value对应的即是ini文件中各section下各个key相应的值。这部分必须根据key format一栏中对应value的格式来填入。如果填入的key value和key format中定义的数据类型或者数目不符，check一栏会提示相应的错误。
 
-    以下是一个key value与key format定义中数目不符，报错的例子：
+    以下是一个key value与key format定义中数目不符而报错的例子：
 
     ![](https://i.loli.net/2017/11/13/5a090c0bb9cd8.png)
 
-    以下是一个key value与key format数据类型不符，报错的例子：
+    以下是一个key value与key format数据类型不符而报错的例子：
 
     ![](https://i.loli.net/2017/11/13/5a090cac8ea05.png)
 
 4. key format
 
-    key format对应的即是key的格式，包括key name和key value的格式。当用户点击面板右侧tree控件添加section的时候，该section对应的key format会自动添加到该栏。填写key相应的参数时，可以参考该栏内容，填入正确类型的参数。需要指出的是，key format一栏的存在，仅仅是为了辅助用户填写key。在最终生成的ini文档中，是没有key format的位置的。
+    key format对应的即是key的格式，包括key name和key value的格式。当用户点击面板右侧tree控件添加section的时候，该section对应的key format会自动添加到该栏。填写key相应的参数时，可以参考该栏内容，填入正确类型的参数。需要指出的是，key format一栏的存在，仅仅是为了辅助用户填写key。在最终生成的ini文档中，是没有key format的。
 
     除此之外，key format还有一种特殊的格式需要注意。key format中，如果key value部分的定义里，参数中带有\_i，说明这是一个通项的定义公式，这部分参数的实际配置可以是整数个组别的带\_i参数类型。
 
@@ -101,21 +101,21 @@ paraCfgEditor的表格由6个栏目组成，分别是section，key name，key va
 
     comment即注释，适当的注释有利于用户回顾编写key时的逻辑，这部分内容也会保留在最终生成的ini文件中，跟随在文本行末尾的;//符号的后面。注：//的目的只是为了方便识别注释，真正区分注释和正文的关键在于;号。因此，即便用户在comment一栏中的起始没有填入符号//，脚本编辑器最终也会在生成的ini文件中，将符号//补上。
 
-    以下是comment在应用和生成ini文件中的对应位置：
+    以下是comment分别在应用和生成ini文件中的对应位置：
 
     ![](https://i.loli.net/2017/11/13/5a090f4bf1efb.png)
 
 ###paraCfgEditor的生成文档说明
 
-paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档paraCfg.ini。
+如果填入表格没有发生错误的话，paraCfgEditor应用程序在点击钢笔状图标后，将会生成唯一的文档paraCfg.ini。
 
-该文档是运行paraCfgEditor程序时，首先要求导入的文档。paraCfg.ini是推荐输入的文件名，当然你也可以选择其他的文件名。
+该文档是运行paraCfgEditor程序时，首先要求导入/新建的文档。paraCfg.ini是推荐输入的文件名，当然你也可以选择其他的文件名。
 
 ![](https://i.loli.net/2017/09/27/59cb496c787ce.png)
 
 导入后，你可以进行相应的修改，新增或者删除等操作。
 
-当所需数据内容全部添加完成后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate paraCfg.ini）实现最终文件生成，这时候会根据之前在应用程序表格中的相应内容，自动更新覆盖之前导入的文本（文件名保持不变）。
+当所需数据内容全部添加完成后，点击面板右上角的一个钢笔形状的图标（图标上方标注有Generate paraCfg.ini字样）实现最终文件生成，这时候会根据之前在应用程序表格中的相应内容，自动更新覆盖之前导入的文本（文件名保持不变）。
 
 ###各section的key format详细说明
 
@@ -143,7 +143,7 @@ paraCfgEditor应用程序在正常运行结束后，会生成唯一的文档para
 
 	    该section中的内容会影响后续产品的PWM输出波形检测，vt2516通道的固定电压的DO设置，vt2516通道的AO设置，vt2516通道的PWM输出波形设置，vt2516通道的负载连接状态等。
 
-	    库函数中的prodPwmOutChk,chFixVoltDOSet,chAOSet,chPwmOutSet,chLoadConnectStatSet等函数均会直接调用该section的内容，而btnPrsImpOnSpecPwmChk,chRamVoltDOSet,sigDirMulStatInSet等函数则会间接调用该section内容。
+	    库函数中的prodPwmOutChk,chFixVoltDOSet,chAOSet,chPwmOutSet,chLoadConnectStatSet等函数均会直接调用该section的内容，而prodOperWithPinStatImpOnSpecPwmCfg,prodOperWithSigStatImpOnSpecPwmCfg，chRamVoltDOSet,sigDirMulStatInSet等函数则会间接调用该section内容。
 
     2. vLevelCfg
 

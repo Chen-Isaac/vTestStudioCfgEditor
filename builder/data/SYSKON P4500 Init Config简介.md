@@ -1,6 +1,6 @@
 ###SYSKON P4500 Init Config简介
 
-SYSKON P4500 Init Config是用来初始化SYSKON P4500外接电源的基础配置的。
+SYSKON P4500 Init Config是用来初始化SYSKON P4500外接电源的基础配置的。如果用户在使用vt7001板卡的时候，希望选择SYSKON P4500作为外接电源接入，那么在使用vtSysWithExPwrSupInit，vtSysExPwrSupSet等相关函数前，必须先初始化SYSKON P4500的基础配置。
 
 具体的操作面板如下图所示：
 
